@@ -152,8 +152,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1325744302}
   dialogue: []
-  currentObj: {fileID: 0}
-  letterPerSec: 30
+  currentObj: {fileID: 1809955524}
+  letterPerSec: 1
   index: 0
   maxIndex: 0
   openText: 0
@@ -623,12 +623,7 @@ MonoBehaviour:
   gameManager: {fileID: 144138415}
   player: {fileID: 1325744301}
   maxDistance: 2.2
-  myDialogue:
-  - Hello
-  - This is a test
-  - We are on 3
-  - Now onto 4
-  - This is now dialogue line 5
+  myDialogue: []
   isInteracting: 0
 --- !u!212 &1809955525
 SpriteRenderer:

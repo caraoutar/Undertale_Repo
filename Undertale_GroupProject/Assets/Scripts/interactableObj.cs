@@ -7,11 +7,11 @@ object by adjusting the size, and inputting your desired text
 
 Note: for this script to work, there cannot be multiple objects within the maxDistance from player.
 */
-public class InteractableObj : MonoBehaviour
+public class interactableObj : MonoBehaviour
 {
     #region VARIABLES
     //references to gamemanger and player
-    [SerializeField] GameManager gameManager;
+    [SerializeField] gameManager gameManager;
     [SerializeField] GameObject player;
 
     [SerializeField] float maxDistance = 2.2f; //maximum distance to player to interact with object

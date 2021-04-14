@@ -5,14 +5,14 @@ using UnityEngine.UI;
 
 //this script manages the game dialogue and UI; the current object will automatically change (there is no need to adjust it through the editor)
 
-public class GameManager : MonoBehaviour
+public class gameManager : MonoBehaviour
 {
     #region VARIABLES
-    [SerializeField] PlayerMovement player; //reference to player's script
+    [SerializeField] playerMovement player; //reference to player's script
     
     //dialgoue variables
     public List <string> dialogue = new List<string>(); //the dialogue that will be typed
-    public InteractableObj currentObj; //reference to the current object being interacted with; this will automatically change
+    public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
 
     [SerializeField] int letterPerSec; //how fast the typing is
     [SerializeField] int index; //which line is being typed
