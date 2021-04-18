@@ -10,8 +10,8 @@ public class playerMovement : MonoBehaviour
     // [SerializeField] GameManager gameManager;
 
     //player variables
-    // Animator myAnim;
-    // SpriteRenderer myRenderer;
+    Animator myAnim;
+    SpriteRenderer myRenderer;
 
     //movement variables
     float moveDirX;
@@ -24,8 +24,8 @@ public class playerMovement : MonoBehaviour
    
     void Start()
     {
-        // myAnim = gameObject.GetComponent<Animator>();
-        // myRenderer = gameObject.GetComponent<SpriteRenderer>();
+        myAnim = gameObject.GetComponent<Animator>();
+        myRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
 
     void FixedUpdate()
@@ -36,7 +36,7 @@ public class playerMovement : MonoBehaviour
     //movement function
     void move(){
         //reset animation -> for when there is animation
-        // resetAnim();
+        resetAnim();
 
         //get the directional movement of the player
         moveDirX = Input.GetAxis("Horizontal");
@@ -45,23 +45,23 @@ public class playerMovement : MonoBehaviour
         //if the player is moving right
         if(moveDirX > 0){
             Debug.Log("moving left");
-            // myAnim.SetBool("walkingSide",true);
-            // myRenderer.flipX = false;
+            myAnim.SetBool("walkingSide",true);
+            myRenderer.flipX = true;
         }
         //if player is moving left
         else if(moveDirX < 0){
             Debug.Log("moving right");
-            // myAnim.SetBool("walkingSide",true);
-            // myRenderer.flipX = true;
+            myAnim.SetBool("walkingSide",true);
+            myRenderer.flipX = false;
         }
 
         if(moveDirY > 0 && moveDirX == 0){
             Debug.Log("moving up");
-            // myAnim.SetBool("walkingUp",true);
+            myAnim.SetBool("walkingUp",true);
         }
         else if(moveDirY < 0 && moveDirX == 0){
             Debug.Log("moving down");
-            // myAnim.SetBool("walkingDown",true);
+            myAnim.SetBool("walkingDown",true);
         }
 
         //limit horizontal speed
@@ -81,8 +81,8 @@ public class playerMovement : MonoBehaviour
         //reset the animation
     void resetAnim(){
         Debug.Log("resetting animations");
-        // myAnim.SetBool("walkingSide",false);
-        // myAnim.SetBool("walkingUp",false);
-        // myAnim.SetBool("walkingDown",false);
+        myAnim.SetBool("walkingSide",false);
+        myAnim.SetBool("walkingUp",false);
+        myAnim.SetBool("walkingDown",false);
     }
 }
