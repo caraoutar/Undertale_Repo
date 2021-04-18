@@ -8,6 +8,11 @@ using UnityEngine.UI;
 public class gameManager : MonoBehaviour
 {
     #region VARIABLES
+    //refernces to cameras in the main room, the bedroom, and the combat "room"
+    [SerializeField] Camera mainCam; //this is camera 0
+    [SerializeField] Camera bedroomCam; //camera 1
+    [SerializeField] Camera combatCam; //camera 2
+
     [SerializeField] playerMovement player; //reference to player's script
     
     //dialgoue variables
@@ -32,7 +37,13 @@ public class gameManager : MonoBehaviour
     #endregion
 
     //updates the dialogue based on player input, and closes dialogue
+    //also updates camera
     public void Update(){
+        //checking camera swap
+        if(Input.GetKeyDown(KeyCode.B)){
+            swapCamera(1);
+        }
+
         //change dialogue if the player presses enter key
         if(Input.GetKeyDown(KeyCode.Return) && openText){
                 if(isTyping){
@@ -110,5 +121,40 @@ public class gameManager : MonoBehaviour
 
         timeRemaining = maxTime; //begin countdown to allow player to interact again
         runTimer = true;
+    }
+
+
+    //displays dialogue with choice yes/no
+    public void displayChoice(){
+
+    }
+
+    //overloaded function that displays dialogue with choice that is not yes/no
+    public void displayChoice( string c1, string c2){
+
+    }
+
+    //swap the cameras (moving to different rooms)
+    public void swapCamera(int camNum){
+        //disable all cameras
+        mainCam.enabled = false;
+        bedroomCam.enabled = false;
+        combatCam.enabled = false;
+
+        //enable the necessary camera
+        switch(camNum){
+            case 0: 
+                mainCam.enabled = true;
+                
+            break;
+            case 1: 
+                Debug.Log("should swap cam");
+                bedroomCam.enabled = true;
+            break;
+            case 2: 
+                combatCam.enabled = true;
+            break;
+        }
+
     }
 }
