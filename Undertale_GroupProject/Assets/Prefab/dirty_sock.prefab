@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3842614336169422976}
   - component: {fileID: -4159653604841474454}
+  - component: {fileID: 3654468708003932756}
   m_Layer: 0
   m_Name: dirty_sock
   m_TagString: Untagged
@@ -70,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d531b70002feb4696966ea151fea54e9, type: 3}
+  m_Sprite: {fileID: 667017947634978377, guid: b4bfa67b56f148842af2a36146b0cb77, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,3 +82,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3654468708003932756
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 794589187750473278}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 8399733962999676627, guid: 12daa823e58cf49fcb5fba8b73fcbcf1,
+    type: 3}
+  player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
+  maxDistance: 2.2
+  myDialogue:
+  - '* (A series of post-it notes are strewn above a dirty sock.) '
+  - '*(Sans! What have I told you about cleaning up?) '
+  - '*(Maybe I left it here for decoration?) '
+  - "*(What? You know your sock doesn\u2019t match our beautiful home decor!) "
+  - "*(Of course it does. It\u2019s art.) "
+  - '*(Fine! Forget it!) '
+  isInteracting: 0

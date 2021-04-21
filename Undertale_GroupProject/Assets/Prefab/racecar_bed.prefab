@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1796730178515680633}
   - component: {fileID: -5434428791876763277}
+  - component: {fileID: 4763885016991932850}
+  - component: {fileID: -1392870571255626219}
   m_Layer: 0
   m_Name: racecar_bed
   m_TagString: Untagged
@@ -70,7 +72,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d531b70002feb4696966ea151fea54e9, type: 3}
+  m_Sprite: {fileID: 4930428974814493766, guid: d054e316778e0cf4cb9946e8309c544c,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,3 +84,44 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4763885016991932850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7496201461173730750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 8399733962999676627, guid: 12daa823e58cf49fcb5fba8b73fcbcf1,
+    type: 3}
+  player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
+  maxDistance: 2.2
+  myDialogue: []
+  isInteracting: 0
+--- !u!114 &-1392870571255626219
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7496201461173730750}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 8399733962999676627, guid: 12daa823e58cf49fcb5fba8b73fcbcf1,
+    type: 3}
+  player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
+  maxDistance: 2.2
+  myDialogue:
+  - '*(A race car bed is adorned with pillows.) '
+  - "That\u2019s my bed! Isn\u2019t it neat?"
+  - "It\u2019s got 200 horsepower, and a very comfy mattress."
+  - "The best feature, though\u2026"
+  - The perfect nightlight!
+  isInteracting: 0
