@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4014594923103337837}
   - component: {fileID: 1949347022202445515}
+  - component: {fileID: 4071497207898092548}
   m_Layer: 0
   m_Name: flag
   m_TagString: Untagged
@@ -81,3 +82,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4071497207898092548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4578498502980693541}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 8399733962999676627, guid: 12daa823e58cf49fcb5fba8b73fcbcf1,
+    type: 3}
+  player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
+  maxDistance: 2.2
+  myDialogue:
+  - '*(A Hatsune Miku poster hangs on the wall). '
+  - Ah yes, Hatsune Miku.
+  - Sans and I are both huge fans!
+  - "Her music is so beautiful, it brings me to tears\u2026"
+  - "*(Papyrus\u2019 eyes begin to swell.) "
+  - Ahem. What were we talking about?
+  isInteracting: 0

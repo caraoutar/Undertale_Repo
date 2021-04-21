@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5983645347805659790}
   - component: {fileID: 2847963540960315457}
+  - component: {fileID: 5670793652368581150}
   m_Layer: 0
   m_Name: bookcase
   m_TagString: Untagged
@@ -81,3 +82,28 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5670793652368581150
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4194128765286108636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 8399733962999676627, guid: 12daa823e58cf49fcb5fba8b73fcbcf1,
+    type: 3}
+  player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
+  maxDistance: 2.2
+  myDialogue:
+  - '*(Books are lined along the shelves.) '
+  - I love reading!
+  - "If I had to pick my favourites, I would say\u2026"
+  - "Stephen Hawking\u2019s \u201CA Brief History of Time,"
+  - "and\u2026"
+  - "Eric Carle\u2019s \u201CThe Very Hungry Caterpillar."
+  - Very cool illustrations.
+  isInteracting: 0

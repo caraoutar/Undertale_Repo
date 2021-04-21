@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4049250880101803000}
   - component: {fileID: -3416019600764291792}
+  - component: {fileID: 7226122779551957257}
   m_Layer: 0
   m_Name: box_of_bones
   m_TagString: Untagged
@@ -81,3 +82,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &7226122779551957257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5628313652569969432}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 8399733962999676627, guid: 12daa823e58cf49fcb5fba8b73fcbcf1,
+    type: 3}
+  player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
+  maxDistance: 2.2
+  myDialogue:
+  - '*(Bones lie haphazardly in a cardboard box.) '
+  - '*(A blushing white dog relaxes between them.) '
+  - "Oh, that\u2019s just my box of bones."
+  - Hm? Is that dog back again?
+  - 
+  isInteracting: 0
