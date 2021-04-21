@@ -99,9 +99,10 @@ MonoBehaviour:
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
   maxDistance: 2.2
   myDialogue:
-  - 
-  - 
-  - 
-  - 
-  - 
+  - These are my action figures!
+  - "*(Papyrus\u2019 voice booms with pride.) "
+  - "I\u2019ve spent many years collecting them."
+  - "I still can\u2019t believe I got my hands on the limited edition Miss Kitty
+    figurine\u2026"
+  - "She\u2019s my favourite of the bunch!"
   isInteracting: 0
