@@ -1,0 +1,67 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2230936564318212691
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2230936564318212685}
+  - component: {fileID: 2230936564318212690}
+  m_Layer: 0
+  m_Name: gameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2230936564318212685
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230936564318212691}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2230936564318212690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230936564318212691}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0f6c14267f2d41c4b6e05e09c33f147, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  mainCam: {fileID: 3490604475619064408, guid: b7cfe7c4c0c364edc99f52b9fdb2a0f9, type: 3}
+  bedroomCam: {fileID: 8345158186260054806, guid: 63d7a6c94dd2149e0851c375419281e1,
+    type: 3}
+  combatCam: {fileID: 4793398227594136966, guid: fd51f4d5e17d3496c83124720866e9c6,
+    type: 3}
+  player: {fileID: 7599285644281548010, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
+  dialogue: []
+  currentObj: {fileID: 0}
+  letterPerSec: 25
+  index: 0
+  maxIndex: 0
+  openText: 0
+  dialogueTextBox: {fileID: 4640754371249486744, guid: 57941c3e3b2f4412baa7921e09b64c6b,
+    type: 3}
+  dialogueText: {fileID: 1067138430856286604, guid: 02fb113fac4b148589dd01c4c44b63b9,
+    type: 3}
+  choice1: {fileID: 593563371647893532, guid: ea9e8a03c54284c328e657bb2859d046, type: 3}
+  choice2: {fileID: 5676477722133961009, guid: fb5b1280a04dc46ff8817b7cb58eb59b, type: 3}
+  heart1: {fileID: 1316968391056901716, guid: 143aa0f95552e403b891c36b78fb2905, type: 3}
+  heart2: {fileID: 1821923693802779855, guid: 2a740ab6fa36746b68e11f845bcd6476, type: 3}
+  maxTime: 0.5
+  timeRemaining: 0
