@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 //this script manages the game dialogue and UI; the current object will automatically change (there is no need to adjust it through the editor)
 
+//test line
+
 public class gameManager : MonoBehaviour
 {
     #region VARIABLES
