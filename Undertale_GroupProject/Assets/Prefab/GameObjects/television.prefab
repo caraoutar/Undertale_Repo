@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &794589187750473278
+--- !u!1 &4448031233731630822
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,23 +8,23 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 3842614336169422976}
-  - component: {fileID: -4159653604841474454}
-  - component: {fileID: 3654468708003932756}
+  - component: {fileID: 5206599341470327653}
+  - component: {fileID: 426168634424391136}
+  - component: {fileID: 1185534354172312837}
   m_Layer: 0
-  m_Name: dirty_sock
+  m_Name: television
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &3842614336169422976
+--- !u!4 &5206599341470327653
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794589187750473278}
+  m_GameObject: {fileID: 4448031233731630822}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.4005322, y: 2.0829258, z: -1.9469275}
   m_LocalScale: {x: 1, y: 1, z: 1}
@@ -32,13 +32,13 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &-4159653604841474454
+--- !u!212 &426168634424391136
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794589187750473278}
+  m_GameObject: {fileID: 4448031233731630822}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -71,7 +71,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 667017947634978377, guid: b4bfa67b56f148842af2a36146b0cb77, type: 3}
+  m_Sprite: {fileID: 2578220132426568187, guid: b4bfa67b56f148842af2a36146b0cb77,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -82,27 +83,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &3654468708003932756
+--- !u!114 &1185534354172312837
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794589187750473278}
+  m_GameObject: {fileID: 4448031233731630822}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameManager: {fileID: 8399733962999676627, guid: 12daa823e58cf49fcb5fba8b73fcbcf1,
+  gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
   maxDistance: 2.2
   myDialogue:
-  - '* (A series of post-it notes are strewn above a dirty sock.) '
-  - '*(Sans! What have I told you about cleaning up?) '
-  - '*(Maybe I left it here for decoration?) '
-  - "*(What? You know your sock doesn\u2019t match our beautiful home decor!) "
-  - "*(Of course it does. It\u2019s art.) "
-  - '*(Fine! Forget it!) '
+  - I love this channel!
+  - '* (The television shows static.)  '
   isInteracting: 0

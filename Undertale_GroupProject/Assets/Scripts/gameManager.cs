@@ -29,8 +29,13 @@ public class gameManager : MonoBehaviour
     public bool openText = false; //condition for whether the textbox is currently open
 
     //reference to the textbox and text
-    public GameObject dialogueTextBox;
-    public Text dialogueText;
+    [SerializeField] GameObject dialogueTextBox;
+    [SerializeField] Text dialogueText;
+
+    [SerializeField] Text choice1;
+    [SerializeField] Text choice2;
+    [SerializeField] Image heart1;
+    [SerializeField] Image heart2;
 
     //countdown timer code
     [SerializeField] float maxTime = 0.5f;
