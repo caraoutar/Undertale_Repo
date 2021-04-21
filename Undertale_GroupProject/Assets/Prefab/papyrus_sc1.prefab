@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2682921185381080313}
   - component: {fileID: 361662255179206003}
+  - component: {fileID: 4546427492001666985}
   m_Layer: 0
   m_Name: papyrus_sc1
   m_TagString: Untagged
@@ -81,3 +82,23 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &4546427492001666985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 493825587159805316}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 8399733962999676627, guid: 12daa823e58cf49fcb5fba8b73fcbcf1,
+    type: 3}
+  player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
+  maxDistance: 2.2
+  myDialogue:
+  - Hello! Welcome to my humble abode!
+  - Take a look at all my wonderful furnishings!
+  isInteracting: 0

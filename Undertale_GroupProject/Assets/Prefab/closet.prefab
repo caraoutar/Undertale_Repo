@@ -102,5 +102,5 @@ MonoBehaviour:
   - "That\u2019s my closet!"
   - "I\u2019m quite the fashion icon."
   - '*(Look inside the closet?) -----> YES      NO '
-  - 
+  - 'YES: *(A row of red capes are hung up nearly inside.) '
   isInteracting: 0
