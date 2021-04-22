@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 1875084433329829425}
   - component: {fileID: 8529736052959109257}
   - component: {fileID: 7671453121653798436}
-  - component: {fileID: -6382193233988535029}
+  - component: {fileID: -1037552822074716326}
   m_Layer: 0
   m_Name: computer
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,15 +99,20 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - "That\u2019s what I use to get to a magical place called..."
   - the INTERNET.
   - "I\u2019m what you would call, an influencer."
   - Thirteen followers and counting!
   - I try not to let fame get the best of me, though.
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &-6382193233988535029
+  maxDistance: 2.2
+--- !u!61 &-1037552822074716326
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,10 +125,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.6}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.26, y: 1.2}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

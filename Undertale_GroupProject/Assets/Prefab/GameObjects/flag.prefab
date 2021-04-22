@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4014594923103337837}
   - component: {fileID: 1949347022202445515}
   - component: {fileID: 4071497207898092548}
-  - component: {fileID: -5688155703507364519}
+  - component: {fileID: -3247348171512775206}
   m_Layer: 0
   m_Name: flag
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - '*(A Hatsune Miku poster hangs on the wall). '
   - Ah yes, Hatsune Miku.
@@ -107,8 +106,14 @@ MonoBehaviour:
   - "Her music is so beautiful, it brings me to tears\u2026"
   - "*(Papyrus\u2019 eyes begin to swell.) "
   - Ahem. What were we talking about?
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &-5688155703507364519
+  maxDistance: 2.2
+--- !u!61 &-3247348171512775206
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,10 +126,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.34}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.41, y: 0.68}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

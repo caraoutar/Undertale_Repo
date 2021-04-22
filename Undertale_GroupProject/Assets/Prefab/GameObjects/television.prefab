@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5206599341470327653}
   - component: {fileID: 426168634424391136}
   - component: {fileID: 1185534354172312837}
-  - component: {fileID: -5919816427026431508}
+  - component: {fileID: 913817986932049912}
   m_Layer: 0
   m_Name: television
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,12 +99,17 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - I love this channel!
   - '* (The television shows static.)  '
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &-5919816427026431508
+  maxDistance: 2.2
+--- !u!61 &913817986932049912
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,10 +122,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.0023368597, y: 0.2206732}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.17, y: 0.99}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -128,5 +133,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.17, y: 0.99}
+  m_Size: {x: 0.91912293, y: 0.4413464}
   m_EdgeRadius: 0

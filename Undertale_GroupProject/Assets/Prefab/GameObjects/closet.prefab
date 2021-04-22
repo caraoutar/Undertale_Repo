@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 4662314877713236543}
   - component: {fileID: -5170516114543839272}
   - component: {fileID: -1622021482756235320}
-  - component: {fileID: 5434851238832035697}
+  - component: {fileID: 7216123764531284055}
   m_Layer: 0
   m_Name: closet
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,14 +99,19 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - "That\u2019s my closet!"
   - "I\u2019m quite the fashion icon."
   - '*(Look inside the closet?) -----> YES      NO '
   - 'YES: *(A row of red capes are hung up nearly inside.) '
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &5434851238832035697
+  maxDistance: 2.2
+--- !u!61 &7216123764531284055
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,13 +121,13 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.51}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.68, y: 1.02}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2230936564318212690}
   m_Layer: 0
   m_Name: gameManager
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -49,12 +49,25 @@ MonoBehaviour:
   combatCam: {fileID: 4793398227594136966, guid: fd51f4d5e17d3496c83124720866e9c6,
     type: 3}
   player: {fileID: 7599285644281548010, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  dialogue: []
-  currentObj: {fileID: 0}
   letterPerSec: 25
   index: 0
   maxIndex: 0
+  papyrusFont: {fileID: 12800000, guid: 61ef5a02ecc4845689e74d90d2481e83, type: 3}
+  narrativeFont: {fileID: 12800000, guid: ceaf56857196d45be98d687cbc91efc2, type: 3}
+  isTyping: 0
+  isTypingChoice: 0
   openText: 0
+  typedChoices: 0
+  dialogue: []
+  choice:
+  - yes
+  - no
+  hasChoice: 0
+  defaultChoice:
+  - yes
+  - no
+  currentObj: {fileID: 0}
+  canvas: {fileID: 0}
   dialogueTextBox: {fileID: 4640754371249486744, guid: 57941c3e3b2f4412baa7921e09b64c6b,
     type: 3}
   dialogueText: {fileID: 1067138430856286604, guid: 02fb113fac4b148589dd01c4c44b63b9,

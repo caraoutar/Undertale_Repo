@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2536257052974733567}
   - component: {fileID: 4519018624923674390}
   - component: {fileID: -86370152336455065}
-  - component: {fileID: 7556987723792896001}
+  - component: {fileID: 328674226083364320}
   m_Layer: 0
   m_Name: pet_rock
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,15 +99,20 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - My brother got his pet rock last year.
   - "Ever since, I\u2019ve been the one on walking duty."
   - "I don\u2019t mind all the work though."
   - His cuteness makes it worth it!
   - '*(The rock stares at you, stone-faced.) '
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &7556987723792896001
+  maxDistance: 2.2
+--- !u!61 &328674226083364320
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,10 +125,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.775}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.84, y: 1.55}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

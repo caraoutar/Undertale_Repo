@@ -24,6 +24,7 @@ public class playerMovement : MonoBehaviour
    
     void Start()
     {
+        canMove = true;
         myAnim = gameObject.GetComponent<Animator>();
         myRenderer = gameObject.GetComponent<SpriteRenderer>();
     }
@@ -31,6 +32,10 @@ public class playerMovement : MonoBehaviour
     void FixedUpdate()
     {
         move();
+    }
+
+    void Update(){
+        myRenderer.sortingOrder = -(int)Mathf.Floor(gameObject.transform.position.y);
     }
 
     //movement function
@@ -42,25 +47,26 @@ public class playerMovement : MonoBehaviour
         moveDirX = Input.GetAxis("Horizontal");
         moveDirY = Input.GetAxis("Vertical");
 
+        if(canMove){ //if the player can move (the player cannot move when interacting with objects)
         //if the player is moving right
         if(moveDirX > 0){
-            Debug.Log("moving left");
+            // Debug.Log("moving left");
             myAnim.SetBool("walkingSide",true);
             myRenderer.flipX = true;
         }
         //if player is moving left
         else if(moveDirX < 0){
-            Debug.Log("moving right");
+            // Debug.Log("moving right");
             myAnim.SetBool("walkingSide",true);
             myRenderer.flipX = false;
         }
 
         if(moveDirY > 0 && moveDirX == 0){
-            Debug.Log("moving up");
+            // Debug.Log("moving up");
             myAnim.SetBool("walkingUp",true);
         }
         else if(moveDirY < 0 && moveDirX == 0){
-            Debug.Log("moving down");
+            // Debug.Log("moving down");
             myAnim.SetBool("walkingDown",true);
         }
 
@@ -71,7 +77,6 @@ public class playerMovement : MonoBehaviour
         }
 
         //movement
-        if(canMove){
             transform.Translate(Vector3.up*moveDirY*Time.deltaTime*speed);
             transform.Translate(Vector3.right*moveDirX*Time.deltaTime*speed);
         }

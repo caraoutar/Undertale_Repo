@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 2682921185381080313}
   - component: {fileID: 361662255179206003}
   - component: {fileID: 4546427492001666985}
-  - component: {fileID: -7740339037651281895}
+  - component: {fileID: 8006966756855284999}
   m_Layer: 0
   m_Name: papyrus_sc1
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,12 +98,17 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - Hello! Welcome to my humble abode!
   - Take a look at all my wonderful furnishings!
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &-7740339037651281895
+  maxDistance: 2.2
+--- !u!61 &8006966756855284999
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -116,10 +121,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.02533412, y: 0.25832152}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.71, y: 1.15}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -127,5 +132,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.71, y: 1.15}
+  m_Size: {x: 0.6593318, y: 0.51664305}
   m_EdgeRadius: 0

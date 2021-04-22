@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 3842614336169422976}
   - component: {fileID: -4159653604841474454}
   - component: {fileID: 3654468708003932756}
-  - component: {fileID: 1961898803713953026}
+  - component: {fileID: -5764173180879814455}
   m_Layer: 0
   m_Name: dirty_sock
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -98,7 +98,6 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - '* (A series of post-it notes are strewn above a dirty sock.) '
   - '*(Sans! What have I told you about cleaning up?) '
@@ -106,8 +105,14 @@ MonoBehaviour:
   - "*(What? You know your sock doesn\u2019t match our beautiful home decor!) "
   - "*(Of course it does. It\u2019s art.) "
   - '*(Fine! Forget it!) '
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &1961898803713953026
+  maxDistance: 2.2
+--- !u!61 &-5764173180879814455
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -120,10 +125,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.285}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.25, y: 0.57}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
