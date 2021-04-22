@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 6853336457271986528}
   - component: {fileID: 4673211891215327709}
   - component: {fileID: -1617745779495298406}
+  - component: {fileID: 1724770234378406726}
   m_Layer: 0
   m_Name: couch
   m_TagString: Untagged
@@ -105,3 +106,29 @@ MonoBehaviour:
   - "*(Lodged between the seat cushions, you find some children\u2019s action figures.) "
   - "Oh! I\u2019ve been looking for those for ages!"
   isInteracting: 0
+--- !u!61 &1724770234378406726
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4402538190921425476}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.82, y: 0.83}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.82, y: 0.83}
+  m_EdgeRadius: 0

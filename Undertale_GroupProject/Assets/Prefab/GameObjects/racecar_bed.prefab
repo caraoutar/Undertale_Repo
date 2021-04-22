@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: -5434428791876763277}
   - component: {fileID: 4763885016991932850}
   - component: {fileID: -1392870571255626219}
+  - component: {fileID: 2856043319905215370}
   m_Layer: 0
   m_Name: racecar_bed
   m_TagString: Untagged
@@ -125,3 +126,29 @@ MonoBehaviour:
   - "The best feature, though\u2026"
   - The perfect nightlight!
   isInteracting: 0
+--- !u!61 &2856043319905215370
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7496201461173730750}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.8, y: 1.16}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.8, y: 1.16}
+  m_EdgeRadius: 0
