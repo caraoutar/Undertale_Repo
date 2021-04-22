@@ -99,7 +99,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1.5
   speedLim: 0.7
-  canMove: 0
+  canMove: 1
 --- !u!95 &7599285644281548021
 Animator:
   serializedVersion: 3
