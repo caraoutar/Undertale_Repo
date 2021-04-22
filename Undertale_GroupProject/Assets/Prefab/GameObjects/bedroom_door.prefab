@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5183711760399444787}
   - component: {fileID: 4416155390100103346}
   - component: {fileID: -8336726193592768476}
-  - component: {fileID: 6555412581245744278}
+  - component: {fileID: 8571921904838669018}
   m_Layer: 0
   m_Name: bedroom_door
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,15 +99,20 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - "*(A \u201Cdo not enter\u201D sign and caution tape are plastered on the door.)"
   - "That\u2019s the door to my bedroom!"
   - "If you\u2019ve had a look at everything else, maybe we could move forward with
     our date?"
   - '*(Go inside?)     ------> YES        NO '
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &6555412581245744278
+  maxDistance: 2.2
+--- !u!61 &8571921904838669018
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -117,13 +122,13 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.505}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.68, y: 1.01}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

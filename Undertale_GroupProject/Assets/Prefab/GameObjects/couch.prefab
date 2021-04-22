@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 6853336457271986528}
   - component: {fileID: 4673211891215327709}
   - component: {fileID: -1617745779495298406}
-  - component: {fileID: 1724770234378406726}
+  - component: {fileID: 2700651385088109754}
   m_Layer: 0
   m_Name: couch
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,14 +99,19 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - "*(There\u2019s a boney indent on the couch.) "
   - This couch has the most perfect back support for my aging bones.
   - "*(Lodged between the seat cushions, you find some children\u2019s action figures.) "
   - "Oh! I\u2019ve been looking for those for ages!"
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &1724770234378406726
+  maxDistance: 2.2
+--- !u!61 &2700651385088109754
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -119,10 +124,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.30094743}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.82, y: 0.83}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -130,5 +135,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.82, y: 0.83}
+  m_Size: {x: 1.82, y: 0.60189486}
   m_EdgeRadius: 0

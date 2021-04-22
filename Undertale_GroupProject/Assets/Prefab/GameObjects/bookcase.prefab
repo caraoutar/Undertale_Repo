@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 5983645347805659790}
   - component: {fileID: 2847963540960315457}
   - component: {fileID: 5670793652368581150}
-  - component: {fileID: 100484265447822635}
+  - component: {fileID: -6454094757624003840}
   m_Layer: 0
   m_Name: bookcase
-  m_TagString: Untagged
+  m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -99,7 +99,6 @@ MonoBehaviour:
   gameManager: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
     type: 3}
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
-  maxDistance: 2.2
   myDialogue:
   - '*(Books are lined along the shelves.) '
   - I love reading!
@@ -108,8 +107,14 @@ MonoBehaviour:
   - "and\u2026"
   - "Eric Carle\u2019s \u201CThe Very Hungry Caterpillar."
   - Very cool illustrations.
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
   isInteracting: 0
---- !u!61 &100484265447822635
+  maxDistance: 2.2
+--- !u!61 &-6454094757624003840
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -122,10 +127,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 0.64}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 1.17, y: 1.28}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
