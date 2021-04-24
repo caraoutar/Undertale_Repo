@@ -104,11 +104,11 @@ MonoBehaviour:
   - "That\u2019s the door to my bedroom!"
   - "If you\u2019ve had a look at everything else, maybe we could move forward with
     our date?"
-  - '*(Go inside?)     ------> YES        NO '
+  - '*(Go inside?)     '
   myChoice:
-  - 
-  - 
-  hasChoice: 0
+  - YES
+  - NO
+  hasChoice: 1
   changeChoice: 0
   isInteracting: 0
   maxDistance: 2.2

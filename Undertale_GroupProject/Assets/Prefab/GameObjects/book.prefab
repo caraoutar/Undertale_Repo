@@ -101,12 +101,11 @@ MonoBehaviour:
   player: {fileID: 7599285644281548009, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
   myDialogue:
   - "*(Looks like it\u2019s a joke book.) "
-  - '*(Do you want to take a peek?)   --->    YES       NO '
-  - "YES: *(The inside reads: \u201CA hundred jokes to rattle your bones!\u201D) "
+  - '*(Do you want to take a peek?) '
   myChoice:
-  - 
-  - 
-  hasChoice: 0
+  - yes
+  - no
+  hasChoice: 1
   changeChoice: 0
   isInteracting: 0
   maxDistance: 2.2
