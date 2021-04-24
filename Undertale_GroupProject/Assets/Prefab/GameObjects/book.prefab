@@ -108,7 +108,7 @@ MonoBehaviour:
   hasChoice: 1
   changeChoice: 0
   isInteracting: 0
-  maxDistance: 2.2
+  maxDistance: 1
 --- !u!61 &5611276000579989406
 BoxCollider2D:
   m_ObjectHideFlags: 0
