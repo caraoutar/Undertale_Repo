@@ -103,17 +103,20 @@ MonoBehaviour:
   - '*(Books are lined along the shelves.) '
   - I love reading!
   - "If I had to pick my favourites, I would say\u2026"
-  - "Stephen Hawking\u2019s \u201CA Brief History of Time,"
+  - "Stephen Hawking\u2019s \u201CA Brief History of Time\","
   - "and\u2026"
-  - "Eric Carle\u2019s \u201CThe Very Hungry Caterpillar."
+  - "Eric Carle\u2019s \u201CThe Very Hungry Caterpillar\"."
   - Very cool illustrations.
   myChoice:
   - 
   - 
   hasChoice: 0
   changeChoice: 0
+  myNextDialogue: []
   isInteracting: 0
   maxDistance: 2.2
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!61 &-6454094757624003840
 BoxCollider2D:
   m_ObjectHideFlags: 0
