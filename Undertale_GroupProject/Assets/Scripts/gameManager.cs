@@ -17,9 +17,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] Camera bedroomCam; //camera 1
     [SerializeField] Camera combatCam; //camera 2
 
-    [Tooltip("Reference to the player script")]
+    [Tooltip("Reference to the player script & bedroom spawn point")]
     [Header("Player Script")]
     [SerializeField] playerMovement player; //reference to player's script
+    [SerializeField] GameObject playerSpawn;
+    [SerializeField] GameObject bedroomSpawn;
+    [SerializeField] GameObject mainSpawn;
 
     [Tooltip("These variables are for debugging")]
     [Header("Non-Adjustable Dialogue Variables")]
@@ -46,12 +49,8 @@ public class gameManager : MonoBehaviour
     public bool hasChoice;
     [SerializeField] string[] defaultChoice = {"yes", "no"};
 
-    [Tooltip("this is the object currently being interacted with")]
-    [Header("Object in Interaction")]
-    public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
-
     [Tooltip("reference to canvas; there is no need to add the other references")]
-    [Header("Dialogue Objects")] //references to the dialogue objects/components
+    [Header("Main UI Objects")] //references to the dialogue objects/components
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject dialogueTextBox;
     [SerializeField] Text dialogueText;
@@ -59,6 +58,15 @@ public class gameManager : MonoBehaviour
     [SerializeField] Text choice2;
     [SerializeField] Image heart1;
     [SerializeField] Image heart2;
+
+    [Header("Combat UI Objects")]
+    [SerializeField] GameObject combatCanvas;
+    [SerializeField] GameObject papyrusTextBox;
+    [SerializeField] Text papyrusText;
+
+    [Tooltip("this is the object currently being interacted with")]
+    [Header("Object in Interaction")]
+    public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
 
     [Tooltip("adjust the maximum time before the player can interact with a new object")]
     [Header("Countdown Variables")]
@@ -71,6 +79,8 @@ public class gameManager : MonoBehaviour
     public void Start(){
         //on start, set up the variables for UI
         player = (playerMovement) GameObject.FindWithTag("Player").GetComponent(typeof(playerMovement));
+        playerSpawn = GameObject.FindWithTag("Player");
+
         dialogueTextBox = canvas.transform.GetChild(0).gameObject;
         dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
         choice1 = dialogueTextBox.transform.GetChild(1).GetComponent<Text>();
@@ -78,22 +88,13 @@ public class gameManager : MonoBehaviour
         heart1 = dialogueTextBox.transform.GetChild(1).GetChild(0).GetComponent<Image>();
         heart2 = dialogueTextBox.transform.GetChild(2).GetChild(0).GetComponent<Image>();
         // dialogueTextBox.SetActive(false);
-
-        //find all interactable objects and set their depth
-        GameObject[] interactables = GameObject.FindGameObjectsWithTag("Interactable");
-        foreach (GameObject o in interactables){
-            o.gameObject.GetComponent<SpriteRenderer>().sortingOrder = -(int)Mathf.Ceil(o.transform.position.y);
-        }
+        papyrusTextBox = combatCanvas.transform.GetChild(0).gameObject;
+        papyrusText = papyrusTextBox.transform.GetChild(0).GetComponent<Text>();
     }
 
     //updates the dialogue based on player input, and closes dialogue
     //also updates camera
     public void Update(){
-        //checking camera swap
-        if(Input.GetKeyDown(KeyCode.B)){
-            swapCamera(0);
-        }
-
         //change the heart image based on what the player wants to select (select with left/right arrow and enter)
         if(typedChoices && Input.GetKeyDown(KeyCode.RightArrow)){
             heart1.enabled = false;
@@ -108,16 +109,15 @@ public class gameManager : MonoBehaviour
         if(Input.GetKeyDown(KeyCode.Return) && typedChoices){
             if(heart1.enabled){
                 Debug.Log("Choice 1");
+                checkChoice1(currentObj.name);
             }else if(heart2.enabled){
                 Debug.Log("Choice 2");
+                checkChoice2();
             }
-            timeRemaining = maxTime; //begin countdown to allow player to interact again
-            runTimer = true;
-            closeDialogue();
         }
         
         //change dialogue if the player presses enter key
-        if(Input.GetKeyDown(KeyCode.Return) && openText){
+        else if(Input.GetKeyDown(KeyCode.Return) && openText){
             if(isTyping && !isTypingChoice){
                 dialogueText.text=dialogue[index];
                 isTyping = false;
@@ -130,11 +130,7 @@ public class gameManager : MonoBehaviour
             }
 
             if(index >= maxIndex){ //if the index is greater than or equal to the size of the list, then close the dialogue
-                if(hasChoice && maxIndex>=1){
-                    // enableChoice();
-                    if (!isTypingChoice) displayChoice();
-                }
-                else{
+                if(!hasChoice){
                     timeRemaining = maxTime; //begin countdown to allow player to interact again
                     runTimer = true;
                     closeDialogue();
@@ -162,6 +158,45 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    //======================================= CHOICE CHECK & CODE  ==========================================
+    void checkChoice1(string name){
+        index = 0;
+        disableChoice();
+        switch(name){
+            case "book":
+                dialogue = ((interactableObj)currentObj.GetComponent(typeof(interactableObj))).myNextDialogue;
+                StartCoroutine(displayDialogue());
+            break;
+
+            case "bedroom_door":
+                swapCamera(1);
+                timeRemaining = maxTime; //begin countdown to allow player to interact again
+                runTimer = true;
+                closeDialogue();
+            break;
+
+            case "closet":
+                index = 0;
+                dialogue = ((interactableObj)currentObj.GetComponent(typeof(interactableObj))).myNextDialogue;
+                StartCoroutine(displayDialogue());
+            break;
+
+            case "bedroom_papyrus":
+                swapCamera(2);
+                closeDialogue();
+                index = 0;
+                dialogue.Clear();
+                dialogue.Add("Date start!");
+                StartCoroutine(displayDialogue());
+            break;
+        }
+    }
+
+    void checkChoice2(){
+            timeRemaining = maxTime; //begin countdown to allow player to interact again
+            runTimer = true;
+            closeDialogue();
+    }
 
     // ======================================     DIALOGUE METHODS     ==============================================
     //displays dialogue
@@ -196,6 +231,10 @@ public class gameManager : MonoBehaviour
             }
         }
         isTyping = false;
+        if(hasChoice && index == (maxIndex-1)){
+            // enableChoice();
+            if (!isTypingChoice) displayChoice();
+        }
     }
 
     //overloadded method to type choices
@@ -222,17 +261,13 @@ public class gameManager : MonoBehaviour
 
     //enable the choice gameobjects
     void enableChoice(){
-        choice1.enabled = true;
-        choice2.enabled = true;
-        heart2.enabled = false;
-        heart1.enabled = true;
+        choice1.enabled = true; choice2.enabled = true;
+        heart2.enabled = false; heart1.enabled = true;
     }
 
     void disableChoice(){ //reset choice system
-        choice1.enabled = false;
-        choice2.enabled = false;
-        heart2.enabled = false;
-        heart1.enabled = false;
+        choice1.enabled = false; choice2.enabled = false;
+        heart2.enabled = false; heart1.enabled = false;
         
         choice = defaultChoice;
         
@@ -268,14 +303,22 @@ public class gameManager : MonoBehaviour
         switch(camNum){
             case 0: 
                 mainCam.enabled = true;
+                playerSpawn.transform.position = mainSpawn.transform.position;
+                canvas.GetComponent<Canvas>().worldCamera = mainCam;
                 
             break;
             case 1: 
                 Debug.Log("should swap cam");
                 bedroomCam.enabled = true;
+                playerSpawn.transform.position = bedroomSpawn.transform.position;
+                canvas.GetComponent<Canvas>().worldCamera = bedroomCam;
             break;
             case 2: 
                 combatCam.enabled = true;
+                GameObject[] objs = GameObject.FindGameObjectsWithTag("InteractableObj");
+                foreach (GameObject o in objs){
+                    o.SetActive(false);
+                }
             break;
         }
 
