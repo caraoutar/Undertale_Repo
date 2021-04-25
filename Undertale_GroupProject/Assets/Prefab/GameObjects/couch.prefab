@@ -109,8 +109,11 @@ MonoBehaviour:
   - 
   hasChoice: 0
   changeChoice: 0
+  myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2
+  maxDistance: 0.7
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!61 &2700651385088109754
 BoxCollider2D:
   m_ObjectHideFlags: 0

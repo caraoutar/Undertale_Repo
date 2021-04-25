@@ -33,6 +33,8 @@ public class interactableObj : MonoBehaviour
     [Header("Object Variables")]
     public bool isInteracting = false; //boolean holding the condition of whether the object can be interacted with
     [SerializeField] float maxDistance = 2.2f; //maximum distance to player to interact with object
+    [SerializeField] Vector2 offset;
+    [SerializeField] float distToPlayer;
     #endregion
 
     void Start(){ //auto add reference to gameManager and player
@@ -49,11 +51,13 @@ public class interactableObj : MonoBehaviour
         // if(this.name == "bedroom_door"){
         //     Debug.Log(this.name + " distance to player: " + Vector3.Distance(gameObject.GetComponent<Renderer>().bounds.center, player.transform.position));
         // }
-        if (Vector3.Distance(gameObject.GetComponent<Renderer>().bounds.center, player.transform.position) <= maxDistance){
-            Debug.Log("Player is near me: " + this.name);
+        offset = gameObject.GetComponent<Renderer>().bounds.center - player.transform.position;
+        distToPlayer = offset.sqrMagnitude;
 
+        if(gameManager.closestObj.name == this.name){
+            gameManager.distToClosestObj = distToPlayer;
             //if the object is not being interacted with, and the player presses space, interact with the object
-            if(Input.GetKeyDown(KeyCode.Return)){
+            if(distToPlayer <= maxDistance && Input.GetKeyDown(KeyCode.Return)){
                 if(!isInteracting){
                     gameManager.dialogue = myDialogue; //add this object's dialogue to the gamemanager's dialogue
                 
@@ -67,6 +71,11 @@ public class interactableObj : MonoBehaviour
                     }
                 }
             }
+        }
+        else if (gameManager.distToClosestObj > distToPlayer){
+            Debug.Log("Player is near me: " + this.name);
+            gameManager.closestObj = this.gameObject;
+            gameManager.distToClosestObj = distToPlayer;
         }
 
     }

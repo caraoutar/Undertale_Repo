@@ -110,7 +110,9 @@ MonoBehaviour:
   myNextDialogue:
   - "*(The inside reads: \u201CA hundred jokes to rattle your bones!\u201D)"
   isInteracting: 0
-  maxDistance: 0.5
+  maxDistance: 0.1
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!61 &5611276000579989406
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4546427492001666985}
   - component: {fileID: 8006966756855284999}
   m_Layer: 0
-  m_Name: papyrus_sc1
+  m_Name: papyrus
   m_TagString: Interactable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -106,8 +106,11 @@ MonoBehaviour:
   - 
   hasChoice: 0
   changeChoice: 0
+  myNextDialogue: []
   isInteracting: 0
-  maxDistance: 1.6
+  maxDistance: 0.3
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!61 &8006966756855284999
 BoxCollider2D:
   m_ObjectHideFlags: 0

@@ -66,6 +66,8 @@ public class gameManager : MonoBehaviour
 
     [Tooltip("this is the object currently being interacted with")]
     [Header("Object in Interaction")]
+    public float distToClosestObj;
+    public GameObject closestObj;
     public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
 
     [Tooltip("adjust the maximum time before the player can interact with a new object")]
@@ -81,6 +83,7 @@ public class gameManager : MonoBehaviour
         player = (playerMovement) GameObject.FindWithTag("Player").GetComponent(typeof(playerMovement));
         playerSpawn = GameObject.FindWithTag("Player");
 
+        closestObj = GameObject.FindWithTag("Interactable");
         dialogueTextBox = canvas.transform.GetChild(0).gameObject;
         dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
         choice1 = dialogueTextBox.transform.GetChild(1).GetComponent<Text>();
@@ -176,17 +179,17 @@ public class gameManager : MonoBehaviour
             break;
 
             case "closet":
-                index = 0;
                 dialogue = ((interactableObj)currentObj.GetComponent(typeof(interactableObj))).myNextDialogue;
                 StartCoroutine(displayDialogue());
             break;
 
             case "bedroom_papyrus":
-                swapCamera(2);
+                timeRemaining = maxTime; //begin countdown to allow player to interact again
+                runTimer = true;
                 closeDialogue();
-                index = 0;
                 dialogue.Clear();
                 dialogue.Add("Date start!");
+                swapCamera(2);
                 StartCoroutine(displayDialogue());
             break;
         }
@@ -315,7 +318,7 @@ public class gameManager : MonoBehaviour
             break;
             case 2: 
                 combatCam.enabled = true;
-                GameObject[] objs = GameObject.FindGameObjectsWithTag("InteractableObj");
+                GameObject[] objs = GameObject.FindGameObjectsWithTag("Interactable");
                 foreach (GameObject o in objs){
                     o.SetActive(false);
                 }
