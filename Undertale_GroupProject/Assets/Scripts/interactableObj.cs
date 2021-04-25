@@ -25,6 +25,10 @@ public class interactableObj : MonoBehaviour
     [SerializeField] bool hasChoice; //check if the object gives a choice
     [SerializeField] bool changeChoice; //check if the choice is different from yes/no
 
+    [Tooltip("add dialogue here if there is more dialogue after a choice")]
+    [Header("More Dialogue Text")]
+    public List <string> myNextDialogue = new List<string>(); //object's dialogue
+
     [Tooltip("adjust maxDistance to change the distance the player has to be within to interact with this object")]
     [Header("Object Variables")]
     public bool isInteracting = false; //boolean holding the condition of whether the object can be interacted with
@@ -42,6 +46,9 @@ public class interactableObj : MonoBehaviour
 
     //checks the distance from this object to the player, and if they are within distance, checks for player input for interaction
     void checkDistance(){
+        // if(this.name == "bedroom_door"){
+        //     Debug.Log(this.name + " distance to player: " + Vector3.Distance(gameObject.GetComponent<Renderer>().bounds.center, player.transform.position));
+        // }
         if (Vector3.Distance(gameObject.GetComponent<Renderer>().bounds.center, player.transform.position) <= maxDistance){
             Debug.Log("Player is near me: " + this.name);
 

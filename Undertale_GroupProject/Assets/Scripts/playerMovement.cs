@@ -7,7 +7,8 @@ public class playerMovement : MonoBehaviour
 
     #region VARIABLES
     //reference to gamemanager
-    // [SerializeField] GameManager gameManager;
+    [SerializeField] gameManager gameManager;
+    [SerializeField] GameObject tester;
 
     //player variables
     Animator myAnim;
@@ -24,6 +25,7 @@ public class playerMovement : MonoBehaviour
    
     void Start()
     {
+        gameManager = (gameManager) GameObject.FindWithTag("GameController").GetComponent(typeof(gameManager));
         canMove = true;
         myAnim = gameObject.GetComponent<Animator>();
         myRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -31,11 +33,8 @@ public class playerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
+        // Debug.Log(tester.n  + " distance to player: " + Vector3.Distance(tester.GetComponent<Renderer>().bounds.center, gameObject.transform.position));
         move();
-    }
-
-    void Update(){
-        myRenderer.sortingOrder = -(int)Mathf.Floor(gameObject.transform.position.y);
     }
 
     //movement function
@@ -89,5 +88,10 @@ public class playerMovement : MonoBehaviour
         myAnim.SetBool("walkingSide",false);
         myAnim.SetBool("walkingUp",false);
         myAnim.SetBool("walkingDown",false);
+    }
+
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if(other.gameObject.name == "LeaveBedroom") gameManager.swapCamera(0);
     }
 }
