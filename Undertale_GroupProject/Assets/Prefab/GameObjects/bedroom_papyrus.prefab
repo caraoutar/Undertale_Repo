@@ -101,16 +101,17 @@ MonoBehaviour:
   myDialogue:
   - "Well, if you\u2019ve looked at everything now\u2026"
   - Should we begin with our date?
-  - "*(Begin date?) ------>  YES  \tNO "
-  - "YES: \u201CDate start!\u201D "
+  - '*(Begin date?)'
   myChoice:
   - 
   - 
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
   maxDistance: 2.2
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!61 &280760724119593600
 BoxCollider2D:
   m_ObjectHideFlags: 0
