@@ -17,13 +17,13 @@ public class interactableObj : MonoBehaviour
 
     [Tooltip("add dialogue by changing the size, and then adding the dialogue to the new boxes")]
     [Header("Dialogue Text")]
-    [SerializeField] List <string> myDialogue = new List<string>(); //object's dialogue
+    public List <string> myDialogue = new List<string>(); //object's dialogue
     
     [Tooltip("add choice dialogue here if you want to change the default yes/no")]
     [Header("Choice Text")]
-    [SerializeField] string[] myChoice = new string[2]; //object's choices
-    [SerializeField] bool hasChoice; //check if the object gives a choice
-    [SerializeField] bool changeChoice; //check if the choice is different from yes/no
+    public string[] myChoice = new string[2]; //object's choices
+    public bool hasChoice; //check if the object gives a choice
+    public bool changeChoice; //check if the choice is different from yes/no
 
     [Tooltip("add dialogue here if there is more dialogue after a choice")]
     [Header("More Dialogue Text")]
@@ -43,7 +43,9 @@ public class interactableObj : MonoBehaviour
     }
 
     void Update(){ //call checkdistance
-        checkDistance();
+        if(gameObject.tag != "Combat"){
+            checkDistance();
+        }
     }
 
     //checks the distance from this object to the player, and if they are within distance, checks for player input for interaction

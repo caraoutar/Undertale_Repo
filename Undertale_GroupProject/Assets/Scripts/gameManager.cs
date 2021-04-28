@@ -19,6 +19,7 @@ public class gameManager : MonoBehaviour
 
     [Tooltip("Reference to the player script & bedroom spawn point")]
     [Header("Player Script")]
+    [SerializeField] GameObject p; //player object
     [SerializeField] playerMovement player; //reference to player's script
     [SerializeField] GameObject playerSpawn;
     [SerializeField] GameObject bedroomSpawn;
@@ -70,6 +71,13 @@ public class gameManager : MonoBehaviour
     public GameObject closestObj;
     public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
 
+    [Tooltip("different gameobjects for each section of the combat")]
+    [Header("Combat Sequences")]
+    [SerializeField] List <GameObject> combat;
+    int combatSize;
+    static int currentSeq = 0;
+    [SerializeField] Vector3 mousePos;
+
     [Tooltip("adjust the maximum time before the player can interact with a new object")]
     [Header("Countdown Variables")]
     //countdown timer code
@@ -80,7 +88,8 @@ public class gameManager : MonoBehaviour
 
     public void Start(){
         //on start, set up the variables for UI
-        player = (playerMovement) GameObject.FindWithTag("Player").GetComponent(typeof(playerMovement));
+        p = GameObject.FindWithTag("Player");
+        player = (playerMovement) p.GetComponent(typeof(playerMovement));
         playerSpawn = GameObject.FindWithTag("Player");
 
         closestObj = GameObject.FindWithTag("Interactable");
@@ -93,6 +102,8 @@ public class gameManager : MonoBehaviour
         // dialogueTextBox.SetActive(false);
         papyrusTextBox = combatCanvas.transform.GetChild(0).gameObject;
         papyrusText = papyrusTextBox.transform.GetChild(0).GetComponent<Text>();
+
+        combatSize = combat.Count;
     }
 
     //updates the dialogue based on player input, and closes dialogue
@@ -115,7 +126,7 @@ public class gameManager : MonoBehaviour
                 checkChoice1(currentObj.name);
             }else if(heart2.enabled){
                 Debug.Log("Choice 2");
-                checkChoice2();
+                checkChoice2(currentObj.name);
             }
         }
         
@@ -192,13 +203,25 @@ public class gameManager : MonoBehaviour
                 swapCamera(2);
                 StartCoroutine(displayDialogue());
             break;
+
+
+            //combat cases
+            case "seq0":
+            break;
         }
     }
 
-    void checkChoice2(){
-            timeRemaining = maxTime; //begin countdown to allow player to interact again
-            runTimer = true;
-            closeDialogue();
+    void checkChoice2(string name){
+        switch(name){
+            case "seq0":
+            break;
+
+            default:
+                timeRemaining = maxTime; //begin countdown to allow player to interact again
+                runTimer = true;
+                closeDialogue();
+            break;
+        }
     }
 
     // ======================================     DIALOGUE METHODS     ==============================================
@@ -207,7 +230,7 @@ public class gameManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         maxIndex = dialogue.Count; //set max index to the list size
         dialogueTextBox.SetActive(true); //actives the dialgoue box
-        player.canMove = false; //the player cannot move when interacting with objects -> adjusts the condition in player script
+        if(p != null) player.canMove = false; //the player cannot move when interacting with objects -> adjusts the condition in player script
         StartCoroutine(typeDialogue(dialogue[index])); //begin typing the text
         openText = true; //condition: dialogue is now open
     }
@@ -223,7 +246,10 @@ public class gameManager : MonoBehaviour
     public IEnumerator typeDialogue(string str){
         //change the font of the dialogue if there is an astericks
         if(str.Contains("*")) dialogueText.font = narrativeFont;
-        else dialogueText.font = papyrusFont;
+        else {
+            dialogueText.font = papyrusFont;
+            str = str.ToUpper();
+        }
        
         dialogueText.text="";
         isTyping = true;
@@ -290,7 +316,7 @@ public class gameManager : MonoBehaviour
         }
         //close the dialogue box
         dialogueTextBox.SetActive(false);
-        player.canMove = true; //let the player move again
+        if (p != null) player.canMove = true; //let the player move again
         
         disableChoice();
     }
@@ -322,8 +348,47 @@ public class gameManager : MonoBehaviour
                 foreach (GameObject o in objs){
                     o.SetActive(false);
                 }
+                p.SetActive(false);
             break;
         }
 
+    }
+
+
+//========================================== COMBAT ==================================================
+    void runCombat(int n){
+        if(n >= combatSize) return;
+        interactableObj obj = (interactableObj)combat[n].GetComponent(typeof(interactableObj));
+        dialogue = obj.myDialogue;
+        if(obj.hasChoice){
+            hasChoice = true;
+            if(obj.changeChoice) choice = obj.myChoice;
+        }
+        StartCoroutine(displayDialogue());
+    }
+
+    void runMiniGame(){
+        //check if the mouse clicked on any objects
+        if(Input.GetMouseButtonDown(0)){
+            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), mousePos);
+
+            if(hit.collider != null){
+                // //Debug.Log(hit.collider.gameObject.name);
+                // if(hit.collider.gameObject.tag =="NPC" && !gameManager.isTyping){
+                //     checkNPC(hit.collider.gameObject);
+                // }
+                // else if(hit.collider.gameObject.tag =="Activatable"){
+                //     checkActivatable(hit.collider.gameObject);
+                // }
+                //  else if(hit.collider.gameObject.tag =="Draggable"){
+                //      if(Vector3.Distance(transform.position, hit.collider.gameObject.transform.position) <= sightDist){
+                //         currentObj = hit.collider.gameObject;
+                //         if(currentObj.GetComponent<item>() != null){
+                //             currentObj.GetComponent<item>().showBook();
+                //         }
+                //     }
+                // }
+            } 
+        }
     }
 }
