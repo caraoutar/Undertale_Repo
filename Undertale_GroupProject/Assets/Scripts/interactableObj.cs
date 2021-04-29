@@ -50,11 +50,12 @@ public class interactableObj : MonoBehaviour
 
     //checks the distance from this object to the player, and if they are within distance, checks for player input for interaction
     void checkDistance(){
-        // if(this.name == "bedroom_door"){
-        //     Debug.Log(this.name + " distance to player: " + Vector3.Distance(gameObject.GetComponent<Renderer>().bounds.center, player.transform.position));
-        // }
         offset = gameObject.GetComponent<Renderer>().bounds.center - player.transform.position;
         distToPlayer = offset.sqrMagnitude;
+
+        // if(this.name == "bookcase"){
+        //     Debug.Log(this.name + " distance to player: " + distToPlayer);
+        // }
 
         if(gameManager.closestObj.name == this.name){
             gameManager.distToClosestObj = distToPlayer;

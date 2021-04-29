@@ -41,6 +41,8 @@ public class playerMovement : MonoBehaviour
         // if (movement != Vector3.zero){
             move();
         // }
+        if(transform.position.y < 0) gameManager.uiAtTop = true;
+        else gameManager.uiAtTop = false;
     }
 
     //movement function
