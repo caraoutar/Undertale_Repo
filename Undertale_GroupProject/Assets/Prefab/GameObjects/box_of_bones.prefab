@@ -71,7 +71,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 2
   m_Sprite: {fileID: 3409529700742947499, guid: d054e316778e0cf4cb9946e8309c544c,
     type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -110,8 +110,11 @@ MonoBehaviour:
   - 
   hasChoice: 0
   changeChoice: 0
+  myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
+  maxDistance: 0.7
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!61 &6330496963732757340
 BoxCollider2D:
   m_ObjectHideFlags: 0

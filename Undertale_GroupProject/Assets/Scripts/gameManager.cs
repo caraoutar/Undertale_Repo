@@ -59,6 +59,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] Text choice2;
     [SerializeField] Image heart1;
     [SerializeField] Image heart2;
+    public bool uiAtTop = false;
+    [SerializeField] Vector2 textStartingPosition;
 
     [Header("Combat UI Objects")]
     [SerializeField] GameObject combatCanvas;
@@ -71,12 +73,15 @@ public class gameManager : MonoBehaviour
     public GameObject closestObj;
     public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
 
-    [Tooltip("different gameobjects for each section of the combat")]
+    [Tooltip("add different empty gameobjects for each section of the combat")]
     [Header("Combat Sequences")]
     [SerializeField] List <GameObject> combat;
     int combatSize;
     static int currentSeq = 0;
-    [SerializeField] Vector3 mousePos;
+    [SerializeField] GameObject inspector;
+    [SerializeField] bool canRunMiniGame;
+    int speed = 1;
+
 
     [Tooltip("adjust the maximum time before the player can interact with a new object")]
     [Header("Countdown Variables")]
@@ -94,6 +99,8 @@ public class gameManager : MonoBehaviour
 
         closestObj = GameObject.FindWithTag("Interactable");
         dialogueTextBox = canvas.transform.GetChild(0).gameObject;
+        textStartingPosition = dialogueTextBox.GetComponent<RectTransform>().anchoredPosition;
+
         dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
         choice1 = dialogueTextBox.transform.GetChild(1).GetComponent<Text>();
         choice2 = dialogueTextBox.transform.GetChild(2).GetComponent<Text>();
@@ -107,8 +114,12 @@ public class gameManager : MonoBehaviour
     }
 
     //updates the dialogue based on player input, and closes dialogue
-    //also updates camera
-    public void Update(){
+    void Update(){
+        if(canRunMiniGame){
+            Debug.Log("Running mini game");
+            runMiniGame();
+        }
+        
         //change the heart image based on what the player wants to select (select with left/right arrow and enter)
         if(typedChoices && Input.GetKeyDown(KeyCode.RightArrow)){
             heart1.enabled = false;
@@ -129,11 +140,15 @@ public class gameManager : MonoBehaviour
                 checkChoice2(currentObj.name);
             }
         }
-        
         //change dialogue if the player presses enter key
         else if(Input.GetKeyDown(KeyCode.Return) && openText){
             if(isTyping && !isTypingChoice){
                 dialogueText.text=dialogue[index];
+                if(dialogueText.text.Contains("*")) dialogueText.font = narrativeFont;
+                else{
+                    dialogueText.font = papyrusFont;
+                    dialogueText.text = dialogueText.text.ToUpper();
+                }
                 isTyping = false;
             }
             else if(index < maxIndex){
@@ -229,6 +244,11 @@ public class gameManager : MonoBehaviour
     public IEnumerator displayDialogue(){
         yield return new WaitForEndOfFrame();
         maxIndex = dialogue.Count; //set max index to the list size
+       
+        //move ui to the top or bottom
+        if (uiAtTop) dialogueTextBox.GetComponent<RectTransform>().anchoredPosition = new Vector3(textStartingPosition.x, canvas.GetComponent<RectTransform>().rect.height - dialogueTextBox.GetComponent<RectTransform>().rect.height -20);
+        else dialogueTextBox.GetComponent<RectTransform>().anchoredPosition = textStartingPosition;
+        
         dialogueTextBox.SetActive(true); //actives the dialgoue box
         if(p != null) player.canMove = false; //the player cannot move when interacting with objects -> adjusts the condition in player script
         StartCoroutine(typeDialogue(dialogue[index])); //begin typing the text
@@ -344,6 +364,8 @@ public class gameManager : MonoBehaviour
             break;
             case 2: 
                 combatCam.enabled = true;
+                uiAtTop = false;
+                canvas.GetComponent<Canvas>().worldCamera = combatCam;
                 GameObject[] objs = GameObject.FindGameObjectsWithTag("Interactable");
                 foreach (GameObject o in objs){
                     o.SetActive(false);
@@ -368,26 +390,34 @@ public class gameManager : MonoBehaviour
     }
 
     void runMiniGame(){
-        //check if the mouse clicked on any objects
-        if(Input.GetMouseButtonDown(0)){
-            RaycastHit2D hit = Physics2D.Raycast(Camera.main.ScreenToWorldPoint(Input.mousePosition), mousePos);
+        if(Input.GetKey(KeyCode.LeftArrow)){
+            inspector.transform.Translate(Vector3.left*Time.deltaTime *speed);
+        }else if(Input.GetKey(KeyCode.RightArrow)){
+            inspector.transform.Translate(Vector3.right*Time.deltaTime *speed);
+        }else if(Input.GetKey(KeyCode.UpArrow)){
+            inspector.transform.Translate(Vector3.up*Time.deltaTime *speed);
+        }else if(Input.GetKey(KeyCode.DownArrow)){
+            inspector.transform.Translate(Vector3.down*Time.deltaTime *speed);
+        }
+        
+        //check if the player has selected any object
+        if(Input.GetKeyDown(KeyCode.K)){
+            RaycastHit2D hit = Physics2D.Raycast(inspector.transform.position, inspector.transform.position);
 
             if(hit.collider != null){
-                // //Debug.Log(hit.collider.gameObject.name);
-                // if(hit.collider.gameObject.tag =="NPC" && !gameManager.isTyping){
-                //     checkNPC(hit.collider.gameObject);
-                // }
-                // else if(hit.collider.gameObject.tag =="Activatable"){
-                //     checkActivatable(hit.collider.gameObject);
-                // }
-                //  else if(hit.collider.gameObject.tag =="Draggable"){
-                //      if(Vector3.Distance(transform.position, hit.collider.gameObject.transform.position) <= sightDist){
-                //         currentObj = hit.collider.gameObject;
-                //         if(currentObj.GetComponent<item>() != null){
-                //             currentObj.GetComponent<item>().showBook();
-                //         }
-                //     }
-                // }
+                Debug.Log(hit.collider.gameObject.name);
+                string name = hit.collider.gameObject.name;
+                switch(name){
+                    case "Hat":
+                        Debug.Log("The inspector is inspecting the hat");
+                    break;
+                    case "Shirt":
+                        Debug.Log("The inspector is inspecting the shirt");
+                    break;
+                    case "Pants":
+                        Debug.Log("The inspector is inspecting the pants");
+                    break;
+                }
             } 
         }
     }
