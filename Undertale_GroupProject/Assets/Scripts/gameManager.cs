@@ -34,11 +34,16 @@ public class gameManager : MonoBehaviour
     [SerializeField] bool openText = false; //condition for whether the textbox is currently open
     [SerializeField] bool typedChoices = false;
 
-    [Tooltip("Adjust the typing effect speed; change fonts")]
+    [Tooltip("Adjust the typing effect speed; change fonts; add SFX")]
     [Header("Adjustable Dialogue Variables")]
     [SerializeField] int letterPerSec; //how fast the typing is
     [SerializeField] Font papyrusFont;
     [SerializeField] Font narrativeFont;
+
+    // DIALOGUE SFX
+    [SerializeField] public AudioSource TXTsfx; // sfx for the typing
+    [SerializeField] public AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
+    [SerializeField] public AudioSource SELECTsfx; // sfx when player presses ENTER
 
     [Tooltip("object dialogue will show up here (please adjust dialogue on the interactable object)")]
     [Header("Dialogue Text")] //dialgoue variables
@@ -111,6 +116,12 @@ public class gameManager : MonoBehaviour
         papyrusText = papyrusTextBox.transform.GetChild(0).GetComponent<Text>();
 
         combatSize = combat.Count;
+
+        // DIALOGUE SFX
+            // assigning the sound !
+        TXTsfx = TXTsfx.GetComponent<AudioSource>(); 
+        arrowMOVEsfx = arrowMOVEsfx.GetComponent<AudioSource>(); 
+        SELECTsfx = SELECTsfx.GetComponent<AudioSource>(); 
     }
 
     //updates the dialogue based on player input, and closes dialogue
@@ -124,10 +135,16 @@ public class gameManager : MonoBehaviour
         if(typedChoices && Input.GetKeyDown(KeyCode.RightArrow)){
             heart1.enabled = false;
             heart2.enabled = true;
+
+            // DIALOGUE SFX
+            arrowMOVEsfx.Play(); // plays the sound when the player selects with right arrow key
         }
         else if(typedChoices && Input.GetKeyDown(KeyCode.LeftArrow)){
             heart2.enabled = false;
             heart1.enabled = true;
+
+            // DIALOGUE SFX
+            arrowMOVEsfx.Play(); // plays the sound when the player selects with left arrow key
         }
 
         //code for when the player wants to make a selection
@@ -135,9 +152,14 @@ public class gameManager : MonoBehaviour
             if(heart1.enabled){
                 Debug.Log("Choice 1");
                 checkChoice1(currentObj.name);
+
+                SELECTsfx.Play(); // plays the sound when the player presses ENTER
             }else if(heart2.enabled){
                 Debug.Log("Choice 2");
                 checkChoice2(currentObj.name);
+                
+                // DIALOGUE SFX
+                SELECTsfx.Play(); // plays the sound when the player presses ENTER
             }
         }
         //change dialogue if the player presses enter key
@@ -264,6 +286,9 @@ public class gameManager : MonoBehaviour
 
     //method to type dialogue
     public IEnumerator typeDialogue(string str){
+        // DIALOGUE SFX
+        TXTsfx.Play(); // plays the typing SFX ,
+
         //change the font of the dialogue if there is an astericks
         if(str.Contains("*")) dialogueText.font = narrativeFont;
         else {
@@ -284,10 +309,15 @@ public class gameManager : MonoBehaviour
             // enableChoice();
             if (!isTypingChoice) displayChoice();
         }
+        
+        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
     }
 
     //overloadded method to type choices
     public IEnumerator typeDialogue(string c1, string c2){
+        //maria dialogue test
+        TXTsfx.Play(); // plays the typing SFX ,
+
         Debug.Log("Typing choices");
         isTyping = true;
         choice1.text="";
@@ -306,6 +336,8 @@ public class gameManager : MonoBehaviour
         }
         isTyping = false;
         typedChoices = true;
+
+        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
     }
 
     //enable the choice gameobjects
