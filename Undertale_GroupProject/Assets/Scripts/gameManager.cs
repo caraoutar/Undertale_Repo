@@ -47,6 +47,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] public AudioSource TXTsfx; // sfx for the typing
     [SerializeField] public AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
     [SerializeField] public AudioSource SELECTsfx; // sfx when player presses ENTER
+    [SerializeField] public AudioSource narrativeTXTsfx; //sfx for narrative typing
 
     //setting Game Objects for background music
     [Header("Background Music")]
@@ -160,6 +161,7 @@ public class gameManager : MonoBehaviour
         TXTsfx = TXTsfx.GetComponent<AudioSource>(); 
         arrowMOVEsfx = arrowMOVEsfx.GetComponent<AudioSource>(); 
         SELECTsfx = SELECTsfx.GetComponent<AudioSource>(); 
+        narrativeTXTsfx = narrativeTXTsfx.GetComponent<AudioSource>();
     }
 
     //updates the dialogue based on player input, and closes dialogue
@@ -449,11 +451,13 @@ public class gameManager : MonoBehaviour
             if(str.Contains("*")){
                 dialogueText.font = narrativeFont;
                 dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
+                
             }
             else{ 
                 if( currentSeq == 4 && str == "") datingHUD.SetActive(false);
                 if (!whiteScreen.activeSelf) dialogueText = papyrusText;
                 dialogueText.font = papyrusFont;
+                
             }
         }
 
@@ -472,6 +476,7 @@ public class gameManager : MonoBehaviour
         }
         
         TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+        
     }
 
     //closes the dialogue
@@ -540,7 +545,7 @@ public class gameManager : MonoBehaviour
 
         sans_music.SetActive(false);
         date_start_music.SetActive(true);
-        
+
         if(n >= combatSize || canRunMiniGame) return;
         if(givingPresent) {
             //call present animation -> the end of animation will trigger runCombat again and set givingPresent to false
