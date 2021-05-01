@@ -47,7 +47,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] public AudioSource TXTsfx; // sfx for the typing
     [SerializeField] public AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
     [SerializeField] public AudioSource SELECTsfx; // sfx when player presses ENTER
-    [SerializeField] public AudioSource narrativeTXTsfx; //sfx for narrative typing
+    [SerializeField] public AudioClip narrativeTXTsfx; //sfx for narrative typing
+    [SerializeField] public AudioClip papyrusTXTsfx; //sfx for papyrus typing
 
     //setting Game Objects for background music
     [Header("Background Music")]
@@ -161,7 +162,8 @@ public class gameManager : MonoBehaviour
         TXTsfx = TXTsfx.GetComponent<AudioSource>(); 
         arrowMOVEsfx = arrowMOVEsfx.GetComponent<AudioSource>(); 
         SELECTsfx = SELECTsfx.GetComponent<AudioSource>(); 
-        narrativeTXTsfx = narrativeTXTsfx.GetComponent<AudioSource>();
+        //narrativeTXTsfx = narrativeTXTsfx.GetComponent<AudioSource>();
+        //papyrusTXTsfx = papyrusTXTsfx.GetComponent<AudioSource>();
     }
 
     //updates the dialogue based on player input, and closes dialogue
@@ -436,19 +438,24 @@ public class gameManager : MonoBehaviour
     //method to type dialogue
     public IEnumerator typeDialogue(string str){
         // DIALOGUE SFX
-        TXTsfx.Play(); // plays the typing SFX ,
         
         if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
             resetDialogue();
             //change the font of the dialogue if there is an astericks
-            if(str.Contains("*")) dialogueText.font = narrativeFont;
+            if(str.Contains("*")) {
+                dialogueText.font = narrativeFont;
+                TXTsfx.clip = narrativeTXTsfx;
+
+            }
             else{
+                TXTsfx.clip = papyrusTXTsfx;
                 setPapyrusDialogue();
                 str = str.ToUpper();
             }
         }
         else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
             if(str.Contains("*")){
+                TXTsfx.clip = narrativeTXTsfx;
                 dialogueText.font = narrativeFont;
                 dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
                 
@@ -457,9 +464,12 @@ public class gameManager : MonoBehaviour
                 if( currentSeq == 4 && str == "") datingHUD.SetActive(false);
                 if (!whiteScreen.activeSelf) dialogueText = papyrusText;
                 dialogueText.font = papyrusFont;
+                TXTsfx.clip = papyrusTXTsfx;
                 
             }
         }
+
+        TXTsfx.Play();
 
         dialogueText.text="";
         isTyping = true;
