@@ -48,6 +48,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] public AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
     [SerializeField] public AudioSource SELECTsfx; // sfx when player presses ENTER
 
+    //setting Game Objects for background music
+    [Header("Background Music")]
+    [SerializeField] public GameObject sans_music; //game object for house music
+    [SerializeField] public GameObject date_start_music; //game object for date start music
+    [SerializeField] public GameObject date_fight_music; //game object for date fight music
+
     [Tooltip("object dialogue will show up here (please adjust dialogue on the interactable object)")]
     [Header("Dialogue Text")] //dialgoue variables
     public List <string> dialogue = new List<string>(); //the dialogue that will be typed
@@ -531,6 +537,10 @@ public class gameManager : MonoBehaviour
     //==========================================    COMBAT METHODS     ==================================================
     #region combat
     void runCombat(int n){
+
+        sans_music.SetActive(false);
+        date_start_music.SetActive(true);
+        
         if(n >= combatSize || canRunMiniGame) return;
         if(givingPresent) {
             //call present animation -> the end of animation will trigger runCombat again and set givingPresent to false
