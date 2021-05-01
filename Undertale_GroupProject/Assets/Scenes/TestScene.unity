@@ -1876,11 +1876,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - 'STEP THREE IS EASY:'
+  - WEAR YOUR BEST ATTIRE!
+  - '[DATING HUD CLOSES]'
+  - "WAIT A MINUTE\u2026"
+  - "THOSE CLOTHES\u2026"
+  - HAVE YOU... BEEN PREPARED THIS WHOLE TIME?
+  - "HAVE YOU\u2026 WANTED TO DATE ME FROM THE VERY BEGINNING?!"
   myChoice:
   - 
   - 
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
@@ -2158,11 +2165,18 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - this is a test
+  - "WOW! ISN\u2019T THIS DATING HUD FANCY?"
+  - HOW EDUCATIONAL!
+  - "I THINK THIS CALLS FOR THE NEXT STEP\u2026"
+  - "LET\u2019S SEE\u2026"
+  - 'STEP TWO: I MUST ASK YOU ON A DATE!'
+  - "SO\u2026"
+  - HUMAN!
+  - ...WILL YOU GO ON A DATE WITH ME?
   myChoice:
   - 
   - 
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
@@ -2558,7 +2572,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - "BUT HUMAN, WE\u2019RE ALREADY ON OUR DATE!"
   myChoice:
   - 
   - 
@@ -4429,10 +4444,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
-  myChoice:
-  - 
-  - 
+  myDialogue:
+  - REALLY?!
+  - AHEM.
+  - I MEAN, WONDERFUL!
+  - "LET\u2019S MOVE ON TO STEP THREE!"
+  myChoice: []
   hasChoice: 0
   changeChoice: 0
   myNextDialogue: []
