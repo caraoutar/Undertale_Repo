@@ -299,12 +299,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - "THIS ISN\u2019T JUST ANY ORDINARY PASTA."
+  - THIS IS THE WORK OF A MASTER CHEF.
+  - I, THE MAGNIFICENT PAPYRUS, HAVE SPENT YEARS PERFECTING MY RECIPE.
+  - HUMAN! THE TIME TO END THIS IS NOW.
   myChoice:
-  - 
-  - 
+  - Eat it
+  - Don't eat it
   hasChoice: 0
-  changeChoice: 0
+  changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
   maxDistance: 2.2
@@ -361,7 +365,14 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - "HEH. YOU\u2019RE STRONG, HUMAN."
+  - BUT EVEN YOU HAVE YET TO UNDERSTAND THE TRUE HIDDEN POWER OF MY OUTFIT!
+  - "THEREFORE\u2026"
+  - YOUR WORDS ARE INVALID!
+  - "AS SUCH, I\u2019M AFRAID THIS DATE CANNOT CONTINUE\u2026"
+  - "UNLESS YOU\u2019RE ABLE TO FIND MY SECRET!"
+  - "IT\u2019LL NEVER HAPPEN!"
   myChoice:
   - 
   - 
@@ -754,7 +765,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - HUMAN!
+  - I KNOW YOU CARE TOO MUCH TO DESTROY MY BEAUTIFUL WRAPPING.
+  - "IT\u2019S OKAY!"
+  - "I\u2019LL OPEN IT FOR YOU!"
   myChoice:
   - 
   - 
@@ -986,7 +1001,101 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - THE MAGNIFICENT PAPYRUS WILL NOT BE BESTED!
+  - I SHALL WIN THIS DATE HUMAN. WATCH ME KEEP UP WITH YOU!
+  - STARTING WITH, MY OWN DATING OUTFIT!
+  - "I\u2019VE ALWAYS KEPT IT ON UNDER MY NORMAL CLOTHES\u2026"
+  - IN PREPARATION FOR THIS VERY MOMENT!
+  - BEHOLD!
+  - "NYEH HEH HEH! \u201CWHAT DO YOU THINK?"
+  myChoice:
+  - Love it
+  - Hate it
+  hasChoice: 0
+  changeChoice: 1
+  myNextDialogue: []
+  isInteracting: 0
+  maxDistance: 2.2
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
+--- !u!1 &429193823
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 429193824}
+  - component: {fileID: 429193825}
+  m_Layer: 0
+  m_Name: seq21
+  m_TagString: Combat
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &429193824
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429193823}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1618310152}
+  m_RootOrder: 21
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &429193825
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 429193823}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  player: {fileID: 0}
+  myDialogue:
+  - "I\u2026"
+  - WELL...
+  - SHOOT, THIS IS DIFFICULT TO SAY.
+  - HUMAN, THE TRUTH IS...
+  - 'I''M SORRY. '
+  - I DON'T SHARE THE SAME FEELINGS AS YOU DO.
+  - 'ROMANTICALLY, I MEAN. '
+  - IT'S NOT THAT I DIDN'T TRY TO!
+  - I THOUGHT THAT THIS DATE WOULD HELP MAKE THESE FEELINGS COME TO FRUITION.
+  - I THOUGHT THAT MY DATE POWER WOULD MATCH YOURS!
+  - 'BUT ALAS, I SEE THAT I AM NO MATCH. '
+  - MY FEELINGS HAVEN'T CHANGED LIKE I THOUGHT THEY WOULD.
+  - AND SO, I HAVE FAILED. INSTEAD, I SEEM TO HAVE PULLED YOU DEEPER INTO YOUR ABYSS
+    OF LOVE FOR ME.
+  - "HOW COULD I HAVE DONE THIS TO SUCH A DEAR FRIEND\u2026?"
+  - ...
+  - WAIT.
+  - "NO\u2026 I\u2019M WRONG."
+  - I, THE MAGNIFICENT PAPYRUS, AM INCAPABLE OF FAILURE!
+  - HUMAN! I WILL PULL YOU BACK INTO THE LIGHT AND GET YOU THROUGH THESE TRYING TIMES!
+  - I HAVE DECIDED THAT I WILL BE YOUR VERY COOL FRIEND.
+  - "AND ACT LIKE THIS DATE NEVER HAPPENED\u2026"
+  - "BECAUSE\u2026 YOU ARE GREAT."
+  - AND YOUR FRIENDSHIP MEANS A LOT TO ME.
+  - "SO, DON\u2019T BE SAD!"
+  - "I KNOW ONE DAY YOU\u2019LL FIND THE ONE WHO IS RIGHT FOR YOU."
+  - "THEY WON\u2019T BE AS GREAT AS ME, OF COURSE. BUT\u2026"
+  - I WILL STILL BE THERE, BY YOUR SIDE. PLATONICALLY. AS YOUR COOL AND MAGNIFICENT
+    FRIEND.
+  - SO, THANK YOU HUMAN.
+  - I HOPE YOU ENJOYED OUR TIME TOGETHER!
   myChoice:
   - 
   - 
@@ -1448,7 +1557,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - IT ALL MAKES SENSE NOW.
+  - "YOUR POWER\u2026"
+  - IT STEMS FROM YOUR LOVE FOR ME.
+  - ...
+  - I, THE MAGNIFICENT PAPYRUS...
   myChoice:
   - 
   - 
@@ -1670,7 +1784,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - HUMAN!
+  - "YOUR COMPLIMENT\u2026"
+  - SO MUCH POWER BEHIND YOUR WORDS!
   myChoice:
   - 
   - 
@@ -1732,12 +1849,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - DO YOU KNOW WHAT THIS IS?
   myChoice:
-  - 
-  - 
+  - Of course
+  - No idea
   hasChoice: 0
-  changeChoice: 0
+  changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
   maxDistance: 2.2
@@ -1788,7 +1906,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - SO, YOU ALWAYS WEAR YOUR BEST ATTIRE?
+  - "I\u2019VE NEVER SEEN SUCH POWER\u2026"
   myChoice:
   - 
   - 
@@ -1876,11 +1996,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - 'STEP THREE IS EASY:'
+  - WEAR YOUR BEST ATTIRE!
+  - '[DATING HUD CLOSES]'
+  - "WAIT A MINUTE\u2026"
+  - "THOSE CLOTHES\u2026"
+  - HAVE YOU... BEEN PREPARED THIS WHOLE TIME?
+  - "HAVE YOU\u2026 WANTED TO DATE ME FROM THE VERY BEGINNING?!"
   myChoice:
   - 
   - 
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
@@ -1932,7 +2059,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - ALLOW ME TO EXPLAIN, HUMAN.
+  - "THOUGH THIS MAY LOOK LIKE SPAGHETTI\u2026"
+  - "IT\u2019S SOMETHING MUCH MORE."
   myChoice:
   - 
   - 
@@ -1988,7 +2118,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - "HUMAN\u2026"
+  - "I\u2019VE NEVER SEEN SOMEONE SPEAK WITH SUCH HONESTY IN THEIR HEART."
+  - "WHAT POWER\u2026"
   myChoice:
   - 
   - 
@@ -2158,11 +2291,18 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - this is a test
+  - "WOW! ISN\u2019T THIS DATING HUD FANCY?"
+  - HOW EDUCATIONAL!
+  - "I THINK THIS CALLS FOR THE NEXT STEP\u2026"
+  - "LET\u2019S SEE\u2026"
+  - 'STEP TWO: I MUST ASK YOU ON A DATE!'
+  - "SO\u2026"
+  - HUMAN!
+  - ...WILL YOU GO ON A DATE WITH ME?
   myChoice:
   - 
   - 
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
@@ -2224,7 +2364,7 @@ MonoBehaviour:
   - WELL, HERE WE ARE! ON OUR DATE!
   - "I\u2019D BE LYING IF I SAID THIS WASN\u2019T MY FIRST TIME DOING THIS..."
   - LUCKILY, I, THE MAGNIFICENT PAPYRUS, HAVE COME PREPARED!
-  - ALL MY STUDIES OF DATING SAY TO BEGIN WITH STEP ONE
+  - ALL MY STUDIES OF DATING SAY TO BEGIN WITH STEP ONE...
   - PRESS [C] ON THE KEYBOARD TO ACTIVE YOUR DATING HUD!
   myChoice:
   - 
@@ -2287,7 +2427,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - TEST
   myChoice:
   - 
   - 
@@ -2427,7 +2568,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - "YOU THINK THIS IS SPAGHETTI, DON\u2019T YOU?"
+  - HEH! YOU ARE SORELY MISTAKEN!
   myChoice:
   - 
   - 
@@ -2558,7 +2701,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - "BUT HUMAN, WE\u2019RE ALREADY ON OUR DATE!"
   myChoice:
   - 
   - 
@@ -2774,7 +2918,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - '*(You take a bite of the spaghetti.) '
+  - '*(Your face scrunches up.) '
+  - "THAT LOOK\u2026"
+  - COULD THIS MEAN, YOU LOVE SPAGHETTI EVEN MORE THAN I DO?
+  - ...A TRUE SPAGHETTI CONNOISSEUR.
+  - "THIS CANNOT BE\u2026"
   myChoice:
   - 
   - 
@@ -3055,7 +3205,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - AHHHH!
+  - NOOOOOOOO!
   myChoice:
   - 
   - 
@@ -3528,6 +3680,7 @@ Transform:
   - {fileID: 1654863665}
   - {fileID: 1402348508}
   - {fileID: 693922501}
+  - {fileID: 429193824}
   m_Father: {fileID: 832414381}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3576,7 +3729,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - "WAIT\u2026"
+  - "YOU MEAN\u2026"
+  - "YOU\u2019RE LEAVING IT ALL FOR ME TO HAVE?"
+  - "HUMAN\u2026"
+  - YOUR GENEROSITY KNOWS NO BOUNDS.
+  - "THIS CANNOT BE\u2026"
   myChoice:
   - 
   - 
@@ -3741,7 +3900,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
+  myDialogue:
+  - "HUMAN\u2026"
+  - "I\u2019VE NEVER SEEN SOMEONE SO PREPARED."
+  - "YOUR POWER\u2026 IS INCREDIBLE...!"
   myChoice:
   - 
   - 
@@ -4429,10 +4591,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
   player: {fileID: 0}
-  myDialogue: []
-  myChoice:
-  - 
-  - 
+  myDialogue:
+  - REALLY?!
+  - AHEM.
+  - I MEAN, WONDERFUL!
+  - "LET\u2019S MOVE ON TO STEP THREE!"
+  myChoice: []
   hasChoice: 0
   changeChoice: 0
   myNextDialogue: []
