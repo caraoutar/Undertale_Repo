@@ -6404,7 +6404,7 @@ PrefabInstance:
         type: 3}
       propertyPath: narrativeTXTsfx
       value: 
-      objectReference: {fileID: 8300000, guid: 92e85cac687d94fdbbaa7c8a8d27b0c6, type: 3}
+      objectReference: {fileID: 8300000, guid: d8f6484708eb84426bb4dfb72a0fb7a8, type: 3}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: date_fight_music
