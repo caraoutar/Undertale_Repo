@@ -48,19 +48,24 @@ MonoBehaviour:
     type: 3}
   combatCam: {fileID: 4793398227594136966, guid: fd51f4d5e17d3496c83124720866e9c6,
     type: 3}
+  p: {fileID: 0}
   player: {fileID: 7599285644281548010, guid: c9904e337fb2e4be7961978c81a8a8c5, type: 3}
   playerSpawn: {fileID: 0}
   bedroomSpawn: {fileID: 0}
   mainSpawn: {fileID: 0}
+  letterPerSec: 25
+  papyrusFont: {fileID: 12800000, guid: 61ef5a02ecc4845689e74d90d2481e83, type: 3}
+  narrativeFont: {fileID: 12800000, guid: ceaf56857196d45be98d687cbc91efc2, type: 3}
   index: 0
   maxIndex: 0
   isTyping: 0
   isTypingChoice: 0
   openText: 0
   typedChoices: 0
-  letterPerSec: 25
-  papyrusFont: {fileID: 12800000, guid: 61ef5a02ecc4845689e74d90d2481e83, type: 3}
-  narrativeFont: {fileID: 12800000, guid: ceaf56857196d45be98d687cbc91efc2, type: 3}
+  isPapyrus: 0
+  TXTsfx: {fileID: 0}
+  arrowMOVEsfx: {fileID: 0}
+  SELECTsfx: {fileID: 0}
   dialogue: []
   choice:
   - YES
@@ -70,19 +75,54 @@ MonoBehaviour:
   - yes
   - no
   canvas: {fileID: 1115623495133384136, guid: b7a75514952044616bab9a106b683946, type: 3}
-  dialogueTextBox: {fileID: 4640754371249486744, guid: 57941c3e3b2f4412baa7921e09b64c6b,
-    type: 3}
-  dialogueText: {fileID: 1067138430856286604, guid: 02fb113fac4b148589dd01c4c44b63b9,
-    type: 3}
-  choice1: {fileID: 593563371647893532, guid: ea9e8a03c54284c328e657bb2859d046, type: 3}
-  choice2: {fileID: 5676477722133961009, guid: fb5b1280a04dc46ff8817b7cb58eb59b, type: 3}
-  heart1: {fileID: 1316968391056901716, guid: 143aa0f95552e403b891c36b78fb2905, type: 3}
-  heart2: {fileID: 1821923693802779855, guid: 2a740ab6fa36746b68e11f845bcd6476, type: 3}
+  dialogueTextBox: {fileID: 0}
+  dialogueText: {fileID: 0}
+  choice1: {fileID: 0}
+  choice2: {fileID: 0}
+  heart1: {fileID: 0}
+  heart2: {fileID: 0}
+  papyrusHead: {fileID: 0}
+  uiAtTop: 0
+  textStartingPosition: {x: 0, y: 0}
+  dialogueTextObject: {fileID: 0}
+  dialogueStartingPosition: {x: 0, y: 0}
+  dialogueSize: {x: 0, y: 0}
+  sizeOfPapyrusText: 0.8
+  sizeOfPapyrusBox: 0.38
   combatCanvas: {fileID: 4470911032988207228, guid: 9c578a76310464514ab51bfcc0243450,
     type: 3}
   papyrusTextBox: {fileID: 0}
   papyrusText: {fileID: 0}
+  whiteScreen: {fileID: 0}
+  whiteScreenText: {fileID: 0}
+  distToClosestObj: 0
+  closestObj: {fileID: 0}
   currentObj: {fileID: 0}
+  combat:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  inspector: {fileID: 0}
+  canRunMiniGame: 0
+  givingPresent: 0
   maxTime: 0.5
   timeRemaining: 0
   runTimer: 0

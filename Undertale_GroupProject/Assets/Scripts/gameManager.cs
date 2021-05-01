@@ -9,6 +9,7 @@ using UnityEngine.UI;
 
 public class gameManager : MonoBehaviour
 {
+    //================================== VARIABLES ==========================================
     #region VARIABLES
     //refernces to cameras in the main room, the bedroom, and the combat "room"
     [Tooltip("These are the camera in the scene")]
@@ -25,6 +26,13 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject bedroomSpawn;
     [SerializeField] GameObject mainSpawn;
 
+
+    [Tooltip("Adjust the typing effect speed; change fonts; add SFX")]
+    [Header("Adjustable Dialogue Variables")]
+    [SerializeField] int letterPerSec; //how fast the typing is
+    [SerializeField] Font papyrusFont;
+    [SerializeField] Font narrativeFont;
+
     [Tooltip("These variables are for debugging")]
     [Header("Non-Adjustable Dialogue Variables")]
     [SerializeField] int index; //which line is being typed
@@ -34,13 +42,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] bool openText = false; //condition for whether the textbox is currently open
     [SerializeField] bool typedChoices = false;
 
-    [Tooltip("Adjust the typing effect speed; change fonts; add SFX")]
-    [Header("Adjustable Dialogue Variables")]
-    [SerializeField] int letterPerSec; //how fast the typing is
-    [SerializeField] Font papyrusFont;
-    [SerializeField] Font narrativeFont;
-
     // DIALOGUE SFX
+    [Header("Audio")]
     [SerializeField] public AudioSource TXTsfx; // sfx for the typing
     [SerializeField] public AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
     [SerializeField] public AudioSource SELECTsfx; // sfx when player presses ENTER
@@ -53,7 +56,7 @@ public class gameManager : MonoBehaviour
     [Header("Choice Text")]
     public string[] choice = new string[2]; //choice dialogue to be added
     public bool hasChoice;
-    [SerializeField] string[] defaultChoice = {"yes", "no"};
+    [SerializeField] string[] defaultChoice = {"YES", "NO"};
 
     [Tooltip("reference to canvas; there is no need to add the other references")]
     [Header("Main UI Objects")] //references to the dialogue objects/components
@@ -64,13 +67,26 @@ public class gameManager : MonoBehaviour
     [SerializeField] Text choice2;
     [SerializeField] Image heart1;
     [SerializeField] Image heart2;
+    [SerializeField] Image papyrusHead;
+
     public bool uiAtTop = false;
     [SerializeField] Vector2 textStartingPosition;
+    [SerializeField] GameObject dialogueTextObject;
+    [SerializeField] Vector2 dialogueStartingPosition;
+    [SerializeField] Vector2 dialogueSize;
+    [SerializeField] float sizeOfPapyrusText = 0.8f;
+    [SerializeField] float sizeOfPapyrusBox = 0.38f;
+
 
     [Header("Combat UI Objects")]
     [SerializeField] GameObject combatCanvas;
     [SerializeField] GameObject papyrusTextBox;
     [SerializeField] Text papyrusText;
+    [SerializeField] GameObject whiteScreen;
+    [SerializeField] Text whiteScreenText;
+    [SerializeField] GameObject datingHUD;
+    [SerializeField] GameObject datingPower;
+    [SerializeField] GameObject datingTension;
 
     [Tooltip("this is the object currently being interacted with")]
     [Header("Object in Interaction")]
@@ -79,13 +95,16 @@ public class gameManager : MonoBehaviour
     public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
 
     [Tooltip("add different empty gameobjects for each section of the combat")]
-    [Header("Combat Sequences")]
+    [Header("Combat Variables")]
     [SerializeField] List <GameObject> combat;
     int combatSize;
-    static int currentSeq = 0;
+    [SerializeField] int currentSeq = -1;
     [SerializeField] GameObject inspector;
     [SerializeField] bool canRunMiniGame;
     int speed = 1;
+    [SerializeField] bool givingPresent;
+    [SerializeField] bool foundPresent;
+    [SerializeField] bool canPressEnter = true;
 
 
     [Tooltip("adjust the maximum time before the player can interact with a new object")]
@@ -96,6 +115,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] bool runTimer = false;
     #endregion
 
+
+    //===================================== START & UPDATE ===========================================
     public void Start(){
         //on start, set up the variables for UI
         p = GameObject.FindWithTag("Player");
@@ -105,15 +126,26 @@ public class gameManager : MonoBehaviour
         closestObj = GameObject.FindWithTag("Interactable");
         dialogueTextBox = canvas.transform.GetChild(0).gameObject;
         textStartingPosition = dialogueTextBox.GetComponent<RectTransform>().anchoredPosition;
+        
+        dialogueTextObject = dialogueTextBox.transform.GetChild(0).gameObject;
+        dialogueStartingPosition = dialogueTextObject.GetComponent<RectTransform>().anchoredPosition;
+        dialogueSize = dialogueTextObject.GetComponent<RectTransform>().sizeDelta;
 
         dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
         choice1 = dialogueTextBox.transform.GetChild(1).GetComponent<Text>();
         choice2 = dialogueTextBox.transform.GetChild(2).GetComponent<Text>();
         heart1 = dialogueTextBox.transform.GetChild(1).GetChild(0).GetComponent<Image>();
         heart2 = dialogueTextBox.transform.GetChild(2).GetChild(0).GetComponent<Image>();
-        // dialogueTextBox.SetActive(false);
+        papyrusHead = dialogueTextObject.transform.GetChild(0).GetComponent<Image>();
+
         papyrusTextBox = combatCanvas.transform.GetChild(0).gameObject;
         papyrusText = papyrusTextBox.transform.GetChild(0).GetComponent<Text>();
+        datingHUD = combatCanvas.transform.GetChild(1).gameObject;
+        datingPower = combatCanvas.transform.GetChild(2).gameObject;
+        datingTension = combatCanvas.transform.GetChild(3).gameObject;
+
+        whiteScreen = combatCanvas.transform.GetChild(4).gameObject;
+        whiteScreenText = whiteScreen.transform.GetChild(0).GetComponent<Text>();
 
         combatSize = combat.Count;
 
@@ -156,21 +188,26 @@ public class gameManager : MonoBehaviour
                 SELECTsfx.Play(); // plays the sound when the player presses ENTER
             }else if(heart2.enabled){
                 Debug.Log("Choice 2");
-                checkChoice2(currentObj.name);
+                checkChoice2();
                 
                 // DIALOGUE SFX
                 SELECTsfx.Play(); // plays the sound when the player presses ENTER
             }
         }
         //change dialogue if the player presses enter key
-        else if(Input.GetKeyDown(KeyCode.Return) && openText){
+        else if(Input.GetKeyDown(KeyCode.Return) && openText && canPressEnter){
             if(isTyping && !isTypingChoice){
                 dialogueText.text=dialogue[index];
-                if(dialogueText.text.Contains("*")) dialogueText.font = narrativeFont;
-                else{
-                    dialogueText.font = papyrusFont;
-                    dialogueText.text = dialogueText.text.ToUpper();
+                
+                if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
+                    resetDialogue();
+                    if(dialogueText.text.Contains("*")) dialogueText.font = narrativeFont;
+                    else{
+                        setPapyrusDialogue();
+                        dialogueText.text = dialogueText.text.ToUpper();
+                    }
                 }
+
                 isTyping = false;
             }
             else if(index < maxIndex){
@@ -182,16 +219,34 @@ public class gameManager : MonoBehaviour
 
             if(index >= maxIndex){ //if the index is greater than or equal to the size of the list, then close the dialogue
                 if(!hasChoice){
-                    timeRemaining = maxTime; //begin countdown to allow player to interact again
-                    runTimer = true;
-                    closeDialogue();
+                    if(combatCam.enabled){
+                        if(currentSeq == -1){
+                            dialogueText.text = "";
+                            dialogue.Clear();
+                            runCombat(++currentSeq);
+                        }
+                        else if(canRunMiniGame){
+                            papyrusTextBox.SetActive(false);
+                        }
+                        else if(foundPresent && !givingPresent){
+                            givingPresent = true;
+                            index = 1;
+                            runCombat(currentSeq);
+                        }
+                        else checkEndOfSeq(currentSeq);
+                    }
+                    else{
+                        timeRemaining = maxTime; //begin countdown to allow player to interact again
+                        runTimer = true;
+                        closeDialogue();
+                    }
                 }
                     
             }
         }
 
 
-        //timer code (counts down from timeRemaining); this is to limit how long after the player interacts with an object can they interact again
+        //timer code (counts down from timeRemaining);
         //see maxTime in the inspector for current time limit
         if (runTimer){
             if(timeRemaining > 0){
@@ -199,17 +254,36 @@ public class gameManager : MonoBehaviour
             }
             else{
                 timeRemaining = 0;
-                if(currentObj != null){
-                    currentObj.isInteracting = false;
-                    currentObj = null;
+                if(combatCam.enabled){
+                    if(currentSeq == 0){
+                        datingHUD.SetActive(true);
+                        //or run an animation of papyrus looking around and then on stop, runCombat
+                        runCombat(++currentSeq);
+                    }
+                }else{//this is to limit how long after the player interacts with an object can they interact again
+                    if(currentObj != null){
+                        currentObj.isInteracting = false;
+                        currentObj = null;
+                    }
                 }
                 runTimer = false;
             }
-
         }
+
+
+        if(Input.GetKeyDown(KeyCode.C) && combatCam.enabled && currentSeq == 0){
+            //start animation for dating HUD
+            datingHUD.SetActive(true);
+            runTimer = false;
+            runCombat(++currentSeq);
+            // checkEndOfSeq(currentSeq);
+        }
+        
     }
 
-    //======================================= CHOICE CHECK & CODE  ==========================================
+   
+    //=======================================   CHOICE CHECK & TYPING METHODS   ==========================================
+    #region choice
     void checkChoice1(string name){
         index = 0;
         disableChoice();
@@ -236,85 +310,45 @@ public class gameManager : MonoBehaviour
                 runTimer = true;
                 closeDialogue();
                 dialogue.Clear();
-                dialogue.Add("Date start!");
+                dialogue.Add("*Dating... start!");
                 swapCamera(2);
                 StartCoroutine(displayDialogue());
             break;
 
-
-            //combat cases
-            case "seq0":
+            //combat case
+            case "seq11":
+            currentSeq+=2;
+            runCombat(currentSeq);
             break;
-        }
-    }
-
-    void checkChoice2(string name){
-        switch(name){
-            case "seq0":
-            break;
-
             default:
-                timeRemaining = maxTime; //begin countdown to allow player to interact again
-                runTimer = true;
-                closeDialogue();
+                if(combatCam.enabled) currentSeq++;
+                runCombat(currentSeq); //run the next sequence
             break;
+        } 
+    }
+
+    void checkChoice2(){
+        if(combatCam.enabled){ //combat scene
+        if (currentSeq==12) currentSeq++;
+            currentSeq+=2;
+            runCombat(currentSeq); //run the next sequence
+        }
+        else{
+            timeRemaining = maxTime; //begin countdown to allow player to interact again
+            runTimer = true;
+            closeDialogue();
         }
     }
 
-    // ======================================     DIALOGUE METHODS     ==============================================
-    //displays dialogue
-    public IEnumerator displayDialogue(){
-        yield return new WaitForEndOfFrame();
-        maxIndex = dialogue.Count; //set max index to the list size
-       
-        //move ui to the top or bottom
-        if (uiAtTop) dialogueTextBox.GetComponent<RectTransform>().anchoredPosition = new Vector3(textStartingPosition.x, canvas.GetComponent<RectTransform>().rect.height - dialogueTextBox.GetComponent<RectTransform>().rect.height -20);
-        else dialogueTextBox.GetComponent<RectTransform>().anchoredPosition = textStartingPosition;
-        
-        dialogueTextBox.SetActive(true); //actives the dialgoue box
-        if(p != null) player.canMove = false; //the player cannot move when interacting with objects -> adjusts the condition in player script
-        StartCoroutine(typeDialogue(dialogue[index])); //begin typing the text
-        openText = true; //condition: dialogue is now open
-    }
-    
     //displays dialogue with choice yes/no
     public void displayChoice(){
         isTypingChoice = true;
         enableChoice();
         StartCoroutine(typeDialogue(choice[0],choice[1])); //begin typing the choices
     }
-
-    //method to type dialogue
-    public IEnumerator typeDialogue(string str){
-        // DIALOGUE SFX
-        TXTsfx.Play(); // plays the typing SFX ,
-
-        //change the font of the dialogue if there is an astericks
-        if(str.Contains("*")) dialogueText.font = narrativeFont;
-        else {
-            dialogueText.font = papyrusFont;
-            str = str.ToUpper();
-        }
-       
-        dialogueText.text="";
-        isTyping = true;
-        foreach(var letter in str.ToCharArray()){ //add a single character to the text at a time, thus creating a typing effect
-            if(isTyping){
-                dialogueText.text +=letter;
-                yield return new WaitForSeconds(1f/letterPerSec);
-            }
-        }
-        isTyping = false;
-        if(hasChoice && index == (maxIndex-1)){
-            // enableChoice();
-            if (!isTypingChoice) displayChoice();
-        }
-        
-        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
-    }
-
     //overloadded method to type choices
     public IEnumerator typeDialogue(string c1, string c2){
+        dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
         //maria dialogue test
         TXTsfx.Play(); // plays the typing SFX ,
 
@@ -356,6 +390,83 @@ public class gameManager : MonoBehaviour
         hasChoice = false;
         typedChoices = false;
     }
+    #endregion
+   
+   
+   
+    // ======================================   DIALOGUE (NON CHOICE) METHODS   ==============================================
+    #region dialogue
+    //displays dialogue
+    public IEnumerator displayDialogue(){
+        yield return new WaitForEndOfFrame();
+        maxIndex = dialogue.Count; //set max index to the list size
+       
+        //move ui to the top or bottom
+        if (uiAtTop) dialogueTextBox.GetComponent<RectTransform>().anchoredPosition = new Vector3(textStartingPosition.x, canvas.GetComponent<RectTransform>().rect.height - dialogueTextBox.GetComponent<RectTransform>().rect.height -20);
+        else dialogueTextBox.GetComponent<RectTransform>().anchoredPosition = textStartingPosition;
+        
+        if(p != null){
+            dialogueTextBox.SetActive(true); //actives the dialgoue box
+            player.canMove = false; //the player cannot move when interacting with objects -> adjusts the condition in player script
+        }
+        StartCoroutine(typeDialogue(dialogue[index])); //begin typing the text
+        openText = true; //condition: dialogue is now open
+    }
+
+    void setPapyrusDialogue(){
+        dialogueTextObject.GetComponent<RectTransform>().sizeDelta = new Vector2(sizeOfPapyrusText*dialogueTextObject.GetComponent<RectTransform>().rect.width, dialogueSize.y);
+        dialogueTextObject.GetComponent<RectTransform>().anchoredPosition = new Vector3((dialogueTextBox.GetComponent<RectTransform>().rect.width) - sizeOfPapyrusBox*dialogueTextBox.GetComponent<RectTransform>().rect.width, dialogueStartingPosition.y);
+        dialogueText.font = papyrusFont;
+        papyrusHead.enabled = true;
+    }
+    void resetDialogue(){
+        papyrusHead.enabled = false;
+        dialogueTextObject.GetComponent<RectTransform>().sizeDelta = dialogueSize;
+        dialogueTextObject.GetComponent<RectTransform>().anchoredPosition = dialogueStartingPosition;
+    }
+
+    //method to type dialogue
+    public IEnumerator typeDialogue(string str){
+        // DIALOGUE SFX
+        TXTsfx.Play(); // plays the typing SFX ,
+        
+        if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
+            resetDialogue();
+            //change the font of the dialogue if there is an astericks
+            if(str.Contains("*")) dialogueText.font = narrativeFont;
+            else{
+                setPapyrusDialogue();
+                str = str.ToUpper();
+            }
+        }
+        else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
+            if(str.Contains("*")){
+                dialogueText.font = narrativeFont;
+                dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
+            }
+            else{ 
+                if( currentSeq == 4 && str == "") datingHUD.SetActive(false);
+                if (!whiteScreen.activeSelf) dialogueText = papyrusText;
+                dialogueText.font = papyrusFont;
+            }
+        }
+
+        dialogueText.text="";
+        isTyping = true;
+        foreach(var letter in str.ToCharArray()){ //add a single character to the text at a time, thus creating a typing effect
+            if(isTyping){
+                dialogueText.text +=letter;
+                yield return new WaitForSeconds(1f/letterPerSec);
+            }
+        }
+        isTyping = false;
+        if(hasChoice && index == (maxIndex-1)){
+            // enableChoice();
+            if (!isTypingChoice) displayChoice();
+        }
+        
+        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+    }
 
     //closes the dialogue
     public void closeDialogue(){
@@ -372,7 +483,11 @@ public class gameManager : MonoBehaviour
         
         disableChoice();
     }
-
+    #endregion
+    
+    
+    // ======================================     SWAP CAMERA     ==============================================
+    #region camera
     //swap the cameras (moving to different rooms)
     public void swapCamera(int camNum){
         //disable all cameras
@@ -395,8 +510,10 @@ public class gameManager : MonoBehaviour
                 canvas.GetComponent<Canvas>().worldCamera = bedroomCam;
             break;
             case 2: 
+                runTimer = false;
                 combatCam.enabled = true;
                 uiAtTop = false;
+                resetDialogue();
                 canvas.GetComponent<Canvas>().worldCamera = combatCam;
                 GameObject[] objs = GameObject.FindGameObjectsWithTag("Interactable");
                 foreach (GameObject o in objs){
@@ -407,11 +524,19 @@ public class gameManager : MonoBehaviour
         }
 
     }
+    #endregion
 
 
-//========================================== COMBAT ==================================================
+
+    //==========================================    COMBAT METHODS     ==================================================
+    #region combat
     void runCombat(int n){
-        if(n >= combatSize) return;
+        if(n >= combatSize || canRunMiniGame) return;
+        if(givingPresent) {
+            //call present animation -> the end of animation will trigger runCombat again and set givingPresent to false
+            return;
+        }
+        index = 0;
         interactableObj obj = (interactableObj)combat[n].GetComponent(typeof(interactableObj));
         dialogue = obj.myDialogue;
         if(obj.hasChoice){
@@ -419,6 +544,47 @@ public class gameManager : MonoBehaviour
             if(obj.changeChoice) choice = obj.myChoice;
         }
         StartCoroutine(displayDialogue());
+        canPressEnter = true;
+    }
+
+    void checkEndOfSeq(int n){
+        canPressEnter = false;
+        switch(n){
+            case 0: //start timer in case player doesnt press c
+            if(!datingHUD.activeSelf){
+                timeRemaining = 10f;
+                runTimer = true;
+            }
+            else runCombat(++currentSeq);
+            break;
+            case 10: //start minigame; next
+                currentSeq++;
+                canRunMiniGame = true;
+            break;
+            case 19: //transition to white screen ()just use a white sprite; next
+                whiteScreen.SetActive(true);
+                dialogueText = whiteScreenText;
+                currentSeq++;
+            break;
+            case 20: //transition out of white screen (disable object)
+                whiteScreen.SetActive(false);
+                currentSeq++;
+            break;
+            default:
+                if(n == 5 || n == 6){ //animation (1/3)
+                    
+                }else if(n == 8 || n == 9){ //animation (2/3)
+
+                }else if(n == 14 || n == 15){ //bring up date power
+
+                }
+                else if(n == 17 || n == 18){ //power overflows anim
+
+                }
+                currentSeq++;
+            break;
+        }
+        if (currentSeq != 0) runCombat(currentSeq);
     }
 
     void runMiniGame(){
@@ -438,19 +604,24 @@ public class gameManager : MonoBehaviour
 
             if(hit.collider != null){
                 Debug.Log(hit.collider.gameObject.name);
-                string name = hit.collider.gameObject.name;
+                GameObject obj = hit.collider.gameObject;
+                string name = obj.name;
+                index = 0;
                 switch(name){
                     case "Hat":
-                        Debug.Log("The inspector is inspecting the hat");
+                        dialogue = ((interactableObj)obj.GetComponent(typeof(interactableObj))).myDialogue;
+                        StartCoroutine(displayDialogue());
+                        foundPresent = true;
+                        canRunMiniGame = false;
+                        // runCombat(currentSeq);
                     break;
-                    case "Shirt":
-                        Debug.Log("The inspector is inspecting the shirt");
-                    break;
-                    case "Pants":
-                        Debug.Log("The inspector is inspecting the pants");
+                    default:
+                        dialogue = ((interactableObj)obj.GetComponent(typeof(interactableObj))).myDialogue;
                     break;
                 }
+                papyrusTextBox.SetActive(true);
             } 
         }
     }
+#endregion
 }
