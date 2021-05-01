@@ -6133,7 +6133,7 @@ PrefabInstance:
         type: 3}
       propertyPath: papyrusTXTsfx
       value: 
-      objectReference: {fileID: 1313383697}
+      objectReference: {fileID: 8300000, guid: af065764f85684ebfbe89fb62de506db, type: 3}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: dateStartMusic
@@ -6148,7 +6148,7 @@ PrefabInstance:
         type: 3}
       propertyPath: narrativeTXTsfx
       value: 
-      objectReference: {fileID: 2127645601}
+      objectReference: {fileID: 8300000, guid: 2fe8ab57fdb3e4bd7af5bca4e2f8ab2f, type: 3}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: date_fight_music
