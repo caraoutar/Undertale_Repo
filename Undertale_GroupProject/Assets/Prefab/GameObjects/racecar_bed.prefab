@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1796730178515680633}
   - component: {fileID: -5434428791876763277}
   - component: {fileID: -1392870571255626219}
-  - component: {fileID: 7895152420812753504}
+  - component: {fileID: 5904765576771859426}
   m_Layer: 0
   m_Name: racecar_bed
   m_TagString: Interactable
@@ -115,7 +115,7 @@ MonoBehaviour:
   maxDistance: 2.2
   offset: {x: 0, y: 0}
   distToPlayer: 0
---- !u!61 &7895152420812753504
+--- !u!61 &5904765576771859426
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,7 +128,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.407732}
+  m_Offset: {x: -0.032544076, y: 0.4107697}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -139,5 +139,5 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8, y: 0.815464}
+  m_Size: {x: 1.7349118, y: 1.3682828}
   m_EdgeRadius: 0

@@ -62,14 +62,18 @@ MonoBehaviour:
   isTypingChoice: 0
   openText: 0
   typedChoices: 0
-  isPapyrus: 0
   TXTsfx: {fileID: 0}
   arrowMOVEsfx: {fileID: 0}
   SELECTsfx: {fileID: 0}
+  narrativeTXTsfx: {fileID: 0}
+  papyrusTXTsfx: {fileID: 0}
+  sans_music: {fileID: 0}
+  date_start_music: {fileID: 0}
+  date_fight_music: {fileID: 0}
   dialogue: []
   choice:
   - YES
-  - no
+  - NO
   hasChoice: 0
   defaultChoice:
   - yes
@@ -89,12 +93,18 @@ MonoBehaviour:
   dialogueSize: {x: 0, y: 0}
   sizeOfPapyrusText: 0.8
   sizeOfPapyrusBox: 0.38
+  choice1StartingPosition: {x: 0, y: 0}
+  choice2StartingPosition: {x: 0, y: 0}
+  choiceHeight: 0.25
   combatCanvas: {fileID: 4470911032988207228, guid: 9c578a76310464514ab51bfcc0243450,
     type: 3}
   papyrusTextBox: {fileID: 0}
   papyrusText: {fileID: 0}
   whiteScreen: {fileID: 0}
   whiteScreenText: {fileID: 0}
+  datingHUD: {fileID: 0}
+  datingPower: {fileID: 0}
+  datingTension: {fileID: 0}
   distToClosestObj: 0
   closestObj: {fileID: 0}
   currentObj: {fileID: 0}
@@ -120,9 +130,13 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  combatSize: 0
+  currentSeq: -1
   inspector: {fileID: 0}
   canRunMiniGame: 0
   givingPresent: 0
+  foundPresent: 0
+  canPressEnter: 1
   maxTime: 0.5
   timeRemaining: 0
   runTimer: 0
