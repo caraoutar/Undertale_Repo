@@ -270,8 +270,8 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - test1
-  - test2
+  - "ONLY A TRULY \u2018COOL\u2019 DUDE COULD WEAR A SHIRT LIKE THIS."
+  - "IT\u2019S A ONE OF A KIND PIECE OF CLOTHING."
   myChoice:
   - 
   - 
@@ -1403,12 +1403,12 @@ PrefabInstance:
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.25
+      value: 1.72
       objectReference: {fileID: 0}
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.23
+      value: -2.12
       objectReference: {fileID: 0}
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
@@ -4008,7 +4008,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - test1
+  - "SHORTS ARE PERFECT FOR ANY OCCASION. SUMMER OR WINTER, DATE OR NON-DATE\u2026"
   myChoice:
   - 
   - 
@@ -5112,8 +5112,8 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - test1
-  - test2
+  - HAVE YOU EVER SEEN SUCH STYLE?
+  - THE BEST SHOES ARE THE ONES THAT LOOK FASHIONABLE, AND HELP YOU WALK FAST.
   myChoice:
   - 
   - 
@@ -5984,9 +5984,9 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - test1
-  - test2
-  - test3
+  - HMM? MY HAT?
+  - ...MY HAT.
+  - NYEH HEH HEH!
   myChoice:
   - test1
   - test2
