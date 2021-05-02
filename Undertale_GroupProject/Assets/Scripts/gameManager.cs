@@ -45,6 +45,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] bool isTypingChoice = false;
     [SerializeField] bool openText = false; //condition for whether the textbox is currently open
     [SerializeField] bool typedChoices = false;
+    [SerializeField] bool whiteScreen_occurred = false; //condition for if white screen text has occured
 
     // DIALOGUE SFX
     [Header("Audio")]
@@ -58,6 +59,7 @@ public class gameManager : MonoBehaviour
     [Header("Background Music")]
     [SerializeField] GameObject sans_music; //game object for house music
     [SerializeField] GameObject date_start_music; //game object for date start music
+    [SerializeField] GameObject date_tense_music; //game object for date tense music 
     [SerializeField] GameObject date_fight_music; //game object for date fight music
 
     [Tooltip("object dialogue will show up here (please adjust dialogue on the interactable object)")]
@@ -592,6 +594,11 @@ public class gameManager : MonoBehaviour
         sans_music.SetActive(false);
         date_start_music.SetActive(true);
 
+        //check if white screen sequence has occurred; if so, stop music 
+        if(whiteScreen_occurred == true) {
+            date_start_music.SetActive(false);
+        }
+
         if(n >= combatSize) return;
 
         if(givingPresent){
@@ -643,6 +650,7 @@ public class gameManager : MonoBehaviour
             break;
             case 19: //transition to white screen ()just use a white sprite; next
                 // canvas.SetActive(false);
+                whiteScreen_occurred = true;
                 dialogueTextBox.transform.GetChild(0).GetComponent<Text>().text="";
                 whiteScreen.SetActive(true);
                 dialogueText.text = "";
@@ -670,6 +678,10 @@ public class gameManager : MonoBehaviour
     }
 
     void runMiniGame(){
+
+        //change music from date start to date tense
+        date_start_music.SetActive(false);
+        date_tense_music.SetActive(true);
         if(Input.GetKey(KeyCode.LeftArrow)){
             inspector.transform.Translate(Vector3.left*Time.deltaTime *speed);
         }else if(Input.GetKey(KeyCode.RightArrow)){
@@ -699,6 +711,8 @@ public class gameManager : MonoBehaviour
                         foundPresent = true;
                         canRunMiniGame = false;
                         dialogueTextBox.transform.GetChild(0).GetComponent<Text>().text="";
+                        //stop minigame music
+                        date_tense_music.SetActive(false);
                         // runCombat(currentSeq);
                     break;
                     default:
