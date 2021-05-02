@@ -44,17 +44,17 @@ public class gameManager : MonoBehaviour
 
     // DIALOGUE SFX
     [Header("Audio")]
-    [SerializeField] public AudioSource TXTsfx; // sfx for the typing
-    [SerializeField] public AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
-    [SerializeField] public AudioSource SELECTsfx; // sfx when player presses ENTER
-    [SerializeField] public AudioClip narrativeTXTsfx; //sfx for narrative typing
-    [SerializeField] public AudioClip papyrusTXTsfx; //sfx for papyrus typing
+    [SerializeField] AudioSource TXTsfx; // sfx for the typing
+    [SerializeField] AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
+    [SerializeField] AudioSource SELECTsfx; // sfx when player presses ENTER
+    [SerializeField] AudioClip narrativeTXTsfx; //sfx for narrative typing
+    [SerializeField] AudioClip papyrusTXTsfx; //sfx for papyrus typing
 
     //setting Game Objects for background music
     [Header("Background Music")]
-    [SerializeField] public GameObject sans_music; //game object for house music
-    [SerializeField] public GameObject date_start_music; //game object for date start music
-    [SerializeField] public GameObject date_fight_music; //game object for date fight music
+    [SerializeField] GameObject sans_music; //game object for house music
+    [SerializeField] GameObject date_start_music; //game object for date start music
+    [SerializeField] GameObject date_fight_music; //game object for date fight music
 
     [Tooltip("object dialogue will show up here (please adjust dialogue on the interactable object)")]
     [Header("Dialogue Text")] //dialgoue variables
@@ -84,6 +84,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] Vector2 dialogueSize;
     [SerializeField] float sizeOfPapyrusText = 0.8f;
     [SerializeField] float sizeOfPapyrusBox = 0.38f;
+    [SerializeField] Vector2 choice1StartingPosition;
+    [SerializeField] Vector2 choice2StartingPosition;
+    [SerializeField] float choiceHeight=0.05f;
 
 
     [Header("Combat UI Objects")]
@@ -105,7 +108,7 @@ public class gameManager : MonoBehaviour
     [Tooltip("add different empty gameobjects for each section of the combat")]
     [Header("Combat Variables")]
     [SerializeField] List <GameObject> combat;
-    int combatSize;
+    [SerializeField] int combatSize;
     [SerializeField] int currentSeq = -1;
     [SerializeField] GameObject inspector;
     [SerializeField] bool canRunMiniGame;
@@ -142,6 +145,9 @@ public class gameManager : MonoBehaviour
         dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
         choice1 = dialogueTextBox.transform.GetChild(1).GetComponent<Text>();
         choice2 = dialogueTextBox.transform.GetChild(2).GetComponent<Text>();
+        choice1StartingPosition = dialogueTextBox.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition;
+        choice2StartingPosition = dialogueTextBox.transform.GetChild(2).GetComponent<RectTransform>().anchoredPosition;
+        
         heart1 = dialogueTextBox.transform.GetChild(1).GetChild(0).GetComponent<Image>();
         heart2 = dialogueTextBox.transform.GetChild(2).GetChild(0).GetComponent<Image>();
         papyrusHead = dialogueTextObject.transform.GetChild(0).GetComponent<Image>();
@@ -159,20 +165,15 @@ public class gameManager : MonoBehaviour
 
         // DIALOGUE SFX
             // assigning the sound !
-        TXTsfx = TXTsfx.GetComponent<AudioSource>(); 
-        arrowMOVEsfx = arrowMOVEsfx.GetComponent<AudioSource>(); 
-        SELECTsfx = SELECTsfx.GetComponent<AudioSource>(); 
+        // TXTsfx = TXTsfx.GetComponent<AudioSource>(); 
+        // arrowMOVEsfx = arrowMOVEsfx.GetComponent<AudioSource>(); 
+        // SELECTsfx = SELECTsfx.GetComponent<AudioSource>(); 
         //narrativeTXTsfx = narrativeTXTsfx.GetComponent<AudioSource>();
         //papyrusTXTsfx = papyrusTXTsfx.GetComponent<AudioSource>();
     }
 
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
-        if(canRunMiniGame){
-            Debug.Log("Running mini game");
-            runMiniGame();
-        }
-        
         //change the heart image based on what the player wants to select (select with left/right arrow and enter)
         if(typedChoices && Input.GetKeyDown(KeyCode.RightArrow)){
             heart1.enabled = false;
@@ -190,14 +191,15 @@ public class gameManager : MonoBehaviour
         }
 
         //code for when the player wants to make a selection
-        if(Input.GetKeyDown(KeyCode.Return) && typedChoices){
+        if(Input.GetKeyDown(KeyCode.Return) && typedChoices && canPressEnter){
             if(heart1.enabled){
-                Debug.Log("Choice 1");
-                checkChoice1(currentObj.name);
+                // (Debug.Log"Choice 1");
+                if(currentObj!=null) checkChoice1(currentObj.name);
+                else checkChoice1("none");
 
                 SELECTsfx.Play(); // plays the sound when the player presses ENTER
             }else if(heart2.enabled){
-                Debug.Log("Choice 2");
+                // Debug.Log("Choice 2");
                 checkChoice2();
                 
                 // DIALOGUE SFX
@@ -217,10 +219,14 @@ public class gameManager : MonoBehaviour
                         dialogueText.text = dialogueText.text.ToUpper();
                     }
                 }
+                else if(currentSeq == 4 && dialogueText.text.Equals("")){ //close dating hud
+                datingHUD.SetActive(false);
+                }
 
                 isTyping = false;
             }
             else if(index < maxIndex){
+                if(currentSeq == 11 && canRunMiniGame && currentObj==null) return;
                 ++index;
                 if(index < maxIndex){
                     StartCoroutine(typeDialogue(dialogue[index]));
@@ -231,6 +237,7 @@ public class gameManager : MonoBehaviour
                 if(!hasChoice){
                     if(combatCam.enabled){
                         if(currentSeq == -1){
+                            currentObj = null;
                             dialogueText.text = "";
                             dialogue.Clear();
                             runCombat(++currentSeq);
@@ -239,11 +246,16 @@ public class gameManager : MonoBehaviour
                             papyrusTextBox.SetActive(false);
                         }
                         else if(foundPresent && !givingPresent){
+                            canPressEnter = false;
                             givingPresent = true;
                             index = 1;
                             runCombat(currentSeq);
+                            currentObj = null;
                         }
-                        else checkEndOfSeq(currentSeq);
+                        else{
+                            Debug.Log("Will check end of Seq");
+                            checkEndOfSeq(currentSeq);
+                        }
                     }
                     else{
                         timeRemaining = maxTime; //begin countdown to allow player to interact again
@@ -255,6 +267,10 @@ public class gameManager : MonoBehaviour
             }
         }
 
+        if(canRunMiniGame){ //run mini game
+            // Debug.Log("Running mini game");
+            runMiniGame();
+        }
 
         //timer code (counts down from timeRemaining);
         //see maxTime in the inspector for current time limit
@@ -297,47 +313,47 @@ public class gameManager : MonoBehaviour
     void checkChoice1(string name){
         index = 0;
         disableChoice();
-        switch(name){
-            case "book":
-                dialogue = ((interactableObj)currentObj.GetComponent(typeof(interactableObj))).myNextDialogue;
-                StartCoroutine(displayDialogue());
-            break;
 
-            case "bedroom_door":
-                swapCamera(1);
-                timeRemaining = maxTime; //begin countdown to allow player to interact again
-                runTimer = true;
-                closeDialogue();
-            break;
+        if(combatCam.enabled){
+            // Debug.Log("Should go to next scene");
+            if (currentSeq == 11) currentSeq+=2; //special case for 11; skip to 13
+            else currentSeq++; 
+            runCombat(currentSeq); //run the next sequence
+        }
+        else{
+            switch(name){
+                case "book":
+                    dialogue = ((interactableObj)currentObj.GetComponent(typeof(interactableObj))).myNextDialogue;
+                    StartCoroutine(displayDialogue());
+                break;
 
-            case "closet":
-                dialogue = ((interactableObj)currentObj.GetComponent(typeof(interactableObj))).myNextDialogue;
-                StartCoroutine(displayDialogue());
-            break;
+                case "bedroom_door":
+                    swapCamera(1);
+                    timeRemaining = maxTime; //begin countdown to allow player to interact again
+                    runTimer = true;
+                    closeDialogue();
+                break;
 
-            case "bedroom_papyrus":
-                timeRemaining = maxTime; //begin countdown to allow player to interact again
-                runTimer = true;
-                closeDialogue();
-                dialogue.Clear();
-                dialogue.Add("*Dating... start!");
-                swapCamera(2);
-                StartCoroutine(displayDialogue());
-            break;
+                case "closet":
+                    dialogue = ((interactableObj)currentObj.GetComponent(typeof(interactableObj))).myNextDialogue;
+                    StartCoroutine(displayDialogue());
+                break;
 
-            //combat case
-            case "seq11":
-            currentSeq+=2;
-            runCombat(currentSeq);
-            break;
-            default:
-                if(combatCam.enabled) currentSeq++;
-                runCombat(currentSeq); //run the next sequence
-            break;
-        } 
+                case "bedroom_papyrus":
+                    timeRemaining = maxTime; //begin countdown to allow player to interact again
+                    runTimer = true;
+                    closeDialogue();
+                    dialogue.Clear();
+                    dialogue.Add("*Dating... start!");
+                    swapCamera(2);
+                    StartCoroutine(displayDialogue());
+                break;
+            }
+        }
     }
 
     void checkChoice2(){
+        disableChoice();
         if(combatCam.enabled){ //combat scene
         if (currentSeq==12) currentSeq++;
             currentSeq+=2;
@@ -362,7 +378,7 @@ public class gameManager : MonoBehaviour
         //maria dialogue test
         TXTsfx.Play(); // plays the typing SFX ,
 
-        Debug.Log("Typing choices");
+        // Debug.Log("Typing choices");
         isTyping = true;
         choice1.text="";
         choice2.text="";
@@ -386,6 +402,16 @@ public class gameManager : MonoBehaviour
 
     //enable the choice gameobjects
     void enableChoice(){
+        if(dialogueTextBox.transform.GetChild(0).GetComponent<Text>().text.Equals("")){
+            dialogueTextBox.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition
+                 = new Vector2(choice1StartingPosition.x, (choiceHeight)*dialogueTextBox.GetComponent<RectTransform>().rect.height);
+            dialogueTextBox.transform.GetChild(2).GetComponent<RectTransform>().anchoredPosition
+                 = new Vector2(choice2StartingPosition.x, (choiceHeight)*dialogueTextBox.GetComponent<RectTransform>().rect.height);
+        
+        }else{
+            dialogueTextBox.transform.GetChild(1).GetComponent<RectTransform>().anchoredPosition = choice1StartingPosition;
+            dialogueTextBox.transform.GetChild(2).GetComponent<RectTransform>().anchoredPosition = choice2StartingPosition;
+        }
         choice1.enabled = true; choice2.enabled = true;
         heart2.enabled = false; heart1.enabled = true;
     }
@@ -456,8 +482,8 @@ public class gameManager : MonoBehaviour
         else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
             if(str.Contains("*")){
                 TXTsfx.clip = narrativeTXTsfx;
-                dialogueText.font = narrativeFont;
                 dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
+                dialogueText.font = narrativeFont;
                 
             }
             else{ 
@@ -525,7 +551,7 @@ public class gameManager : MonoBehaviour
                 
             break;
             case 1: 
-                Debug.Log("should swap cam");
+                // Debug.Log("should swap cam");
                 bedroomCam.enabled = true;
                 playerSpawn.transform.position = bedroomSpawn.transform.position;
                 canvas.GetComponent<Canvas>().worldCamera = bedroomCam;
@@ -556,12 +582,16 @@ public class gameManager : MonoBehaviour
         sans_music.SetActive(false);
         date_start_music.SetActive(true);
 
-        if(n >= combatSize || canRunMiniGame) return;
-        if(givingPresent) {
+        if(n >= combatSize) return;
+
+        if(givingPresent){
+            foundPresent = false;  givingPresent = false;
+            runCombat(currentSeq);
+            // canPressEnter = false;
             //call present animation -> the end of animation will trigger runCombat again and set givingPresent to false
             return;
         }
-        index = 0;
+        if (currentObj == null || currentSeq!= 11) index = 0;
         interactableObj obj = (interactableObj)combat[n].GetComponent(typeof(interactableObj));
         dialogue = obj.myDialogue;
         if(obj.hasChoice){
@@ -572,7 +602,21 @@ public class gameManager : MonoBehaviour
         canPressEnter = true;
     }
 
+
+
     void checkEndOfSeq(int n){
+        Debug.Log("Checking end of seq");
+        //code for animation
+        // if(n == 5 || n == 6){ //animation (1/3)
+                    
+        // }else if(n == 8 || n == 9){ //animation (2/3)
+
+        // }else if(n == 14 || n == 15){ //bring up date power
+
+        // }
+        // else if(n == 17 || n == 18){ //power overflows anim
+
+        // }
         canPressEnter = false;
         switch(n){
             case 0: //start timer in case player doesnt press c
@@ -583,30 +627,33 @@ public class gameManager : MonoBehaviour
             else runCombat(++currentSeq);
             break;
             case 10: //start minigame; next
+                Debug.Log("Checking end of seq10");
                 currentSeq++;
                 canRunMiniGame = true;
             break;
             case 19: //transition to white screen ()just use a white sprite; next
+                // canvas.SetActive(false);
+                dialogueTextBox.transform.GetChild(0).GetComponent<Text>().text="";
                 whiteScreen.SetActive(true);
+                dialogueText.text = "";
                 dialogueText = whiteScreenText;
                 currentSeq++;
             break;
             case 20: //transition out of white screen (disable object)
                 whiteScreen.SetActive(false);
+                // canvas.SetActive(true);
+                index = 0;
                 currentSeq++;
             break;
+
+            //choices
             default:
-                if(n == 5 || n == 6){ //animation (1/3)
-                    
-                }else if(n == 8 || n == 9){ //animation (2/3)
-
-                }else if(n == 14 || n == 15){ //bring up date power
-
+                if(currentSeq == 2 || currentSeq == 5 || currentSeq == 8 || currentSeq == 14 || currentSeq == 17){
+                    currentSeq+=2;
                 }
-                else if(n == 17 || n == 18){ //power overflows anim
-
+                else{
+                    currentSeq++;
                 }
-                currentSeq++;
             break;
         }
         if (currentSeq != 0) runCombat(currentSeq);
@@ -624,24 +671,29 @@ public class gameManager : MonoBehaviour
         }
         
         //check if the player has selected any object
-        if(Input.GetKeyDown(KeyCode.K)){
+        if(Input.GetKeyDown(KeyCode.Z)){
             RaycastHit2D hit = Physics2D.Raycast(inspector.transform.position, inspector.transform.position);
 
             if(hit.collider != null){
                 Debug.Log(hit.collider.gameObject.name);
                 GameObject obj = hit.collider.gameObject;
+                currentObj = (interactableObj)obj.GetComponent(typeof(interactableObj));
                 string name = obj.name;
                 index = 0;
+                // dialogue.Clear();
+                hasChoice = false;
                 switch(name){
                     case "Hat":
                         dialogue = ((interactableObj)obj.GetComponent(typeof(interactableObj))).myDialogue;
                         StartCoroutine(displayDialogue());
                         foundPresent = true;
                         canRunMiniGame = false;
+                        dialogueTextBox.transform.GetChild(0).GetComponent<Text>().text="";
                         // runCombat(currentSeq);
                     break;
                     default:
                         dialogue = ((interactableObj)obj.GetComponent(typeof(interactableObj))).myDialogue;
+                        StartCoroutine(displayDialogue());
                     break;
                 }
                 papyrusTextBox.SetActive(true);

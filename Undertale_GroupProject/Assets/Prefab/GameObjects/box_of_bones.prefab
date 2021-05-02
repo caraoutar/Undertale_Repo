@@ -112,7 +112,7 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 0.7
+  maxDistance: 0.5
   offset: {x: 0, y: 0}
   distToPlayer: 0
 --- !u!61 &6330496963732757340

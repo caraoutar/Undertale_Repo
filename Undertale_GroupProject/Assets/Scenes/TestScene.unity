@@ -157,6 +157,7 @@ GameObject:
   - component: {fileID: 77028032}
   - component: {fileID: 77028031}
   - component: {fileID: 77028033}
+  - component: {fileID: 77028034}
   m_Layer: 0
   m_Name: Shirt
   m_TagString: Combat
@@ -226,7 +227,7 @@ Transform:
   m_LocalScale: {x: 0.40465367, y: 0.40465367, z: 0.40465367}
   m_Children: []
   m_Father: {fileID: 1298062079}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &77028033
 BoxCollider2D:
@@ -254,6 +255,33 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &77028034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 77028030}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  player: {fileID: 0}
+  myDialogue:
+  - test1
+  - test2
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
+  myNextDialogue: []
+  isInteracting: 0
+  maxDistance: 2.2
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!1 &82668385
 GameObject:
   m_ObjectHideFlags: 0
@@ -1231,7 +1259,7 @@ MonoBehaviour:
   myChoice:
   - Love it
   - Hate it
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
@@ -1375,12 +1403,12 @@ PrefabInstance:
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.82
+      value: 8.25
       objectReference: {fileID: 0}
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.15
+      value: -0.23
       objectReference: {fileID: 0}
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
@@ -2473,7 +2501,7 @@ MonoBehaviour:
   myDialogue:
   - 'STEP THREE IS EASY:'
   - WEAR YOUR BEST ATTIRE!
-  - '[DATING HUD CLOSES]'
+  - 
   - "WAIT A MINUTE\u2026"
   - "THOSE CLOTHES\u2026"
   - HAVE YOU... BEEN PREPARED THIS WHOLE TIME?
@@ -3029,12 +3057,16 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - TEST
+  - '*(Move with the arrow keys. Inspect with [Z].) '
+  - "I NEVER THOUGHT YOU\u2019D BE ABLE TO FIND IT, HUMAN."
+  - I SUPPOSE NOW I HAVE NO CHOICE.
+  - "THIS IS MY SECRET\u2026"
+  - A PRESENT. JUST FOR YOU.
   myChoice:
-  - 
-  - 
-  hasChoice: 0
-  changeChoice: 0
+  - Open it
+  - "Don\u2019t"
+  hasChoice: 1
+  changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
   maxDistance: 2.2
@@ -3648,8 +3680,8 @@ Transform:
   m_Children:
   - {fileID: 1491220484}
   - {fileID: 1655187797}
-  - {fileID: 77028032}
   - {fileID: 2129124429}
+  - {fileID: 77028032}
   - {fileID: 1417681701}
   - {fileID: 1844715578}
   m_Father: {fileID: 832414381}
@@ -3863,8 +3895,9 @@ GameObject:
   - component: {fileID: 1417681701}
   - component: {fileID: 1417681700}
   - component: {fileID: 1417681702}
+  - component: {fileID: 1417681703}
   m_Layer: 0
-  m_Name: Pants
+  m_Name: Shorts
   m_TagString: Combat
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3960,6 +3993,32 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &1417681703
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1417681699}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  player: {fileID: 0}
+  myDialogue:
+  - test1
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
+  myNextDialogue: []
+  isInteracting: 0
+  maxDistance: 2.2
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!1 &1417739849
 GameObject:
   m_ObjectHideFlags: 0
@@ -4940,6 +4999,7 @@ GameObject:
   - component: {fileID: 1844715578}
   - component: {fileID: 1844715580}
   - component: {fileID: 1844715579}
+  - component: {fileID: 1844715581}
   m_Layer: 0
   m_Name: Shoes
   m_TagString: Combat
@@ -5037,6 +5097,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &1844715581
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1844715577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  player: {fileID: 0}
+  myDialogue:
+  - test1
+  - test2
+  myChoice:
+  - 
+  - 
+  hasChoice: 0
+  changeChoice: 0
+  myNextDialogue: []
+  isInteracting: 0
+  maxDistance: 2.2
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!4 &1855272671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4662314877713236543, guid: 146cfb373bfb14a5fb50f63b4db2cd0b,
@@ -5082,21 +5169,11 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - 1. This is a test. I'm checking if the text will change size properly. Hopefully
-    that's the case.
-  - '*2. This is a test. I''m checking if the text will change size properly. Hopefully
-    that''s the case.'
-  - 3. This is a test. I'm checking if the text will change size properly. Hopefully
-    that's the case.
-  - '*4. This is a test. I''m checking if the text will change size properly. Hopefully
-    that''s the case.'
   - 
-  - 5. This is a test. I'm checking if the text will change size properly. Hopefully
-    that's the case.
   myChoice:
   - 
   - 
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
@@ -5794,6 +5871,7 @@ GameObject:
   - component: {fileID: 2129124429}
   - component: {fileID: 2129124428}
   - component: {fileID: 2129124430}
+  - component: {fileID: 2129124431}
   m_Layer: 0
   m_Name: Hat
   m_TagString: Combat
@@ -5863,7 +5941,7 @@ Transform:
   m_LocalScale: {x: 0.40465367, y: 0.40465367, z: 0.40465367}
   m_Children: []
   m_Father: {fileID: 1298062079}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!61 &2129124430
 BoxCollider2D:
@@ -5891,6 +5969,35 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &2129124431
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2129124427}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f161cd784f69441f69d4f1ab4317905f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  player: {fileID: 0}
+  myDialogue:
+  - test1
+  - test2
+  - test3
+  myChoice:
+  - test1
+  - test2
+  - test3
+  hasChoice: 0
+  changeChoice: 0
+  myNextDialogue: []
+  isInteracting: 0
+  maxDistance: 2.2
+  offset: {x: 0, y: 0}
+  distToPlayer: 0
 --- !u!1001 &518157466278232946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6560,6 +6667,11 @@ PrefabInstance:
       objectReference: {fileID: 1878093633}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: combat.Array.size
+      value: 22
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: combat.Array.data[0]
       value: 
       objectReference: {fileID: 1061061497}
@@ -6663,6 +6775,11 @@ PrefabInstance:
       propertyPath: combat.Array.data[20]
       value: 
       objectReference: {fileID: 693922500}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: combat.Array.data[21]
+      value: 
+      objectReference: {fileID: 429193823}
     - target: {fileID: 2230936564318212691, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: m_Name
@@ -6949,6 +7066,11 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1359720664}
+    - target: {fileID: 1343461705234769293, guid: 9c578a76310464514ab51bfcc0243450,
+        type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 1842482226917779648, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
       propertyPath: m_SizeDelta.x
