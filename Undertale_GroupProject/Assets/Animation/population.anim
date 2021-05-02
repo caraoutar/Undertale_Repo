@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: papyrusHead
+  m_Name: population
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: ea758601a1c21f7459eecf394a7dd9cf, type: 3}
-    - time: 0.1
-      value: {fileID: 21300000, guid: 63c4f7f232aa5c74f847a7de35afbd22, type: 3}
-    - time: 0.11666667
-      value: {fileID: 21300000, guid: 8e101a60e2fdea242a68badd72e11401, type: 3}
-    - time: 0.26666668
-      value: {fileID: 21300000, guid: ea758601a1c21f7459eecf394a7dd9cf, type: 3}
+      value: {fileID: 21300000, guid: 08e69f18156c83445b6143a0b5dd2821, type: 3}
+    - time: 0.8333333
+      value: {fileID: 21300000, guid: 0e43357456c45a642845c9f25ad1e50d, type: 3}
+    - time: 1.6666666
+      value: {fileID: 21300000, guid: 08e69f18156c83445b6143a0b5dd2821, type: 3}
     attribute: m_Sprite
     path: 
     classID: 114
@@ -46,16 +44,15 @@ AnimationClip:
       customType: 0
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: ea758601a1c21f7459eecf394a7dd9cf, type: 3}
-    - {fileID: 21300000, guid: 63c4f7f232aa5c74f847a7de35afbd22, type: 3}
-    - {fileID: 21300000, guid: 8e101a60e2fdea242a68badd72e11401, type: 3}
-    - {fileID: 21300000, guid: ea758601a1c21f7459eecf394a7dd9cf, type: 3}
+    - {fileID: 21300000, guid: 08e69f18156c83445b6143a0b5dd2821, type: 3}
+    - {fileID: 21300000, guid: 0e43357456c45a642845c9f25ad1e50d, type: 3}
+    - {fileID: 21300000, guid: 08e69f18156c83445b6143a0b5dd2821, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.28333336
+    m_StopTime: 1.6833333
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0
