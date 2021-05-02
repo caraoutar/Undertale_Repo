@@ -33,6 +33,10 @@ public class gameManager : MonoBehaviour
     [SerializeField] Font papyrusFont;
     [SerializeField] Font narrativeFont;
 
+    // PAPYRUS HEAD ANIMATION
+    [SerializeField] Animator dialoguePAP;
+    [SerializeField] Animator datingPAP; // when we need to animate papyrus talking during the dating scene!
+
     [Tooltip("These variables are for debugging")]
     [Header("Non-Adjustable Dialogue Variables")]
     [SerializeField] int index; //which line is being typed
@@ -170,6 +174,9 @@ public class gameManager : MonoBehaviour
         // SELECTsfx = SELECTsfx.GetComponent<AudioSource>(); 
         //narrativeTXTsfx = narrativeTXTsfx.GetComponent<AudioSource>();
         //papyrusTXTsfx = papyrusTXTsfx.GetComponent<AudioSource>();
+
+        // PAPYRUS ANIMATION
+        dialoguePAP = dialoguePAP.GetComponent<Animator>();
     }
 
     //updates the dialogue based on player input, and closes dialogue
@@ -467,6 +474,8 @@ public class gameManager : MonoBehaviour
         
         if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
             resetDialogue();
+            dialoguePAP.GetComponent<Animator>().enabled = true; // enables the animation to play at the start of typing
+            
             //change the font of the dialogue if there is an astericks
             if(str.Contains("*")) {
                 dialogueText.font = narrativeFont;
@@ -512,6 +521,7 @@ public class gameManager : MonoBehaviour
         }
         
         TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+        dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
         
     }
 
