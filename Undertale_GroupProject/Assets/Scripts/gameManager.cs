@@ -188,6 +188,14 @@ public class gameManager : MonoBehaviour
 
         // PAPYRUS ANIMATION
         dialoguePAP = dialoguePAP.GetComponent<Animator>();
+
+        //starting dialogue
+        currentObj = (interactableObj)GameObject.Find("Interactables/MainRoom/papyrus").GetComponent(typeof(interactableObj));
+        dialogue = currentObj.myDialogue;
+        player.canMove = false;
+        canInteract = false;
+        StartCoroutine(displayDialogue());
+
     }
 
     //updates the dialogue based on player input, and closes dialogue
