@@ -121,6 +121,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] int currentSeq = -1;
     [SerializeField] GameObject inspector;
     [SerializeField] bool canRunMiniGame;
+    [SerializeField] bool canMoveInspector;
     int speed = 1;
     [SerializeField] bool givingPresent;
     [SerializeField] bool foundPresent;
@@ -276,6 +277,7 @@ public class gameManager : MonoBehaviour
                         }
                         else if(canRunMiniGame){
                             papyrusTextBox.SetActive(false);
+                            canMoveInspector = true;
                         }
                         else if(foundPresent && !givingPresent){
                             canPressEnter = false;
@@ -678,6 +680,7 @@ public class gameManager : MonoBehaviour
                 currentSeq++;
                 canRunMiniGame = true;
                 inspector.SetActive(true);
+                canMoveInspector = true;
             break;
             case 19: //transition to white screen ()just use a white sprite; next
                 // canvas.SetActive(false);
@@ -713,21 +716,24 @@ public class gameManager : MonoBehaviour
         //change music from date start to date tense
         date_start_music.SetActive(false);
         date_tense_music.SetActive(true);
-        if(Input.GetKey(KeyCode.LeftArrow)){
-            inspector.transform.Translate(Vector3.left*Time.deltaTime *speed);
-        }else if(Input.GetKey(KeyCode.RightArrow)){
-            inspector.transform.Translate(Vector3.right*Time.deltaTime *speed);
-        }else if(Input.GetKey(KeyCode.UpArrow)){
-            inspector.transform.Translate(Vector3.up*Time.deltaTime *speed);
-        }else if(Input.GetKey(KeyCode.DownArrow)){
-            inspector.transform.Translate(Vector3.down*Time.deltaTime *speed);
+        if (canMoveInspector){
+            if(Input.GetKey(KeyCode.LeftArrow)){
+                inspector.transform.Translate(Vector3.left*Time.deltaTime *speed);
+            }else if(Input.GetKey(KeyCode.RightArrow)){
+                inspector.transform.Translate(Vector3.right*Time.deltaTime *speed);
+            }else if(Input.GetKey(KeyCode.UpArrow)){
+                inspector.transform.Translate(Vector3.up*Time.deltaTime *speed);
+            }else if(Input.GetKey(KeyCode.DownArrow)){
+                inspector.transform.Translate(Vector3.down*Time.deltaTime *speed);
+            }
         }
         
         //check if the player has selected any object
-        if(Input.GetKeyDown(KeyCode.Z)){
+        if(Input.GetKeyDown(KeyCode.Z) && canMoveInspector){
             RaycastHit2D hit = Physics2D.Raycast(inspector.transform.position, inspector.transform.position);
 
             if(hit.collider != null){
+                canMoveInspector = false;
                 // Debug.Log(hit.collider.gameObject.name);
                 GameObject obj = hit.collider.gameObject;
                 currentObj = (interactableObj)obj.GetComponent(typeof(interactableObj));
