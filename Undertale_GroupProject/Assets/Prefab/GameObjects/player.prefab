@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 7599285644281548021}
   - component: {fileID: 8116680380898752179}
   - component: {fileID: 1316461744511532656}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -97,8 +97,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c165ced09f69346ddab4581f6eb9ebe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  tester: {fileID: 0}
+  moveDirX: 0
+  moveDirY: 0
   speed: 1.5
-  speedLim: 0.7
+  maxDistance: 0.32
+  dir: {x: 0, y: 0}
   canMove: 1
 --- !u!95 &7599285644281548021
 Animator:

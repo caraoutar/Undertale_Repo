@@ -223,8 +223,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 77028030}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1296816, y: 0.18441403, z: 8.82488}
-  m_LocalScale: {x: 0.40465367, y: 0.40465367, z: 0.40465367}
+  m_LocalPosition: {x: -2.193, y: 0.14400001, z: 8.82488}
+  m_LocalScale: {x: 0.37426758, y: 0.37426758, z: 0.37426758}
   m_Children: []
   m_Father: {fileID: 1298062079}
   m_RootOrder: 3
@@ -279,9 +279,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &82668385
 GameObject:
   m_ObjectHideFlags: 0
@@ -339,9 +336,6 @@ MonoBehaviour:
   changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &92387884 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4470911032988207228, guid: 9c578a76310464514ab51bfcc0243450,
@@ -408,9 +402,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1001 &149940026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -678,6 +669,16 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -5434428791876763277, guid: a7633f56bce074d8a907921db2c6460f,
         type: 3}
+      propertyPath: m_Size.x
+      value: 1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: -5434428791876763277, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: -5434428791876763277, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: d16538ff6fb674a72a8e4b540366d522,
@@ -741,6 +742,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904765576771859426, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.x
+      value: 1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904765576771859426, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.newSize.y
+      value: 1.33
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904765576771859426, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.x
+      value: 1.99
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904765576771859426, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.oldSize.y
+      value: 1.33
       objectReference: {fileID: 0}
     - target: {fileID: 7496201461173730750, guid: a7633f56bce074d8a907921db2c6460f,
         type: 3}
@@ -841,9 +862,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &250458622
 GameObject:
   m_ObjectHideFlags: 0
@@ -1214,10 +1232,9 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 383160044}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.208, y: -0.05, z: 0.662}
+  m_LocalScale: {x: 0.9249084, y: 0.9249084, z: 0.9249084}
   m_Children:
-  - {fileID: 1387206113}
   - {fileID: 1526066633}
   - {fileID: 2068854808}
   - {fileID: 1809628539}
@@ -1323,9 +1340,6 @@ MonoBehaviour:
   changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &429193823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1409,9 +1423,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1001 &469624090
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1462,12 +1473,12 @@ PrefabInstance:
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.72
+      value: 1.77
       objectReference: {fileID: 0}
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -2.12
+      value: -2.49
       objectReference: {fileID: 0}
     - target: {fileID: 7599285644281548020, guid: c9904e337fb2e4be7961978c81a8a8c5,
         type: 3}
@@ -2130,9 +2141,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &696020294
 GameObject:
   m_ObjectHideFlags: 0
@@ -2289,7 +2297,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 383160045}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &697326065
 SpriteRenderer:
@@ -2565,9 +2573,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &800551122 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1115623495133384136, guid: b7a75514952044616bab9a106b683946,
@@ -2628,9 +2633,6 @@ MonoBehaviour:
   changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &802093940
 GameObject:
   m_ObjectHideFlags: 0
@@ -2686,9 +2688,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &832414380
 GameObject:
   m_ObjectHideFlags: 0
@@ -2782,9 +2781,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &897705651
 GameObject:
   m_ObjectHideFlags: 0
@@ -2841,9 +2837,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &897777593
 GameObject:
   m_ObjectHideFlags: 0
@@ -2900,9 +2893,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &898549399 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2949520758456082836, guid: 9c578a76310464514ab51bfcc0243450,
@@ -2949,12 +2939,12 @@ PrefabInstance:
     - target: {fileID: 2536257052974733567, guid: 813bad0237e2d43cda48fd189d97791c,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3.3394547
+      value: 3.36
       objectReference: {fileID: 0}
     - target: {fileID: 2536257052974733567, guid: 813bad0237e2d43cda48fd189d97791c,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.7848735
+      value: -0.97
       objectReference: {fileID: 0}
     - target: {fileID: 2536257052974733567, guid: 813bad0237e2d43cda48fd189d97791c,
         type: 3}
@@ -3254,9 +3244,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!4 &1053078548 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2536257052974733567, guid: 813bad0237e2d43cda48fd189d97791c,
@@ -3321,9 +3308,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!4 &1082989775 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5173113676581032962, guid: bedd5a3f51a6147fa93fd112d1859a83,
@@ -3388,9 +3372,6 @@ MonoBehaviour:
   changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1001 &1119865866
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3530,9 +3511,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!4 &1128897014 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7415092129577871941, guid: 2129985ec3c3b40eb92ff4e69d44355d,
@@ -3662,9 +3640,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &1231712465 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4448031233731630822, guid: 1fcc21d7e0e2d46b58ce0d6eaf4d4336,
@@ -3918,9 +3893,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &1291479856 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 493825587159805316, guid: 1346693ddbada4953bc3cbed1fd46c56,
@@ -4162,7 +4134,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1387206113
 Transform:
   m_ObjectHideFlags: 0
@@ -4170,11 +4142,11 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1387206112}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.89, y: 1.03, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -0.028999925, y: 1.788, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 383160045}
+  m_Father: {fileID: 1809628539}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1387206114
@@ -4283,9 +4255,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &1417681699
 GameObject:
   m_ObjectHideFlags: 0
@@ -4363,8 +4332,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1417681699}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.394, y: -0.648, z: 8.82488}
-  m_LocalScale: {x: 0.40465367, y: 0.40465367, z: 0.40465367}
+  m_LocalPosition: {x: -2.438, y: -0.626, z: 8.82488}
+  m_LocalScale: {x: 0.37426758, y: 0.37426758, z: 0.37426758}
   m_Children: []
   m_Father: {fileID: 1298062079}
   m_RootOrder: 4
@@ -4418,9 +4387,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &1417739849
 GameObject:
   m_ObjectHideFlags: 0
@@ -4572,7 +4538,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!61 &1491220482
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4590,7 +4556,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
-    oldSize: {x: 1.2333333, y: 1.2666667}
+    oldSize: {x: 1.3333334, y: 1.35}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -4638,8 +4604,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 10
-  m_Sprite: {fileID: 21300000, guid: f0f42e1a1907193429b6470d7f2544ed, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 21300000, guid: d16b8c6398a744632a3df6475294e215, type: 3}
+  m_Color: {r: 1, g: 0.70097566, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -4871,7 +4837,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 383160045}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1526066634
 SpriteRenderer:
@@ -5072,9 +5038,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1 &1655187794
 GameObject:
   m_ObjectHideFlags: 0
@@ -5172,8 +5135,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1655187794}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.209, y: -1.735, z: 8.82488}
-  m_LocalScale: {x: 2.292355, y: 3.2451236, z: 1.0712389}
+  m_LocalPosition: {x: -2.209, y: -1.613, z: 8.82488}
+  m_LocalScale: {x: 2.292355, y: 3.077419, z: 1.0712389}
   m_Children: []
   m_Father: {fileID: 1298062079}
   m_RootOrder: 1
@@ -5240,9 +5203,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1001 &1764358517
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5499,9 +5459,10 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -1.861, y: -0.758, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1387206113}
   m_Father: {fileID: 383160045}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1809628540
 SpriteRenderer:
@@ -5581,8 +5542,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1844715577}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.773, y: -1.575, z: 8.82488}
-  m_LocalScale: {x: 0.40465367, y: 0.40465367, z: 0.40465367}
+  m_LocalPosition: {x: -2.788, y: -1.483, z: 8.82488}
+  m_LocalScale: {x: 0.37426758, y: 0.37426758, z: 0.37426758}
   m_Children: []
   m_Father: {fileID: 1298062079}
   m_RootOrder: 5
@@ -5687,9 +5648,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!4 &1855272671 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4662314877713236543, guid: 146cfb373bfb14a5fb50f63b4db2cd0b,
@@ -5743,9 +5701,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!212 &1871294028
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5967,7 +5922,7 @@ PrefabInstance:
     - target: {fileID: 5173113676581032962, guid: bedd5a3f51a6147fa93fd112d1859a83,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.78
+      value: -1.09
       objectReference: {fileID: 0}
     - target: {fileID: 5173113676581032962, guid: bedd5a3f51a6147fa93fd112d1859a83,
         type: 3}
@@ -6157,9 +6112,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!20 &2060465136 stripped
 Camera:
   m_CorrespondingSourceObject: {fileID: 3490604475619064408, guid: b7cfe7c4c0c364edc99f52b9fdb2a0f9,
@@ -6195,7 +6147,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 383160045}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &2068854809
 SpriteRenderer:
@@ -6585,8 +6537,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2129124427}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -2.1676817, y: 0.837414, z: 8.82488}
-  m_LocalScale: {x: 0.40465367, y: 0.40465367, z: 0.40465367}
+  m_LocalPosition: {x: -2.229, y: 0.749, z: 8.82488}
+  m_LocalScale: {x: 0.37426758, y: 0.37426758, z: 0.37426758}
   m_Children: []
   m_Father: {fileID: 1298062079}
   m_RootOrder: 2
@@ -6643,9 +6595,6 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 2.2
-  offset: {x: 0, y: 0}
-  distToPlayer: 0
 --- !u!1001 &518157466278232946
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -7219,9 +7168,19 @@ PrefabInstance:
       objectReference: {fileID: 953242403}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: bedroom
+      value: 
+      objectReference: {fileID: 400049378}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 2060465136}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: mainRoom
+      value: 
+      objectReference: {fileID: 703238272}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: SELECTsfx
@@ -7290,6 +7249,11 @@ PrefabInstance:
       objectReference: {fileID: 92387884}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: combatPapyrus
+      value: 
+      objectReference: {fileID: 2068854807}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: papyrusTXTsfx
       value: 
       objectReference: {fileID: 8300000, guid: af065764f85684ebfbe89fb62de506db, type: 3}
@@ -7328,6 +7292,11 @@ PrefabInstance:
       propertyPath: combat.Array.size
       value: 22
       objectReference: {fileID: 0}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: combatPapyrusDate
+      value: 
+      objectReference: {fileID: 1809628538}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: combat.Array.data[0]
@@ -7795,6 +7764,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -10.3
       objectReference: {fileID: 0}
+    - target: {fileID: 2103436830052209247, guid: 9c578a76310464514ab51bfcc0243450,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2133938565846599399, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
       propertyPath: m_SizeDelta.y
@@ -7840,7 +7814,7 @@ PrefabInstance:
     - target: {fileID: 2514563350603158148, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 217.8
+      value: 275
       objectReference: {fileID: 0}
     - target: {fileID: 3661114478962166136, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
@@ -7870,12 +7844,12 @@ PrefabInstance:
     - target: {fileID: 5236310402837426045, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: -218.29
+      value: -257
       objectReference: {fileID: 0}
     - target: {fileID: 5236310402837426045, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 146
+      value: 196
       objectReference: {fileID: 0}
     - target: {fileID: 6105950593874905621, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
@@ -7907,7 +7881,7 @@ PrefabInstance:
     - target: {fileID: 6372793950361340622, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 56.91
+      value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 6858094065227984921, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
@@ -8034,7 +8008,7 @@ PrefabInstance:
     - target: {fileID: 7610928839479125369, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8542372566365009533, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
@@ -8042,6 +8016,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 62ee889730fb86c4fac16cae949fe168,
         type: 3}
+    - target: {fileID: 8800800891508704640, guid: 9c578a76310464514ab51bfcc0243450,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 9028913177294905971, guid: 9c578a76310464514ab51bfcc0243450,
         type: 3}
       propertyPath: m_Sprite

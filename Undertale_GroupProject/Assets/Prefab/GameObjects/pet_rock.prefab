@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2536257052974733567}
   - component: {fileID: 4519018624923674390}
   - component: {fileID: -86370152336455065}
-  - component: {fileID: 328674226083364320}
+  - component: {fileID: -3634535600669517140}
   m_Layer: 0
   m_Name: pet_rock
   m_TagString: Interactable
@@ -112,10 +112,10 @@ MonoBehaviour:
   changeChoice: 0
   myNextDialogue: []
   isInteracting: 0
-  maxDistance: 0.6
+  maxDistance: 0.7
   offset: {x: 0, y: 0}
   distToPlayer: 0
---- !u!61 &328674226083364320
+--- !u!61 &-3634535600669517140
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -128,10 +128,10 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.775}
+  m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 0.84, y: 1.55}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5

@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -6537905340613540251}
   - component: {fileID: -2862520361308860238}
   - component: {fileID: -8297115837124573986}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: bgMainRoom
   m_TagString: Untagged
   m_Icon: {fileID: 0}

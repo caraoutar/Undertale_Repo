@@ -111,7 +111,7 @@ MonoBehaviour:
   myNextDialogue:
   - '*(A row of red capes are hung up nearly inside.) '
   isInteracting: 0
-  maxDistance: 0.7
+  maxDistance: 0.4
   offset: {x: 0, y: 0}
   distToPlayer: 0
 --- !u!61 &7216123764531284055

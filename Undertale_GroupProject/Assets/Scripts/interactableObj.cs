@@ -32,9 +32,9 @@ public class interactableObj : MonoBehaviour
     [Tooltip("adjust maxDistance to change the distance the player has to be within to interact with this object")]
     [Header("Object Variables")]
     public bool isInteracting = false; //boolean holding the condition of whether the object can be interacted with
-    [SerializeField] float maxDistance = 2.2f; //maximum distance to player to interact with object
-    [SerializeField] Vector2 offset;
-    [SerializeField] float distToPlayer;
+    // [SerializeField] float maxDistance = 2.2f; //maximum distance to player to interact with object
+    // [SerializeField] Vector2 offset;
+    // [SerializeField] float distToPlayer;
     #endregion
 
     void Start(){ //auto add reference to gameManager and player
@@ -42,23 +42,23 @@ public class interactableObj : MonoBehaviour
         player = GameObject.FindWithTag("Player");
     }
 
-    void Update(){ //call checkdistance
-        if(gameObject.tag != "Combat"){
-            checkDistance();
-        }
-    }
+    // void Update(){ //call checkdistance
+    //     if(gameObject.tag != "Combat"){
+    //         checkDistance();
+    //     }
+    // }
 
     //checks the distance from this object to the player, and if they are within distance, checks for player input for interaction
-    void checkDistance(){
-        offset = gameObject.GetComponent<Renderer>().bounds.center - player.transform.position;
+    /*void checkDistance(){
+        offset = gameObject.transform.position - player.transform.position;
         distToPlayer = offset.sqrMagnitude;
 
-        // if(this.name == "bookcase"){
+        // if(this.name == "computer" || this.name == "bedroom_papyrus" || this.name == "box_of_bones"){
         //     Debug.Log(this.name + " distance to player: " + distToPlayer);
         // }
 
         if(gameManager.closestObj.name == this.name){
-            gameManager.distToClosestObj = distToPlayer;
+            // gameManager.distToClosestObj = distToPlayer;
             //if the object is not being interacted with, and the player presses space, interact with the object
             if(distToPlayer <= maxDistance && Input.GetKeyDown(KeyCode.Return)){
                 if(!isInteracting){
@@ -81,5 +81,5 @@ public class interactableObj : MonoBehaviour
             gameManager.distToClosestObj = distToPlayer;
         }
 
-    }
+    }*/
 }

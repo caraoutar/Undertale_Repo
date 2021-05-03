@@ -107,10 +107,13 @@ public class gameManager : MonoBehaviour
 
     [Tooltip("this is the object currently being interacted with")]
     [Header("Object in Interaction")]
-    public float distToClosestObj;
-    public GameObject closestObj;
+    // public float distToClosestObj;
+    // public GameObject closestObj;
     public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
-
+    [SerializeField] GameObject mainRoom;
+    [SerializeField] GameObject bedroom;
+    public bool canInteract = true;
+    
     [Tooltip("add different empty gameobjects for each section of the combat")]
     [Header("Combat Variables")]
     [SerializeField] List <GameObject> combat;
@@ -122,6 +125,10 @@ public class gameManager : MonoBehaviour
     [SerializeField] bool givingPresent;
     [SerializeField] bool foundPresent;
     [SerializeField] bool canPressEnter = true;
+
+    [Header("Combat Papyrus References")]
+    [SerializeField] GameObject combatPapyrus;
+    [SerializeField] GameObject combatPapyrusDate;
 
 
     [Tooltip("adjust the maximum time before the player can interact with a new object")]
@@ -135,12 +142,14 @@ public class gameManager : MonoBehaviour
 
     //===================================== START & UPDATE ===========================================
     public void Start(){
+        // bedroom.SetActive(false); //make sure the objects in the bedroom are not active
         //on start, set up the variables for UI
+        canInteract = true;
         p = GameObject.FindWithTag("Player");
         player = (playerMovement) p.GetComponent(typeof(playerMovement));
         playerSpawn = GameObject.FindWithTag("Player");
 
-        closestObj = GameObject.FindWithTag("Interactable");
+        // closestObj = GameObject.FindWithTag("Interactable");
         dialogueTextBox = canvas.transform.GetChild(0).gameObject;
         textStartingPosition = dialogueTextBox.GetComponent<RectTransform>().anchoredPosition;
         
@@ -161,10 +170,10 @@ public class gameManager : MonoBehaviour
         papyrusTextBox = combatCanvas.transform.GetChild(0).gameObject;
         papyrusText = papyrusTextBox.transform.GetChild(0).GetComponent<Text>();
         datingHUD = combatCanvas.transform.GetChild(1).gameObject;
-        datingPower = combatCanvas.transform.GetChild(2).gameObject;
-        datingTension = combatCanvas.transform.GetChild(3).gameObject;
+        datingPower = datingHUD.transform.GetChild(3).gameObject;
+        // datingTension = combatCanvas.transform.GetChild(3).gameObject;
 
-        whiteScreen = combatCanvas.transform.GetChild(4).gameObject;
+        whiteScreen = combatCanvas.transform.GetChild(2).gameObject;
         whiteScreenText = whiteScreen.transform.GetChild(0).GetComponent<Text>();
 
         combatSize = combat.Count;
@@ -217,6 +226,12 @@ public class gameManager : MonoBehaviour
         }
         //change dialogue if the player presses enter key
         else if(Input.GetKeyDown(KeyCode.Return) && openText && canPressEnter){
+            if(combatCam.enabled && currentSeq == 7){
+                if(dialogueText.text.Equals("BEHOLD!")){ //swap clothing in seq7
+                    combatPapyrus.SetActive(false);
+                    combatPapyrusDate.SetActive(true);
+                }
+            }
             if(isTyping && !isTypingChoice){
                 dialogueText.text=dialogue[index];
                 
@@ -228,7 +243,7 @@ public class gameManager : MonoBehaviour
                         dialogueText.text = dialogueText.text.ToUpper();
                     }
                 }
-                else if(currentSeq == 4 && dialogueText.text.Equals("")){ //close dating hud
+                else if(currentSeq == 4 && dialogueText.text.Equals("")){ //close dating hud in seq4
                 datingHUD.SetActive(false);
                 }
 
@@ -298,6 +313,7 @@ public class gameManager : MonoBehaviour
                 }else{//this is to limit how long after the player interacts with an object can they interact again
                     if(currentObj != null){
                         currentObj.isInteracting = false;
+                        canInteract = true;
                         currentObj = null;
                     }
                 }
@@ -555,29 +571,35 @@ public class gameManager : MonoBehaviour
         combatCam.enabled = false;
 
         //enable the necessary camera
-        switch(camNum){
-            case 0: 
+        switch(camNum){ 
+            case 0: //main room
                 mainCam.enabled = true;
+                // mainRoom.SetActive(true);
+                // bedroom.SetActive(false);
                 playerSpawn.transform.position = mainSpawn.transform.position;
                 canvas.GetComponent<Canvas>().worldCamera = mainCam;
                 
             break;
-            case 1: 
+            case 1: //bedroom
                 // Debug.Log("should swap cam");
                 bedroomCam.enabled = true;
+                // bedroom.SetActive(true);
+                // mainRoom.SetActive(false);
                 playerSpawn.transform.position = bedroomSpawn.transform.position;
                 canvas.GetComponent<Canvas>().worldCamera = bedroomCam;
             break;
-            case 2: 
+            case 2: //combatroom
                 runTimer = false;
                 combatCam.enabled = true;
                 uiAtTop = false;
                 resetDialogue();
                 canvas.GetComponent<Canvas>().worldCamera = combatCam;
-                GameObject[] objs = GameObject.FindGameObjectsWithTag("Interactable");
-                foreach (GameObject o in objs){
-                    o.SetActive(false);
-                }
+                // GameObject[] objs = GameObject.FindGameObjectsWithTag("Interactable");
+                // foreach (GameObject o in objs){
+                //     o.SetActive(false);
+                // }
+                mainRoom.SetActive(false);
+                bedroom.SetActive(false);
                 p.SetActive(false);
             break;
         }
@@ -590,7 +612,7 @@ public class gameManager : MonoBehaviour
     //==========================================    COMBAT METHODS     ==================================================
     #region combat
     void runCombat(int n){
-
+        papyrusTextBox.SetActive(true);
         sans_music.SetActive(false);
         date_start_music.SetActive(true);
 
@@ -647,6 +669,7 @@ public class gameManager : MonoBehaviour
                 Debug.Log("Checking end of seq10");
                 currentSeq++;
                 canRunMiniGame = true;
+                inspector.SetActive(true);
             break;
             case 19: //transition to white screen ()just use a white sprite; next
                 // canvas.SetActive(false);
@@ -697,7 +720,7 @@ public class gameManager : MonoBehaviour
             RaycastHit2D hit = Physics2D.Raycast(inspector.transform.position, inspector.transform.position);
 
             if(hit.collider != null){
-                Debug.Log(hit.collider.gameObject.name);
+                // Debug.Log(hit.collider.gameObject.name);
                 GameObject obj = hit.collider.gameObject;
                 currentObj = (interactableObj)obj.GetComponent(typeof(interactableObj));
                 string name = obj.name;
@@ -710,6 +733,7 @@ public class gameManager : MonoBehaviour
                         StartCoroutine(displayDialogue());
                         foundPresent = true;
                         canRunMiniGame = false;
+                        inspector.SetActive(false);
                         dialogueTextBox.transform.GetChild(0).GetComponent<Text>().text="";
                         //stop minigame music
                         date_tense_music.SetActive(false);

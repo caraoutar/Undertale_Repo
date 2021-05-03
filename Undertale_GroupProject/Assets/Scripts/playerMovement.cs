@@ -20,7 +20,9 @@ public class playerMovement : MonoBehaviour
     [SerializeField] float moveDirX;
     [SerializeField] float moveDirY;
     [SerializeField] float speed;
-    // [SerializeField] float speedLim = 0.7f; //to limit horizontal speed
+    [SerializeField] float maxDistance;
+    [SerializeField] Vector2 dir;
+
     public bool canMove = true;
 
     #endregion
@@ -43,6 +45,33 @@ public class playerMovement : MonoBehaviour
         // }
         if(transform.position.y < 0) gameManager.uiAtTop = true;
         else gameManager.uiAtTop = false;
+    }
+
+    void Update(){
+        //checking to see what object player is interacting with
+        if(Input.GetKeyDown(KeyCode.Return)){
+            RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, dir, maxDistance);
+            Debug.DrawRay(gameObject.transform.position, dir, Color.green);
+            
+            if(hit.collider != null){
+                Debug.Log(hit.collider.gameObject.name);
+                GameObject obj = hit.collider.gameObject;
+                interactableObj o = (interactableObj)obj.GetComponent(typeof(interactableObj));
+                
+                if(!o.isInteracting && gameManager.canInteract){
+                    gameManager.dialogue = o.myDialogue;
+                    gameManager.currentObj = o; //set the gamemanager's obj script to this obj's
+                        o.isInteracting = true; //player is now interacting with this object
+                        gameManager.canInteract = false;
+                        StartCoroutine(gameManager.displayDialogue()); //call gameManager's displayDialogue function
+                        
+                        if(o.hasChoice){ //if the object gives the player a choice, point the choice array in gameManager to this object's array
+                            if (o.changeChoice) gameManager.choice = o.myChoice;
+                            gameManager.hasChoice = true;
+                        }
+                }
+            }
+        }
     }
 
     //movement function
@@ -86,7 +115,8 @@ public class playerMovement : MonoBehaviour
             //     moveDirX *= speedLim;
             //     moveDirY *= speedLim;
             // }
-            
+            if (moveDirX !=0 || moveDirY != 0) dir = new Vector2(moveDirX,moveDirY); //set the direction of the raycast in update
+
             movement.x = moveDirX;
             movement.y = moveDirY;
             if ((moveDirX !=0 && moveDirY == 0) || (moveDirX ==0 && moveDirY !=0)){
