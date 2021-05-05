@@ -332,7 +332,7 @@ MonoBehaviour:
   myChoice:
   - Eat it
   - Don't eat it
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
@@ -2629,7 +2629,7 @@ MonoBehaviour:
   myChoice:
   - Of course
   - No idea
-  hasChoice: 0
+  hasChoice: 1
   changeChoice: 1
   myNextDialogue: []
   isInteracting: 0
