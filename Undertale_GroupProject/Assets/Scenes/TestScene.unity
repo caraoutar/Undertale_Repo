@@ -681,7 +681,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 21300000, guid: d16538ff6fb674a72a8e4b540366d522,
+      objectReference: {fileID: 21300000, guid: 7638939397c624b3e8bf29dc50372f28,
         type: 3}
     - target: {fileID: -1392870571255626219, guid: a7633f56bce074d8a907921db2c6460f,
         type: 3}
@@ -696,12 +696,12 @@ PrefabInstance:
     - target: {fileID: 1796730178515680633, guid: a7633f56bce074d8a907921db2c6460f,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 7.02
+      value: 7.27
       objectReference: {fileID: 0}
     - target: {fileID: 1796730178515680633, guid: a7633f56bce074d8a907921db2c6460f,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.83
+      value: -1.29
       objectReference: {fileID: 0}
     - target: {fileID: 1796730178515680633, guid: a7633f56bce074d8a907921db2c6460f,
         type: 3}
@@ -742,6 +742,21 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904765576771859426, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 0.7949238
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904765576771859426, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: m_Offset.y
+      value: 0.124090195
+      objectReference: {fileID: 0}
+    - target: {fileID: 5904765576771859426, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: m_SpriteTilingProperty.pivot.y
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 5904765576771859426, guid: a7633f56bce074d8a907921db2c6460f,
         type: 3}
@@ -7168,9 +7183,19 @@ PrefabInstance:
       objectReference: {fileID: 953242403}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: tvAnim
+      value: 
+      objectReference: {fileID: 1231712469}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: bedroom
       value: 
       objectReference: {fileID: 400049378}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: carAnim
+      value: 
+      objectReference: {fileID: 1577166543}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: mainCam
