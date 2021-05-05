@@ -211,6 +211,10 @@ public class gameManager : MonoBehaviour
 
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
+        if (dialogueText.text.Equals("IT'S THE PERFECT NIGHTLIGHT!")) { //set the animation of the racecar
+                    Debug.Log("car anim");
+                    carAnim.GetComponent<Animator>().enabled = true; 
+            }
         //change the heart image based on what the player wants to select (select with left/right arrow and enter)
         if(typedChoices && Input.GetKeyDown(KeyCode.RightArrow)){
             heart1.enabled = false;
@@ -251,7 +255,8 @@ public class gameManager : MonoBehaviour
                     combatPapyrusDate.SetActive(true);
                 }
             }
-            if(isTyping && !isTypingChoice){
+
+            if(isTyping && !isTypingChoice){ // if the dialogue is still being typed, finish typing
                 dialogueText.text=dialogue[index];
                 
                 if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
@@ -525,6 +530,10 @@ public class gameManager : MonoBehaviour
                 setPapyrusDialogue();
                 str = str.ToUpper();
             }
+            if (currentObj.name == "television") {
+                    Debug.Log("tv anim");
+                    tvAnim.GetComponent<Animator>().enabled = true; 
+                }
         }
         else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
             if(str.Contains("*")){
@@ -550,14 +559,6 @@ public class gameManager : MonoBehaviour
             if(isTyping){
                 dialogueText.text +=letter;
                 yield return new WaitForSeconds(1f/letterPerSec);
-                if (currentObj.name == "television") {
-                    Debug.Log("tv anim");
-                    tvAnim.GetComponent<Animator>().enabled = true; 
-        }
-                if (dialogueText.text.Equals("IT'S THE PERFECT NIGHTLIGHT!")) {
-                    Debug.Log("car anim");
-                    carAnim.GetComponent<Animator>().enabled = true; 
-                }
             }
         }
         isTyping = false;
