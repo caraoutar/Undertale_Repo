@@ -7168,9 +7168,19 @@ PrefabInstance:
       objectReference: {fileID: 953242403}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: tvAnim
+      value: 
+      objectReference: {fileID: 1231712469}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: bedroom
       value: 
       objectReference: {fileID: 400049378}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: carAnim
+      value: 
+      objectReference: {fileID: 1577166543}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: mainCam

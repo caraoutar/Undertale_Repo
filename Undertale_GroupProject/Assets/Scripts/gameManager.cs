@@ -37,6 +37,10 @@ public class gameManager : MonoBehaviour
     [SerializeField] Animator dialoguePAP;
     [SerializeField] Animator datingPAP; // when we need to animate papyrus talking during the dating scene!
 
+    [Header("Scene 1 Animation")]
+    [SerializeField] Animator carAnim;
+    [SerializeField] Animator tvAnim; 
+
     [Tooltip("These variables are for debugging")]
     [Header("Non-Adjustable Dialogue Variables")]
     [SerializeField] int index; //which line is being typed
@@ -186,6 +190,12 @@ public class gameManager : MonoBehaviour
         // SELECTsfx = SELECTsfx.GetComponent<AudioSource>(); 
         //narrativeTXTsfx = narrativeTXTsfx.GetComponent<AudioSource>();
         //papyrusTXTsfx = papyrusTXTsfx.GetComponent<AudioSource>();
+
+        //CAR AND TV ANIMATION
+        carAnim = carAnim.GetComponent<Animator>();
+        tvAnim = tvAnim.GetComponent<Animator>();
+        carAnim.enabled = false; 
+        tvAnim.enabled = false; 
 
         // PAPYRUS ANIMATION
         dialoguePAP = dialoguePAP.GetComponent<Animator>();
@@ -540,6 +550,14 @@ public class gameManager : MonoBehaviour
             if(isTyping){
                 dialogueText.text +=letter;
                 yield return new WaitForSeconds(1f/letterPerSec);
+                if (currentObj.name == "television") {
+                    Debug.Log("tv anim");
+                    tvAnim.GetComponent<Animator>().enabled = true; 
+        }
+                if (dialogueText.text.Equals("IT'S THE PERFECT NIGHTLIGHT!")) {
+                    Debug.Log("car anim");
+                    carAnim.GetComponent<Animator>().enabled = true; 
+                }
             }
         }
         isTyping = false;
@@ -567,6 +585,8 @@ public class gameManager : MonoBehaviour
         if (p != null) player.canMove = true; //let the player move again
         
         disableChoice();
+        tvAnim.GetComponent<Animator>().enabled = false; 
+        carAnim.GetComponent<Animator>().enabled = false; 
     }
     #endregion
     
