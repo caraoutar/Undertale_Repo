@@ -215,7 +215,8 @@ public class gameManager : MonoBehaviour
         
         if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH…")) { //set the animation of the racecar
                     Debug.Log("car anim");
-                    carAnim.GetComponent<Animator>().enabled = true; 
+                    carAnim.SetBool("StartRunning", true);
+                    carAnim.SetBool("StopRunning", false); 
             }
         //change the heart image based on what the player wants to select (select with left/right arrow and enter)
         if(typedChoices && Input.GetKeyDown(KeyCode.RightArrow)){
@@ -534,6 +535,7 @@ public class gameManager : MonoBehaviour
             }
             if (currentObj.name == "television") {
                     Debug.Log("tv anim");
+                    //set bools to make tv animation play
                     tvAnim.SetBool("StopRunning", false);
                     tvAnim.SetBool("StartRunning", true);
                 }
@@ -590,8 +592,12 @@ public class gameManager : MonoBehaviour
         
         disableChoice();
 
+        carAnim.SetBool("StopRunning", true);
+        carAnim.SetBool("StartRunning", false);
+
         tvAnim.SetBool("StopRunning", true);
         tvAnim.SetBool("StartRunning", false);
+
         //tvAnim.GetComponent<Animator>().enabled = false; 
         //carAnim.GetComponent<Animator>().enabled = false; 
     }
