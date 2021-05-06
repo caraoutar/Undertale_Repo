@@ -194,8 +194,8 @@ public class gameManager : MonoBehaviour
         //CAR AND TV ANIMATION
         carAnim = carAnim.GetComponent<Animator>();
         tvAnim = tvAnim.GetComponent<Animator>();
-        carAnim.enabled = false; 
-        tvAnim.enabled = false; 
+        carAnim.enabled = true; 
+        tvAnim.enabled = true; 
 
         // PAPYRUS ANIMATION
         dialoguePAP = dialoguePAP.GetComponent<Animator>();
@@ -211,6 +211,8 @@ public class gameManager : MonoBehaviour
 
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
+
+        
         if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH…")) { //set the animation of the racecar
                     Debug.Log("car anim");
                     carAnim.GetComponent<Animator>().enabled = true; 
@@ -532,7 +534,8 @@ public class gameManager : MonoBehaviour
             }
             if (currentObj.name == "television") {
                     Debug.Log("tv anim");
-                    tvAnim.GetComponent<Animator>().enabled = true; 
+                    tvAnim.SetBool("StopRunning", false);
+                    tvAnim.SetBool("StartRunning", true);
                 }
         }
         else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
@@ -586,8 +589,11 @@ public class gameManager : MonoBehaviour
         if (p != null) player.canMove = true; //let the player move again
         
         disableChoice();
-        tvAnim.GetComponent<Animator>().enabled = false; 
-        carAnim.GetComponent<Animator>().enabled = false; 
+
+        tvAnim.SetBool("StopRunning", true);
+        tvAnim.SetBool("StartRunning", false);
+        //tvAnim.GetComponent<Animator>().enabled = false; 
+        //carAnim.GetComponent<Animator>().enabled = false; 
     }
     #endregion
     
