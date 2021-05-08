@@ -81,6 +81,10 @@ public class gameManager : MonoBehaviour
     public bool hasChoice;
     [SerializeField] string[] defaultChoice = {"YES", "NO"};
 
+    //---------------- UI -----------------------//
+    [Header("Starting and Ending Scenes")]
+    [SerializeField] GameObject endCard;
+
     [Tooltip("reference to canvas; there is no need to add the other references")]
     [Header("Main UI Objects")] //references to the dialogue objects/components
     [SerializeField] GameObject canvas;
@@ -116,7 +120,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject datingTension;
 
 
-    //----------- object variables ---------------------///
+    //----------- object variables ---------------------//
     [Tooltip("this is the object currently being interacted with")]
     [Header("Object in Interaction")]
     public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
@@ -141,7 +145,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject combatPapyrus;
     [SerializeField] GameObject combatPapyrusDate;
 
-
+    // ----------------- timer -----------------------//
     [Tooltip("adjust the maximum time before the player can interact with a new object")]
     [Header("Countdown Variables")]
     //countdown timer code
@@ -256,10 +260,14 @@ public class gameManager : MonoBehaviour
         }
         //change dialogue if the player presses enter key
         else if(Input.GetKeyDown(KeyCode.Return) && openText && canPressEnter){
-            if(combatCam.enabled && currentSeq == 7){
-                if(dialogueText.text.Equals("BEHOLD!")){ //swap clothing in seq7
+            if(combatCam.enabled){
+
+                if(currentSeq == 7 && dialogueText.text.Equals("BEHOLD!")){ //swap clothing in seq7
                     combatPapyrus.SetActive(false);
                     combatPapyrusDate.SetActive(true);
+                }
+                else if(currentSeq == 4 && index >= 2 && datingHUD.activeSelf){ //close dating hud in seq4
+                datingHUD.SetActive(false);
                 }
             }
 
@@ -273,9 +281,6 @@ public class gameManager : MonoBehaviour
                         setPapyrusDialogue();
                         dialogueText.text = dialogueText.text.ToUpper();
                     }
-                }
-                else if(currentSeq == 4 && dialogueText.text.Equals("")){ //close dating hud in seq4
-                datingHUD.SetActive(false);
                 }
 
                 isTyping = false;
@@ -581,6 +586,7 @@ public class gameManager : MonoBehaviour
         string currLine = "";
 
         foreach(var letter in str.ToCharArray()){ //add a single character to the text at a time, thus creating a typing effect
+            Debug.Log(wordIndex);
             if(isTyping && letter == ' ' && wordIndex < words.Length){ //if there is a new word do the following
                 string line = currLine + words[wordIndex]; //add the new word to the current line
                 Debug.Log(words[wordIndex]);
@@ -633,10 +639,11 @@ public class gameManager : MonoBehaviour
 
     //---------------- shaky ------------------------------//
     IEnumerator typeShakyDialogue(string str){
+        canPressEnter = false;
         if(shakyText.gameObject.transform.childCount >0)
             shakyText.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         
-        maxLen = (1.5f)*defLen; //change the max length of the textboxs
+        maxLen = defLen + (0.6f*lenDiff); //change the max length of the textboxs
         TXTsfx.clip = papyrusTXTsfx;
         
         TXTsfx.Play();
@@ -689,11 +696,7 @@ public class gameManager : MonoBehaviour
             }
         }
         isTyping = false;
-        if(hasChoice && index == (maxIndex-1)){
-            // enableChoice();
-            if (!isTypingChoice) displayChoice();
-        }
-
+        canPressEnter = true;
 
         TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
         // dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
@@ -853,6 +856,10 @@ public class gameManager : MonoBehaviour
                 // canvas.SetActive(true);
                 index = 0;
                 currentSeq++;
+            break;
+            case 21:
+                canvas.SetActive(false);
+                endCard.SetActive(true);
             break;
 
             //choices

@@ -77,9 +77,9 @@ MonoBehaviour:
   typedChoices: 0
   whiteScreen_occurred: 0
   dialogue: []
-  maxLen: 560
-  defLen: 560
-  lenDiff: 100
+  maxLen: 540
+  defLen: 540
+  lenDiff: 120
   choice:
   - YES
   - NO
@@ -87,9 +87,11 @@ MonoBehaviour:
   defaultChoice:
   - YES
   - NO
+  endCard: {fileID: 0}
   canvas: {fileID: 1115623495133384136, guid: b7a75514952044616bab9a106b683946, type: 3}
   dialogueTextBox: {fileID: 0}
   dialogueText: {fileID: 0}
+  shakyText: {fileID: 0}
   choice1: {fileID: 0}
   choice2: {fileID: 0}
   heart1: {fileID: 0}
