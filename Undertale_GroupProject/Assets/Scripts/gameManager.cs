@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 //this script manages the game dialogue and UI; the current object will automatically change (there is no need to adjust it through the editor)
 
@@ -85,6 +86,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject canvas;
     [SerializeField] GameObject dialogueTextBox;
     [SerializeField] Text dialogueText;
+    [SerializeField] TMP_Text shakyText;
     [SerializeField] Text choice1;
     [SerializeField] Text choice2;
     [SerializeField] Image heart1;
@@ -519,7 +521,11 @@ public class gameManager : MonoBehaviour
     //method to type dialogue
     public IEnumerator typeDialogue(string str){
         // DIALOGUE SFX
-        
+        if(whiteScreen_occurred){
+            StartCoroutine(typeShakyDialogue(str));
+            yield return null;
+        }
+        else{
         if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
             resetDialogue();
             dialoguePAP.GetComponent<Animator>().enabled = true; // enables the animation to play at the start of typing
@@ -545,14 +551,14 @@ public class gameManager : MonoBehaviour
         }
         else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
             if(str.Contains("*")){
-                maxLen = defLen - lenDiff; //change the max length of the textbox
+                maxLen = defLen + lenDiff; //change the max length of the textbox
                 TXTsfx.clip = narrativeTXTsfx;
                 dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
                 dialogueText.font = narrativeFont;
                 
             }
             else{ 
-                maxLen = defLen; //change the max length of the textbox
+                maxLen = (0.44f)*defLen; //change the max length of the textbox
                 if( currentSeq == 4 && str == "") datingHUD.SetActive(false);
                 if (!whiteScreen.activeSelf) dialogueText = papyrusText;
                 dialogueText.font = papyrusFont;
@@ -577,7 +583,7 @@ public class gameManager : MonoBehaviour
         foreach(var letter in str.ToCharArray()){ //add a single character to the text at a time, thus creating a typing effect
             if(isTyping && letter == ' ' && wordIndex < words.Length){ //if there is a new word do the following
                 string line = currLine + words[wordIndex]; //add the new word to the current line
-                // Debug.Log(line);
+                Debug.Log(words[wordIndex]);
 
                 Font myFont = dialogueText.font; //we need the font to know the size of a string
                 myFont.RequestCharactersInTexture(line, dialogueText.fontSize, dialogueText.fontStyle); //find the font info
@@ -590,13 +596,14 @@ public class gameManager : MonoBehaviour
                     len += charInfo.advance; //go on to the next character
                 }
                 isSpace = true;
+                wordIndex++;
             }
             if(isTyping){
                 if (len > maxLen && isSpace){ //if the length of the line with the new word will be larger the textbox, move to a new line
                     // Debug.Log("len > maxLen");
                     dialogueText.text += '\n';
                     isSpace = false;
-                    wordIndex++;
+                    // wordIndex++;
                     currLine = "";
                     len = 0;
                 }
@@ -615,11 +622,82 @@ public class gameManager : MonoBehaviour
             // enableChoice();
             if (!isTypingChoice) displayChoice();
         }
-        
+
 
         TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
         dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
+        }
+    }
+
+
+
+    //---------------- shaky ------------------------------//
+    IEnumerator typeShakyDialogue(string str){
+        if(shakyText.gameObject.transform.childCount >0)
+            shakyText.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         
+        maxLen = (1.5f)*defLen; //change the max length of the textboxs
+        TXTsfx.clip = papyrusTXTsfx;
+        
+        TXTsfx.Play();
+
+        //the actual typing effect; do not add to these loops
+        shakyText.text="";
+
+        //local variables; this resets each time the method is called
+        int wordIndex = 1;
+        string [] words = str.Split(' ');
+        isTyping = true;
+        int len = 0;
+        bool isSpace = false;
+        string currLine = "";
+
+        foreach(var letter in str.ToCharArray()){ //add a single character to the text at a time, thus creating a typing effect
+            if(isTyping && letter == ' ' && wordIndex < words.Length){ //if there is a new word do the following
+                string line = currLine + words[wordIndex]; //add the new word to the current line
+                // Debug.Log(line);
+
+                Font myFont = papyrusFont; //we need the font to know the size of a string
+                myFont.RequestCharactersInTexture(line, 100, dialogueText.fontStyle); //find the font info
+                
+                len = 0; //reset the length of the current line
+                foreach(char c in line){ //for each character
+                    CharacterInfo charInfo = new CharacterInfo(); //find the font/text info
+                    myFont.GetCharacterInfo(c, out charInfo, dialogueText.fontSize); //get its width
+                    //Debug.Log(charInfo.advance);
+                    len += charInfo.advance; //go on to the next character
+                }
+                isSpace = true;
+            }
+            if(isTyping){
+                if (len > maxLen && isSpace){ //if the length of the line with the new word will be larger the textbox, move to a new line
+                    // Debug.Log("len > maxLen");
+                    shakyText.text += '\n';
+                    isSpace = false;
+                    wordIndex++;
+                    currLine = "";
+                    len = 0;
+                }
+                else{
+                    shakyText.text +=letter; //otherwise just add the letter
+                    currLine = currLine +=letter;
+                }
+                // Debug.Log(currLine);
+                isSpace = false;
+                len = 0;
+                yield return new WaitForSeconds(1f/letterPerSec);
+            }
+        }
+        isTyping = false;
+        if(hasChoice && index == (maxIndex-1)){
+            // enableChoice();
+            if (!isTypingChoice) displayChoice();
+        }
+
+
+        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+        // dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
+       
     }
 
     //closes the dialogue
@@ -766,11 +844,12 @@ public class gameManager : MonoBehaviour
                 dialogueTextBox.transform.GetChild(0).GetComponent<Text>().text="";
                 whiteScreen.SetActive(true);
                 dialogueText.text = "";
-                dialogueText = whiteScreenText;
+                // dialogueText = whiteScreenText;
                 currentSeq++;
             break;
             case 20: //transition out of white screen (disable object)
                 whiteScreen.SetActive(false);
+                whiteScreen_occurred = false;
                 // canvas.SetActive(true);
                 index = 0;
                 currentSeq++;
