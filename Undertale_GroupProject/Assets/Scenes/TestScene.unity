@@ -7218,6 +7218,16 @@ PrefabInstance:
       objectReference: {fileID: 800551122}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: defLen
+      value: 560
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: maxLen
+      value: 560
+      objectReference: {fileID: 0}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: player
       value: 
       objectReference: {fileID: 953242403}
@@ -7236,6 +7246,11 @@ PrefabInstance:
       propertyPath: carAnim
       value: 
       objectReference: {fileID: 1577166543}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: lenDiff
+      value: 100
+      objectReference: {fileID: 0}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: mainCam

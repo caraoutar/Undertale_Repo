@@ -26,13 +26,6 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject bedroomSpawn;
     [SerializeField] GameObject mainSpawn;
 
-
-    [Tooltip("Adjust the typing effect speed; change fonts; add SFX")]
-    [Header("Adjustable Dialogue Variables")]
-    [SerializeField] int letterPerSec; //how fast the typing is
-    [SerializeField] Font papyrusFont;
-    [SerializeField] Font narrativeFont;
-
     // PAPYRUS HEAD ANIMATION
     [SerializeField] Animator dialoguePAP;
     [SerializeField] Animator datingPAP; // when we need to animate papyrus talking during the dating scene!
@@ -41,17 +34,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] Animator carAnim;
     [SerializeField] Animator tvAnim; 
 
-    [Tooltip("These variables are for debugging")]
-    [Header("Non-Adjustable Dialogue Variables")]
-    [SerializeField] int index; //which line is being typed
-    [SerializeField] int maxIndex; //the maximum number of lines (list size)
-    [SerializeField] bool isTyping = false; //condition for whether text is curerntly being typed
-    [SerializeField] bool isTypingChoice = false;
-    [SerializeField] bool openText = false; //condition for whether the textbox is currently open
-    [SerializeField] bool typedChoices = false;
-    [SerializeField] bool whiteScreen_occurred = false; //condition for if white screen text has occured
-
-    // DIALOGUE SFX
+        // DIALOGUE SFX
     [Header("Audio")]
     [SerializeField] AudioSource TXTsfx; // sfx for the typing
     [SerializeField] AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
@@ -66,9 +49,30 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject date_tense_music; //game object for date tense music 
     [SerializeField] GameObject date_fight_music; //game object for date fight music
 
+    //--------------- dialogue variables --------------------//
+
+    [Tooltip("Adjust the typing effect speed; change fonts; add SFX")]
+    [Header("Adjustable Dialogue Variables")]
+    [SerializeField] int letterPerSec; //how fast the typing is
+    [SerializeField] Font papyrusFont;
+    [SerializeField] Font narrativeFont;
+
+    [Tooltip("These dialogue variables should not be adjusted")]
+    [Header("Non-Adjustable Dialogue Variables")]
+    [SerializeField] int index; //which line is being typed
+    [SerializeField] int maxIndex; //the maximum number of lines (list size)
+    [SerializeField] bool isTyping = false; //condition for whether text is curerntly being typed
+    [SerializeField] bool isTypingChoice = false;
+    [SerializeField] bool openText = false; //condition for whether the textbox is currently open
+    [SerializeField] bool typedChoices = false;
+    [SerializeField] bool whiteScreen_occurred = false; //condition for if white screen text has occured
+
     [Tooltip("object dialogue will show up here (please adjust dialogue on the interactable object)")]
     [Header("Dialogue Text")] //dialgoue variables
     public List <string> dialogue = new List<string>(); //the dialogue that will be typed
+    [SerializeField] float maxLen;
+    [SerializeField] float defLen;
+    [SerializeField] float lenDiff;
     
     [Tooltip("choice will show up here if different from default yes/no")]
     [Header("Choice Text")]
@@ -87,6 +91,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] Image heart2;
     [SerializeField] Image papyrusHead;
 
+    [Header("UI Variables")] //references to the dialogue objects/components
     public bool uiAtTop = false;
     [SerializeField] Vector2 textStartingPosition;
     [SerializeField] GameObject dialogueTextObject;
@@ -98,7 +103,6 @@ public class gameManager : MonoBehaviour
     [SerializeField] Vector2 choice2StartingPosition;
     [SerializeField] float choiceHeight=0.05f;
 
-
     [Header("Combat UI Objects")]
     [SerializeField] GameObject combatCanvas;
     [SerializeField] GameObject papyrusTextBox;
@@ -109,10 +113,10 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject datingPower;
     [SerializeField] GameObject datingTension;
 
+
+    //----------- object variables ---------------------///
     [Tooltip("this is the object currently being interacted with")]
     [Header("Object in Interaction")]
-    // public float distToClosestObj;
-    // public GameObject closestObj;
     public interactableObj currentObj; //reference to the current object being interacted with; this will automatically change
     [SerializeField] GameObject mainRoom;
     [SerializeField] GameObject bedroom;
@@ -211,10 +215,8 @@ public class gameManager : MonoBehaviour
 
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
-
-        
         if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH…")) { //set the animation of the racecar
-                    Debug.Log("car anim");
+                    // Debug.Log("car anim");
                     carAnim.SetBool("StartRunning", true);
                     carAnim.SetBool("StopRunning", false); 
             }
@@ -305,7 +307,7 @@ public class gameManager : MonoBehaviour
                             currentObj = null;
                         }
                         else{
-                            Debug.Log("Will check end of Seq");
+                            // Debug.Log("Will check end of Seq");
                             checkEndOfSeq(currentSeq);
                         }
                     }
@@ -526,15 +528,16 @@ public class gameManager : MonoBehaviour
             if(str.Contains("*")) {
                 dialogueText.font = narrativeFont;
                 TXTsfx.clip = narrativeTXTsfx;
-
+                maxLen = defLen + lenDiff; //change the max length of the textbox
             }
             else{
+                maxLen = defLen; //change the max length of the textbox
                 TXTsfx.clip = papyrusTXTsfx;
                 setPapyrusDialogue();
                 str = str.ToUpper();
             }
             if (currentObj.name == "television") {
-                    Debug.Log("tv anim");
+                    // Debug.Log("tv anim");
                     //set bools to make tv animation play
                     tvAnim.SetBool("StopRunning", false);
                     tvAnim.SetBool("StartRunning", true);
@@ -542,12 +545,14 @@ public class gameManager : MonoBehaviour
         }
         else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
             if(str.Contains("*")){
+                maxLen = defLen - lenDiff; //change the max length of the textbox
                 TXTsfx.clip = narrativeTXTsfx;
                 dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
                 dialogueText.font = narrativeFont;
                 
             }
             else{ 
+                maxLen = defLen; //change the max length of the textbox
                 if( currentSeq == 4 && str == "") datingHUD.SetActive(false);
                 if (!whiteScreen.activeSelf) dialogueText = papyrusText;
                 dialogueText.font = papyrusFont;
@@ -558,11 +563,50 @@ public class gameManager : MonoBehaviour
 
         TXTsfx.Play();
 
+        //the actual typing effect; do not add to these loops
         dialogueText.text="";
+
+        //local variables; this resets each time the method is called
+        int wordIndex = 1;
+        string [] words = str.Split(' ');
         isTyping = true;
+        int len = 0;
+        bool isSpace = false;
+        string currLine = "";
+
         foreach(var letter in str.ToCharArray()){ //add a single character to the text at a time, thus creating a typing effect
+            if(isTyping && letter == ' ' && wordIndex < words.Length){ //if there is a new word do the following
+                string line = currLine + words[wordIndex]; //add the new word to the current line
+                // Debug.Log(line);
+
+                Font myFont = dialogueText.font; //we need the font to know the size of a string
+                myFont.RequestCharactersInTexture(line, dialogueText.fontSize, dialogueText.fontStyle); //find the font info
+                
+                len = 0; //reset the length of the current line
+                foreach(char c in line){ //for each character
+                    CharacterInfo charInfo = new CharacterInfo(); //find the font/text info
+                    myFont.GetCharacterInfo(c, out charInfo, dialogueText.fontSize); //get its width
+                    //Debug.Log(charInfo.advance);
+                    len += charInfo.advance; //go on to the next character
+                }
+                isSpace = true;
+            }
             if(isTyping){
-                dialogueText.text +=letter;
+                if (len > maxLen && isSpace){ //if the length of the line with the new word will be larger the textbox, move to a new line
+                    // Debug.Log("len > maxLen");
+                    dialogueText.text += '\n';
+                    isSpace = false;
+                    wordIndex++;
+                    currLine = "";
+                    len = 0;
+                }
+                else{
+                    dialogueText.text +=letter; //otherwise just add the letter
+                    currLine = currLine +=letter;
+                }
+                // Debug.Log(currLine);
+                isSpace = false;
+                len = 0;
                 yield return new WaitForSeconds(1f/letterPerSec);
             }
         }
@@ -572,6 +616,7 @@ public class gameManager : MonoBehaviour
             if (!isTypingChoice) displayChoice();
         }
         
+
         TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
         dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
         
@@ -687,7 +732,7 @@ public class gameManager : MonoBehaviour
 
 
     void checkEndOfSeq(int n){
-        Debug.Log("Checking end of seq");
+        // Debug.Log("Checking end of seq");
         //code for animation
         // if(n == 5 || n == 6){ //animation (1/3)
                     
@@ -709,7 +754,7 @@ public class gameManager : MonoBehaviour
             else runCombat(++currentSeq);
             break;
             case 10: //start minigame; next
-                Debug.Log("Checking end of seq10");
+                // Debug.Log("Checking end of seq10");
                 currentSeq++;
                 canRunMiniGame = true;
                 inspector.SetActive(true);
