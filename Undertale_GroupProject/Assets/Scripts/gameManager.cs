@@ -215,7 +215,7 @@ public class gameManager : MonoBehaviour
 
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
-        if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH…")) { //set the animation of the racecar
+        if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH...")) { //set the animation of the racecar
                     // Debug.Log("car anim");
                     carAnim.SetBool("StartRunning", true);
                     carAnim.SetBool("StopRunning", false); 
