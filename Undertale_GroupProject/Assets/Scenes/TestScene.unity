@@ -2786,7 +2786,7 @@ MonoBehaviour:
   - WEAR YOUR BEST ATTIRE!
   - 
   - "WAIT A MINUTE\u2026"
-  - "THOSE CLOTHES\u2026"
+  - THOSE CLOTHES YOU'RE WEARING...
   - HAVE YOU... BEEN PREPARED THIS WHOLE TIME?
   - "HAVE YOU\u2026 WANTED TO DATE ME FROM THE VERY BEGINNING?!"
   myChoice:
@@ -3312,7 +3312,7 @@ MonoBehaviour:
   player: {fileID: 0}
   myDialogue:
   - WELL, HERE WE ARE! ON OUR DATE!
-  - "I\u2019D BE LYING IF I SAID THIS WASN\u2019T MY FIRST TIME DOING THIS..."
+  - "I\u2019D BE LYING IF I SAID I'VE DONE THIS BEFORE... "
   - LUCKILY, I, THE MAGNIFICENT PAPYRUS, HAVE COME PREPARED!
   - ALL MY STUDIES OF DATING SAY TO BEGIN WITH STEP ONE...
   - PRESS [C] ON THE KEYBOARD TO ACTIVE YOUR DATING HUD!
@@ -3394,6 +3394,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 703238273}
     m_Modifications:
+    - target: {fileID: -1617745779495298406, guid: d902c9be6eace4a0d80b0c5ca48cb100,
+        type: 3}
+      propertyPath: myDialogue.Array.data[1]
+      value: This couch has the perfect back support for my aging bones.
+      objectReference: {fileID: 0}
     - target: {fileID: 1724770234378406726, guid: d902c9be6eace4a0d80b0c5ca48cb100,
         type: 3}
       propertyPath: m_Size.y
