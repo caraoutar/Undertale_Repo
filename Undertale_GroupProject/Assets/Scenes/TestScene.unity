@@ -390,9 +390,9 @@ MonoBehaviour:
   myDialogue:
   - "HEH. YOU\u2019RE STRONG, HUMAN."
   - BUT EVEN YOU HAVE YET TO UNDERSTAND THE TRUE HIDDEN POWER OF MY OUTFIT!
-  - "THEREFORE\u2026"
+  - THEREFORE...
   - YOUR WORDS ARE INVALID!
-  - "AS SUCH, I\u2019M AFRAID THIS DATE CANNOT CONTINUE\u2026"
+  - "AS SUCH, I\u2019M AFRAID THIS DATE CANNOT CONTINUE..."
   - "UNLESS YOU\u2019RE ABLE TO FIND MY SECRET!"
   - "IT\u2019LL NEVER HAPPEN!"
   myChoice:
@@ -683,6 +683,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 21300000, guid: 7638939397c624b3e8bf29dc50372f28,
         type: 3}
+    - target: {fileID: -1392870571255626219, guid: a7633f56bce074d8a907921db2c6460f,
+        type: 3}
+      propertyPath: myDialogue.Array.data[3]
+      value: The best feature, though...
+      objectReference: {fileID: 0}
     - target: {fileID: -1392870571255626219, guid: a7633f56bce074d8a907921db2c6460f,
         type: 3}
       propertyPath: myDialogue.Array.data[4]
@@ -1021,6 +1026,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: bookcase
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670793652368581150, guid: 6770d7be5667d4fb7afbdaa3a02065e6,
+        type: 3}
+      propertyPath: myDialogue.Array.data[2]
+      value: If I had to pick my favourites, I would say...
+      objectReference: {fileID: 0}
+    - target: {fileID: 5670793652368581150, guid: 6770d7be5667d4fb7afbdaa3a02065e6,
+        type: 3}
+      propertyPath: myDialogue.Array.data[4]
+      value: and...
       objectReference: {fileID: 0}
     - target: {fileID: 5983645347805659790, guid: 6770d7be5667d4fb7afbdaa3a02065e6,
         type: 3}
@@ -1401,7 +1416,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - "I\u2026"
+  - I...
   - WELL...
   - SHOOT, THIS IS DIFFICULT TO SAY.
   - HUMAN, THE TRUTH IS...
@@ -1415,19 +1430,19 @@ MonoBehaviour:
   - MY FEELINGS HAVEN'T CHANGED LIKE I THOUGHT THEY WOULD.
   - AND SO, I HAVE FAILED. INSTEAD, I SEEM TO HAVE PULLED YOU DEEPER INTO YOUR ABYSS
     OF LOVE.
-  - "HOW COULD I HAVE DONE THIS TO SUCH A DEAR FRIEND\u2026?"
+  - HOW COULD I HAVE DONE THIS TO SUCH A DEAR FRIEND...?
   - ...
   - WAIT.
-  - "NO\u2026 I\u2019M WRONG."
+  - "NO... I\u2019M WRONG."
   - I, THE MAGNIFICENT PAPYRUS, AM INCAPABLE OF FAILURE!
   - HUMAN! I WILL PULL YOU BACK INTO THE LIGHT AND GET YOU THROUGH THESE TRYING TIMES!
   - I HAVE DECIDED THAT I WILL BE YOUR VERY COOL FRIEND.
-  - "AND ACT LIKE THIS DATE NEVER HAPPENED\u2026"
-  - "BECAUSE\u2026 YOU ARE GREAT."
+  - AND ACT LIKE THIS DATE NEVER HAPPENED...
+  - BECAUSE... YOU ARE GREAT.
   - AND YOUR FRIENDSHIP MEANS A LOT TO ME.
   - "SO, DON\u2019T BE SAD!"
   - "I KNOW ONE DAY YOU\u2019LL FIND THE ONE WHO IS RIGHT FOR YOU."
-  - "THEY WON\u2019T BE AS GREAT AS ME, OF COURSE. BUT\u2026"
+  - "THEY WON\u2019T BE AS GREAT AS ME, OF COURSE. BUT..."
   - I WILL STILL BE THERE, BY YOUR SIDE. PLATONICALLY. AS YOUR COOL FRIEND.
   - SO, THANK YOU HUMAN.
   - I HOPE YOU ENJOYED OUR TIME TOGETHER!
@@ -2036,6 +2051,12 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 400049379}
     m_Modifications:
+    - target: {fileID: -5845155893264775467, guid: 238dfbb45fe7e405e921dd896cc56d39,
+        type: 3}
+      propertyPath: myDialogue.Array.data[3]
+      value: "I still can\u2019t believe I got my hands on the limited edition Miss
+        Kitty figurine..."
+      objectReference: {fileID: 0}
     - target: {fileID: 3852871310699272086, guid: 238dfbb45fe7e405e921dd896cc56d39,
         type: 3}
       propertyPath: m_Name
@@ -2145,7 +2166,7 @@ MonoBehaviour:
   player: {fileID: 0}
   myDialogue:
   - IT ALL MAKES SENSE NOW.
-  - "YOUR POWER\u2026"
+  - YOUR POWER...
   - IT STEMS FROM YOUR LOVE FOR ME.
   - ...
   - I, THE MAGNIFICENT PAPYRUS...
@@ -2579,7 +2600,7 @@ MonoBehaviour:
   player: {fileID: 0}
   myDialogue:
   - HUMAN!
-  - "YOUR COMPLIMENT\u2026"
+  - YOUR COMPLIMENT...
   - SO MUCH POWER BEHIND YOUR WORDS!
   myChoice:
   - 
@@ -2695,7 +2716,7 @@ MonoBehaviour:
   player: {fileID: 0}
   myDialogue:
   - SO, YOU ALWAYS WEAR YOUR BEST ATTIRE?
-  - "I\u2019VE NEVER SEEN SUCH POWER\u2026"
+  - "I\u2019VE NEVER SEEN SUCH POWER..."
   myChoice:
   - 
   - 
@@ -2784,11 +2805,11 @@ MonoBehaviour:
   myDialogue:
   - 'STEP THREE IS EASY:'
   - WEAR YOUR BEST ATTIRE!
-  - 
-  - "WAIT A MINUTE\u2026"
+  - ...
+  - WAIT A MINUTE...
   - THOSE CLOTHES YOU'RE WEARING...
   - HAVE YOU... BEEN PREPARED THIS WHOLE TIME?
-  - "HAVE YOU\u2026 WANTED TO DATE ME FROM THE VERY BEGINNING?!"
+  - HAVE YOU... WANTED TO DATE ME FROM THE VERY BEGINNING?!
   myChoice:
   - 
   - 
@@ -2843,7 +2864,7 @@ MonoBehaviour:
   player: {fileID: 0}
   myDialogue:
   - ALLOW ME TO EXPLAIN, HUMAN.
-  - "THOUGH THIS MAY LOOK LIKE SPAGHETTI\u2026"
+  - THOUGH THIS MAY LOOK LIKE SPAGHETTI...
   - "IT\u2019S SOMETHING MUCH MORE."
   myChoice:
   - 
@@ -2898,9 +2919,9 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - "HUMAN\u2026"
+  - HUMAN...
   - "I\u2019VE NEVER SEEN SOMEONE SPEAK WITH SUCH HONESTY IN THEIR HEART."
-  - "WHAT POWER\u2026"
+  - WHAT POWER...
   myChoice:
   - 
   - 
@@ -3246,10 +3267,10 @@ MonoBehaviour:
   myDialogue:
   - "WOW! ISN\u2019T THIS DATING HUD FANCY?"
   - HOW EDUCATIONAL!
-  - "I THINK THIS CALLS FOR THE NEXT STEP\u2026"
-  - "LET\u2019S SEE\u2026"
+  - I THINK THIS CALLS FOR THE NEXT STEP...
+  - "LET\u2019S SEE..."
   - 'STEP TWO: I MUST ASK YOU ON A DATE!'
-  - "SO\u2026"
+  - SO...
   - HUMAN!
   - ...WILL YOU GO ON A DATE WITH ME?
   myChoice:
@@ -3378,7 +3399,7 @@ MonoBehaviour:
   - '*(Move with the arrow keys. Inspect with [Z].) '
   - "I NEVER THOUGHT YOU\u2019D BE ABLE TO FIND IT, HUMAN."
   - I SUPPOSE NOW I HAVE NO CHOICE.
-  - "THIS IS MY SECRET\u2026"
+  - THIS IS MY SECRET...
   - A PRESENT. JUST FOR YOU.
   myChoice:
   - Open it
@@ -3608,6 +3629,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4071497207898092548, guid: ca054b1d664f74702a002cf0f657e1c0,
+        type: 3}
+      propertyPath: myDialogue.Array.data[3]
+      value: Her music is so beautiful, it brings me to tears...
       objectReference: {fileID: 0}
     - target: {fileID: 4578498502980693541, guid: ca054b1d664f74702a002cf0f657e1c0,
         type: 3}
@@ -3912,10 +3938,10 @@ MonoBehaviour:
   myDialogue:
   - '*(You take a bite of the spaghetti.) '
   - '*(Your face scrunches up.) '
-  - "THAT LOOK\u2026"
+  - THAT LOOK...
   - COULD THIS MEAN, YOU LOVE SPAGHETTI EVEN MORE THAN I DO?
   - ...A TRUE SPAGHETTI CONNOISSEUR.
-  - "THIS CANNOT BE\u2026"
+  - THIS CANNOT BE...
   myChoice:
   - 
   - 
@@ -4044,7 +4070,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 201
+  Priority: 220
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
@@ -4409,7 +4435,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - "SHORTS ARE PERFECT FOR ANY OCCASION. SUMMER OR WINTER, DATE OR NON-DATE\u2026"
+  - SHORTS ARE PERFECT FOR ANY OCCASION. SUMMER OR WINTER, DATE OR NON-DATE...
   myChoice:
   - 
   - 
@@ -4856,6 +4882,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: box_of_bones
       objectReference: {fileID: 0}
+    - target: {fileID: 7226122779551957257, guid: 5d171a6df822a44fa892fa3de7727ed5,
+        type: 3}
+      propertyPath: myDialogue.Array.data[4]
+      value: "He won\u2019t leave me alone..."
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5d171a6df822a44fa892fa3de7727ed5, type: 3}
 --- !u!1 &1526066632
@@ -5075,12 +5106,12 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - "WAIT\u2026"
-  - "YOU MEAN\u2026"
+  - WAIT...
+  - YOU MEAN...
   - "YOU\u2019RE LEAVING IT ALL FOR ME TO HAVE?"
-  - "HUMAN\u2026"
+  - HUMAN...
   - YOUR GENEROSITY KNOWS NO BOUNDS.
-  - "THIS CANNOT BE\u2026"
+  - THIS CANNOT BE...
   myChoice:
   - 
   - 
@@ -5243,9 +5274,9 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - "HUMAN\u2026"
+  - HUMAN...
   - "I\u2019VE NEVER SEEN SOMEONE SO PREPARED."
-  - "YOUR POWER\u2026 IS INCREDIBLE...!"
+  - YOUR POWER... IS INCREDIBLE...!
   myChoice:
   - 
   - 
@@ -5410,6 +5441,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7671453121653798436, guid: 604b85fe2a95e4c22a8c73747ebac5fa,
+        type: 3}
+      propertyPath: myDialogue.Array.data[0]
+      value: "That\u2019s what I use to get to a magical place called..."
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 604b85fe2a95e4c22a8c73747ebac5fa, type: 3}
@@ -5964,6 +6000,11 @@ PrefabInstance:
       propertyPath: hasChoice
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -9146221324184637003, guid: bedd5a3f51a6147fa93fd112d1859a83,
+        type: 3}
+      propertyPath: myDialogue.Array.data[0]
+      value: "Well, if you\u2019ve looked at everything now..."
+      objectReference: {fileID: 0}
     - target: {fileID: 4721382880755726437, guid: bedd5a3f51a6147fa93fd112d1859a83,
         type: 3}
       propertyPath: m_Name
@@ -6442,7 +6483,7 @@ AudioSource:
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
-  Priority: 128
+  Priority: 125
   DopplerLevel: 1
   MinDistance: 1
   MaxDistance: 500
