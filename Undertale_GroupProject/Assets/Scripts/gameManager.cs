@@ -835,6 +835,7 @@ public class gameManager : MonoBehaviour
                 canvas.GetComponent<Canvas>().worldCamera = bedroomCam;
             break;
             case 2: //combatroom
+                date_start_music.SetActive(true);
                 runTimer = false;
                 combatCam.enabled = true;
                 uiAtTop = false;
@@ -860,7 +861,6 @@ public class gameManager : MonoBehaviour
     void runCombat(int n){
         papyrusTextBox.SetActive(true);
         sans_music.SetActive(false);
-        date_start_music.SetActive(true);
 
         //check if white screen sequence has occurred; if so, stop music 
         if(whiteScreen_occurred == true) {
