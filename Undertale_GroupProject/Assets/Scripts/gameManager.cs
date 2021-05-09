@@ -157,7 +157,6 @@ public class gameManager : MonoBehaviour
 
     //===================================== START & UPDATE ===========================================
     public void Start(){
-        // bedroom.SetActive(false); //make sure the objects in the bedroom are not active
         //on start, set up the variables for UI
         canInteract = true;
         p = GameObject.FindWithTag("Player");
@@ -193,14 +192,6 @@ public class gameManager : MonoBehaviour
 
         combatSize = combat.Count;
 
-        // DIALOGUE SFX
-            // assigning the sound !
-        // TXTsfx = TXTsfx.GetComponent<AudioSource>(); 
-        // arrowMOVEsfx = arrowMOVEsfx.GetComponent<AudioSource>(); 
-        // SELECTsfx = SELECTsfx.GetComponent<AudioSource>(); 
-        //narrativeTXTsfx = narrativeTXTsfx.GetComponent<AudioSource>();
-        //papyrusTXTsfx = papyrusTXTsfx.GetComponent<AudioSource>();
-
         //CAR AND TV ANIMATION
         carAnim = carAnim.GetComponent<Animator>();
         tvAnim = tvAnim.GetComponent<Animator>();
@@ -210,7 +201,17 @@ public class gameManager : MonoBehaviour
         // PAPYRUS ANIMATION
         dialoguePAP = dialoguePAP.GetComponent<Animator>();
 
+<<<<<<< Updated upstream
         //starting dialogue
+=======
+        // DATING START !!! ANIMATIONS
+
+        hatAnim = hatAnim.GetComponent<Animator>();
+        presentAnim = presentAnim.GetComponent<Animator>();
+        spaghettAnim = spaghettAnim.GetComponent<Animator>();
+
+        //starting dialogue (this *can* be removed/commented out when we add the starting scene)
+>>>>>>> Stashed changes
         currentObj = (interactableObj)GameObject.Find("Interactables/MainRoom/papyrus").GetComponent(typeof(interactableObj));
         dialogue = currentObj.myDialogue;
         player.canMove = false;
@@ -242,26 +243,34 @@ public class gameManager : MonoBehaviour
             arrowMOVEsfx.Play(); // plays the sound when the player selects with left arrow key
         }
 
-        //code for when the player wants to make a selection
+        /*code for when the player wants to make a selection
+        this checks that the player pressed return and that 
+        the choices have been typed and the player can press enter */
         if(Input.GetKeyDown(KeyCode.Return) && typedChoices && canPressEnter){
-            if(heart1.enabled){
-                // (Debug.Log"Choice 1");
-                if(currentObj!=null) checkChoice1(currentObj.name);
-                else checkChoice1("none");
+            if(heart1.enabled){ //choice 1
+                /*if there is an object being interacted with, 
+                call checkchoice with the objects name
+                otherwise call it with the name none 
+                (this doesn't do anything, it's just to call the function which requires an argument): */
+                if(currentObj!=null) checkChoice1(currentObj.name); 
+                else checkChoice1("none"); 
 
                 SELECTsfx.Play(); // plays the sound when the player presses ENTER
-            }else if(heart2.enabled){
-                // Debug.Log("Choice 2");
+            }else if(heart2.enabled){//choice 2
                 checkChoice2();
                 
                 // DIALOGUE SFX
                 SELECTsfx.Play(); // plays the sound when the player presses ENTER
             }
         }
-        //change dialogue if the player presses enter key
+        /*otherwise (if no choices have been typed), just check that the dialogue box is open and the player
+        can press enter.*/
         else if(Input.GetKeyDown(KeyCode.Return) && openText && canPressEnter){
+            /*if in the combat scene, then check the following cases:
+            - if the current sequence is 7 and the dialogue is behold then swap papyrus's clothing
+            - if current seq is 4 and the sentence being typed is after the [...] and the datinghud is active,
+                disable the dating hud */
             if(combatCam.enabled){
-
                 if(currentSeq == 7 && dialogueText.text.Equals("BEHOLD!")){ //swap clothing in seq7
                     combatPapyrus.SetActive(false);
                     combatPapyrusDate.SetActive(true);
@@ -271,9 +280,13 @@ public class gameManager : MonoBehaviour
                 }
             }
 
+            /* if dialogue is being typed and no choices are being typed, then set the dialogue text to the 
+            full sentence that was being typed, and tell the code that dialogue is no longer being typed. */
             if(isTyping && !isTypingChoice){ // if the dialogue is still being typed, finish typing
                 dialogueText.text=dialogue[index];
                 
+                /*if the game is not in the combat scene then set the fonts and the text so that it is
+                in upper case (if papyrus) */
                 if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
                     resetDialogue();
                     if(dialogueText.text.Contains("*")) dialogueText.font = narrativeFont;
@@ -282,9 +295,16 @@ public class gameManager : MonoBehaviour
                         dialogueText.text = dialogueText.text.ToUpper();
                     }
                 }
-
                 isTyping = false;
             }
+            /*otherwise (not typing dialogue), if not at the end of the dialogue list, do the following:
+            - if the current sequence is 11 and the mini game is running and the current object is null (the
+                player is not interacting with any of papyrus' clothing), then just return (do not look at the
+                rest of the code in this function)
+            - increment index and then check again that the index is less than max Index. (this is to check the
+                case that index = maxIndex - 1, and so if we add one then its = maxIndex and it should follow the
+                next if statement). If it is still not at the end of the dialogue list then call type dialogue to
+                begin the next dialogue in the list.*/
             else if(index < maxIndex){
                 if(currentSeq == 11 && canRunMiniGame && currentObj==null) return;
                 ++index;
@@ -292,34 +312,45 @@ public class gameManager : MonoBehaviour
                     StartCoroutine(typeDialogue(dialogue[index]));
                 }
             }
-
+            /*if at the end of the dialogue list, then do the following:
+            - check if there is a choice, if there is no choice, then there are two cases:
+                in the combat scene, or otherwise*/
             if(index >= maxIndex){ //if the index is greater than or equal to the size of the list, then close the dialogue
-                if(!hasChoice){
-                    if(combatCam.enabled){
-                        if(currentSeq == -1){
+                if(!hasChoice){//there is no choice that has to be typed
+                    if(combatCam.enabled){ //in combat scene
+                        //check if very beginning of the combat scene when the sequences haven't started yet
+                        if(currentSeq == -1){ 
                             currentObj = null;
                             dialogueText.text = "";
                             dialogue.Clear();
                             runCombat(++currentSeq);
                         }
+                        /*otherwise check if the minigame is running. if it is running then close the textbox
+                        and let the player  move the inspector again. Note that if the player has found the present
+                        the code would have set canRRunMiniGame to false*/
                         else if(canRunMiniGame){
                             papyrusTextBox.SetActive(false);
                             canMoveInspector = true;
                         }
+                        /*otherwise if found the present and not giving the present, don't let the player press enter
+                        and call the runCombat function, passing in the current sequence, but setting the dialogue
+                        index to 1, thus skipping the text that gives the player instructions on the minigame*/
                         else if(foundPresent && !givingPresent){
                             canPressEnter = false;
-                            givingPresent = true;
+                            // givingPresent = true;
                             index = 1;
                             runCombat(currentSeq);
                             currentObj = null;
                         }
+                        /*otherwise (not running minigame), check if theres events that need to happen at the end
+                        of the current sequence*/
                         else{
-                            // Debug.Log("Will check end of Seq");
                             checkEndOfSeq(currentSeq);
                         }
                     }
+                    //otherwise if not in the combat sscene then close the dialogue and start a timer
                     else{
-                        timeRemaining = maxTime; //begin countdown to allow player to interact again
+                        timeRemaining = maxTime; //begin countdown to allow player to interact with objects again
                         runTimer = true;
                         closeDialogue();
                     }
@@ -341,13 +372,17 @@ public class gameManager : MonoBehaviour
             }
             else{
                 timeRemaining = 0;
+                /*this runs if the player isn't pressing c when the dialogue tells them to. after a period of time
+                the dating hud will show up anyway. then after that run the next seqence (2)*/
                 if(combatCam.enabled){
                     if(currentSeq == 0){
                         datingHUD.SetActive(true);
                         //or run an animation of papyrus looking around and then on stop, runCombat
-                        runCombat(++currentSeq);
+                        if (runTimer) runCombat(++currentSeq);
                     }
-                }else{//this is to limit how long after the player interacts with an object can they interact again
+                }
+                /*if not in combat scene then let the player interact with objects again*/
+                else{//this is to limit how long after the player interacts with an object can they interact again
                     if(currentObj != null){
                         currentObj.isInteracting = false;
                         canInteract = true;
@@ -358,7 +393,8 @@ public class gameManager : MonoBehaviour
             }
         }
 
-
+        /*if the player presses c and in the combat scene and the sequence asks them to preses c, then
+        active the dating hud and stop the timer so that runCombat doesn't run twice.*/
         if(Input.GetKeyDown(KeyCode.C) && combatCam.enabled && currentSeq == 0){
             //start animation for dating HUD
             datingHUD.SetActive(true);
@@ -372,12 +408,12 @@ public class gameManager : MonoBehaviour
    
     //=======================================   CHOICE CHECK & TYPING METHODS   ==========================================
     #region choice
+    /*checks what events should happen when the player chooses the first choice */
     void checkChoice1(string name){
         index = 0;
         disableChoice();
 
-        if(combatCam.enabled){
-            // Debug.Log("Should go to next scene");
+        if(combatCam.enabled){ //generally choice one leads to the next sequence
             if (currentSeq == 11) currentSeq+=2; //special case for 11; skip to 13
             else currentSeq++; 
             runCombat(currentSeq); //run the next sequence
@@ -414,26 +450,28 @@ public class gameManager : MonoBehaviour
         }
     }
 
+    /*checks what events should happen when the player chooses the second choice*/
     void checkChoice2(){
         disableChoice();
-        if(combatCam.enabled){ //combat scene
-        if (currentSeq==12) currentSeq++;
+        if(combatCam.enabled){ //combat scene; generally choice two leads to the sequence after the next
+            if (currentSeq==12) currentSeq++;
             currentSeq+=2;
             runCombat(currentSeq); //run the next sequence
         }
-        else{
+        else{ //otherwise just close the dialogue
             timeRemaining = maxTime; //begin countdown to allow player to interact again
             runTimer = true;
             closeDialogue();
         }
     }
 
-    //displays dialogue with choice yes/no
+    //calls the method to type the dialogue
     public void displayChoice(){
         isTypingChoice = true;
         enableChoice();
         StartCoroutine(typeDialogue(choice[0],choice[1])); //begin typing the choices
     }
+
     //overloadded method to type choices
     public IEnumerator typeDialogue(string c1, string c2){
         dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
