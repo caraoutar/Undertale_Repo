@@ -888,7 +888,8 @@ public class gameManager : MonoBehaviour
     }
 
 
-
+    /*at the end of the sequence (last dialogue in the dialogue lisst), this method is called to check if any
+    event should happen when the current sequence ends.*/
     void checkEndOfSeq(int n){
         // Debug.Log("Checking end of seq");
         //code for animation
@@ -933,22 +934,23 @@ public class gameManager : MonoBehaviour
                 index = 0;
                 currentSeq++;
             break;
-            case 21:
+            case 21: //the end of the case
                 canvas.SetActive(false);
                 endCard.SetActive(true);
             break;
 
-            //choices
+            //choices; 2,5, 8, 14, 17 are the sequences that occur when the first choice was picked, and so they
+            //need to skip one sequence (which would be the choice 2 sequence) and start the dequence there
             default:
                 if(currentSeq == 2 || currentSeq == 5 || currentSeq == 8 || currentSeq == 14 || currentSeq == 17){
                     currentSeq+=2;
                 }
-                else{
+                else{ //all other choices not listed above (including specific cases in the switch statement)
                     currentSeq++;
                 }
             break;
         }
-        if (currentSeq != 0) runCombat(currentSeq);
+        if (currentSeq != 0 && currentSeq != 21) runCombat(currentSeq);
     }
 
     void runMiniGame(){
