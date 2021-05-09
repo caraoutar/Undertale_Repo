@@ -561,6 +561,7 @@ public class gameManager : MonoBehaviour
                 dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
                 dialogueText.font = narrativeFont;
                 
+                
             }
             else{ 
                 maxLen = (0.44f)*defLen; //change the max length of the textbox
@@ -572,7 +573,13 @@ public class gameManager : MonoBehaviour
             }
         }
 
+        
         TXTsfx.Play();
+
+
+
+        
+
 
         //the actual typing effect; do not add to these loops
         dialogueText.text="";
@@ -589,6 +596,7 @@ public class gameManager : MonoBehaviour
             Debug.Log(wordIndex);
             if(isTyping && letter == ' ' && wordIndex < words.Length){ //if there is a new word do the following
                 string line = currLine + words[wordIndex]; //add the new word to the current line
+               
                 Debug.Log(words[wordIndex]);
 
                 Font myFont = dialogueText.font; //we need the font to know the size of a string
@@ -613,7 +621,7 @@ public class gameManager : MonoBehaviour
                     currLine = "";
                     len = 0;
                 }
-                else{
+                else{ 
                     dialogueText.text +=letter; //otherwise just add the letter
                     currLine = currLine +=letter;
                 }
