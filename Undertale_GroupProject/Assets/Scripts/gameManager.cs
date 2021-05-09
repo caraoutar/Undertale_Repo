@@ -27,6 +27,16 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject bedroomSpawn;
     [SerializeField] GameObject mainSpawn;
 
+    //INTRO CARD REFERENCES
+    [Header("Intro Card references")]
+    [SerializeField] GameObject intro; 
+    [SerializeField] Image intro_image;
+    [SerializeField] bool runIntro = true;
+    [SerializeField] Sprite[] intro_cards;
+    [SerializeField] int image_index; 
+    [SerializeField] Image image_rend; 
+
+
     // PAPYRUS HEAD ANIMATION
     [Header("Papyrus Dialogue Head Animation")]
     [SerializeField] Animator dialoguePAP;
@@ -230,10 +240,17 @@ public class gameManager : MonoBehaviour
         canInteract = false;
         StartCoroutine(displayDialogue());
 
+         //get reference to image component of intro_image object 
+        image_rend = intro.GetComponent<Image>();
+
     }
 
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
+
+         if (runIntro == true) {
+            runIntroduction();
+    }
         if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH...")) { //set the animation of the racecar
                     // Debug.Log("car anim");
                     carAnim.SetBool("StartRunning", true);
@@ -381,6 +398,32 @@ public class gameManager : MonoBehaviour
             //checkEndOfSeq(currentSeq);
         }
         
+    }
+
+    //function to run game intro 
+    void runIntroduction() {
+
+            Debug.Log("run intro");
+            //if player presses enter
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                //increase image index
+                image_index++; 
+
+                if (image_index < 10) {
+                    //set sprite to sprite of index value in array 
+                    image_rend.sprite = intro_cards[image_index];
+                    Debug.Log(image_index); 
+                }
+                else {
+                    //if we hit the highest index, stop intro and set run_intro to false 
+                    runIntro = false; 
+                    intro.SetActive(false);
+                }
+
+                
+            }
+            
+
     }
 
    
