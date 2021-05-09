@@ -27,6 +27,15 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject bedroomSpawn;
     [SerializeField] GameObject mainSpawn;
 
+    //INTRO CARD REFERENCES
+    [Header("Intro Card references")]
+    [SerializeField] GameObject intro; 
+    [SerializeField] Image intro_image;
+    [SerializeField] bool runIntro = true;
+    [SerializeField] int[] intro_cards = new int[10];
+    [SerializeField] int image_index; 
+
+
     // PAPYRUS HEAD ANIMATION
     [Header("Papyrus Dialogue Head Animation")]
     [SerializeField] Animator dialoguePAP;
@@ -199,6 +208,9 @@ public class gameManager : MonoBehaviour
         whiteScreenText = whiteScreen.transform.GetChild(0).GetComponent<Text>();
 
         combatSize = combat.Count;
+
+        //get reference to image component of intro_image object 
+        intro_image = intro_image.GetComponent<Image>();
 
         // DIALOGUE SFX
             // assigning the sound !
@@ -381,6 +393,23 @@ public class gameManager : MonoBehaviour
             //checkEndOfSeq(currentSeq);
         }
         
+    }
+
+    //function to run game intro 
+    void runIntroduction() {
+
+        for (int image_index = 0; image_index < intro_cards.Length; image_index++ ) {
+
+            if (Input.GetKeyDown(KeyCode.Return)) {
+                image_index++; 
+            }
+
+            if (image_index == 10) {
+                runIntro = false; 
+                intro.SetActive(false);
+            }
+        }
+
     }
 
    
