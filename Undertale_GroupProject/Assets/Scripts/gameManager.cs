@@ -66,6 +66,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject date_start_music; //game object for date start music
     [SerializeField] GameObject date_tense_music; //game object for date tense music 
     [SerializeField] GameObject date_fight_music; //game object for date fight music
+    [SerializeField] GameObject intro_and_end_music; //game object for intro and ending music
 
     //--------------- dialogue variables --------------------//
 
@@ -249,6 +250,7 @@ public class gameManager : MonoBehaviour
     void Update(){
 
          if (runIntro == true) {
+            intro_and_end_music.SetActive(true); 
             runIntroduction();
     }
         if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH...")) { //set the animation of the racecar
@@ -942,6 +944,7 @@ public class gameManager : MonoBehaviour
             case 21: //the end of the case
                 canvas.SetActive(false);
                 endCard.SetActive(true);
+                intro_and_end_music.SetActive(true); 
             break;
 
             //choices; 2,5, 8, 14, 17 are the sequences that occur when the first choice was picked, and so they
