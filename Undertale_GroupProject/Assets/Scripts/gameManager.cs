@@ -34,7 +34,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] bool runIntro = true;
     [SerializeField] Sprite[] intro_cards;
     [SerializeField] int image_index; 
-    [SerializeField] SpriteRenderer image_rend; 
+    [SerializeField] Image image_rend; 
 
 
     // PAPYRUS HEAD ANIMATION
@@ -240,12 +240,15 @@ public class gameManager : MonoBehaviour
         canInteract = false;
         StartCoroutine(displayDialogue());
 
+         //get reference to image component of intro_image object 
+        image_rend = intro.GetComponent<Image>();
+
     }
 
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
 
-        if (runIntro == true) {
+         if (runIntro == true) {
             runIntroduction();
     }
         if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH...")) { //set the animation of the racecar
@@ -400,21 +403,26 @@ public class gameManager : MonoBehaviour
     //function to run game intro 
     void runIntroduction() {
 
-         //get reference to image component of intro_image object 
-        image_rend = intro.GetComponent<SpriteRenderer>();
-
-        for (int image_index = 0; image_index < intro_cards.Length; image_index++ ) {
-
+            Debug.Log("run intro");
+            //if player presses enter
             if (Input.GetKeyDown(KeyCode.Return)) {
+                //increase image index
                 image_index++; 
-                image_rend.sprite = intro_cards[index];
-            }
 
-            if (image_index == 10) {
-                runIntro = false; 
-                intro.SetActive(false);
+                if (image_index < 10) {
+                    //set sprite to sprite of index value in array 
+                    image_rend.sprite = intro_cards[image_index];
+                    Debug.Log(image_index); 
+                }
+                else {
+                    //if we hit the highest index, stop intro and set run_intro to false 
+                    runIntro = false; 
+                    intro.SetActive(false);
+                }
+
+                
             }
-        }
+            
 
     }
 
