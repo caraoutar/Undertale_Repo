@@ -32,8 +32,9 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject intro; 
     [SerializeField] Image intro_image;
     [SerializeField] bool runIntro = true;
-    [SerializeField] int[] intro_cards = new int[10];
+    [SerializeField] Sprite[] intro_cards;
     [SerializeField] int image_index; 
+    [SerializeField] SpriteRenderer image_rend; 
 
 
     // PAPYRUS HEAD ANIMATION
@@ -209,9 +210,6 @@ public class gameManager : MonoBehaviour
 
         combatSize = combat.Count;
 
-        //get reference to image component of intro_image object 
-        intro_image = intro_image.GetComponent<Image>();
-
         // DIALOGUE SFX
             // assigning the sound !
         // TXTsfx = TXTsfx.GetComponent<AudioSource>(); 
@@ -246,6 +244,10 @@ public class gameManager : MonoBehaviour
 
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
+
+        if (runIntro == true) {
+            runIntroduction();
+    }
         if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH...")) { //set the animation of the racecar
                     // Debug.Log("car anim");
                     carAnim.SetBool("StartRunning", true);
@@ -398,10 +400,14 @@ public class gameManager : MonoBehaviour
     //function to run game intro 
     void runIntroduction() {
 
+         //get reference to image component of intro_image object 
+        image_rend = intro.GetComponent<SpriteRenderer>();
+
         for (int image_index = 0; image_index < intro_cards.Length; image_index++ ) {
 
             if (Input.GetKeyDown(KeyCode.Return)) {
                 image_index++; 
+                image_rend.sprite = intro_cards[index];
             }
 
             if (image_index == 10) {
