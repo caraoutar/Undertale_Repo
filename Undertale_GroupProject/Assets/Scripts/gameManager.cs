@@ -28,12 +28,19 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject mainSpawn;
 
     // PAPYRUS HEAD ANIMATION
+    [Header("Papyrus Dialogue Head Animation")]
     [SerializeField] Animator dialoguePAP;
     [SerializeField] Animator datingPAP; // when we need to animate papyrus talking during the dating scene!
 
     [Header("Scene 1 Animation")]
     [SerializeField] Animator carAnim;
     [SerializeField] Animator tvAnim; 
+
+    [Header("dating START! Animation")]
+    [SerializeField] Animator hatAnim;
+    [SerializeField] Animator presentAnim;
+
+    [SerializeField] Animator spaghettAnim;
 
         // DIALOGUE SFX
     [Header("Audio")]
@@ -207,8 +214,14 @@ public class gameManager : MonoBehaviour
         carAnim.enabled = true; 
         tvAnim.enabled = true; 
 
-        // PAPYRUS ANIMATION
+        // DIALOGUE BOX PAPYRUS ANIMATION
         dialoguePAP = dialoguePAP.GetComponent<Animator>();
+
+        // DATING START !!! ANIMATIONS
+
+        hatAnim = hatAnim.GetComponent<Animator>();
+        presentAnim = presentAnim.GetComponent<Animator>();
+        spaghettAnim = spaghettAnim.GetComponent<Animator>();
 
         //starting dialogue
         currentObj = (interactableObj)GameObject.Find("Interactables/MainRoom/papyrus").GetComponent(typeof(interactableObj));
@@ -225,7 +238,8 @@ public class gameManager : MonoBehaviour
                     // Debug.Log("car anim");
                     carAnim.SetBool("StartRunning", true);
                     carAnim.SetBool("StopRunning", false); 
-            }
+        }
+
         //change the heart image based on what the player wants to select (select with left/right arrow and enter)
         if(typedChoices && Input.GetKeyDown(KeyCode.RightArrow)){
             heart1.enabled = false;
@@ -364,7 +378,7 @@ public class gameManager : MonoBehaviour
             datingHUD.SetActive(true);
             runTimer = false;
             runCombat(++currentSeq);
-            // checkEndOfSeq(currentSeq);
+            //checkEndOfSeq(currentSeq);
         }
         
     }
@@ -561,7 +575,6 @@ public class gameManager : MonoBehaviour
                 dialogueText = dialogueTextBox.transform.GetChild(0).GetComponent<Text>();
                 dialogueText.font = narrativeFont;
                 
-                
             }
             else{ 
                 maxLen = (0.44f)*defLen; //change the max length of the textbox
@@ -571,15 +584,28 @@ public class gameManager : MonoBehaviour
                 TXTsfx.clip = papyrusTXTsfx;
                 
             }
+
+            if (str.Contains("THIS IS MY SECRET...")){
+
+                Debug.Log("manifesting... PRESENT...");
+                hatAnim.SetBool("hatlift", true);
+
+            } else if (str.Contains("DO YOU KNOW WHAT THIS IS?")){
+
+                Debug.Log("unmanifests... PRESENT...");
+                presentAnim.SetBool("gone", true);
+
+            } else if (str.Contains("take a bite")){
+
+                Debug.Log("unmanifests da spaghetti");
+                spaghettAnim.SetBool("eaten", true);
+
+            }
         }
 
         
         TXTsfx.Play();
-
-
-
         
-
 
         //the actual typing effect; do not add to these loops
         dialogueText.text="";
@@ -823,16 +849,15 @@ public class gameManager : MonoBehaviour
     void checkEndOfSeq(int n){
         // Debug.Log("Checking end of seq");
         //code for animation
-        // if(n == 5 || n == 6){ //animation (1/3)
-                    
-        // }else if(n == 8 || n == 9){ //animation (2/3)
+        //if(n == 5 || n == 6){ //animation (1/3)
+            
+        //} else if(n == 8 || n == 9){ //animation (2/3)
 
-        // }else if(n == 14 || n == 15){ //bring up date power
+        //} else if(n == 14 || n == 15){ //bring up date power
 
-        // }
-        // else if(n == 17 || n == 18){ //power overflows anim
+        //} else if(n == 17 || n == 18){ //power overflows anim
 
-        // }
+        //}
         canPressEnter = false;
         switch(n){
             case 0: //start timer in case player doesnt press c
