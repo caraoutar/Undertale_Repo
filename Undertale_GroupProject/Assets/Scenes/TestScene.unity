@@ -2983,15 +2983,15 @@ RectTransform:
   m_GameObject: {fileID: 842088339}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1, y: 0.8925, z: 1}
   m_Children: []
   m_Father: {fileID: 800551126}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 2, y: 17}
-  m_SizeDelta: {x: 800, y: 500}
+  m_AnchoredPosition: {x: 2, y: -3}
+  m_SizeDelta: {x: 800, y: 510}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &842088341
 MonoBehaviour:
@@ -6647,7 +6647,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 934e7558592d095469ce5c880211f1c6, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 862f01881e19950418d277e3bdcc3770, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8240,7 +8240,7 @@ PrefabInstance:
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: intro_cards.Array.size
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
@@ -8301,6 +8301,12 @@ PrefabInstance:
       propertyPath: intro_cards.Array.data[9]
       value: 
       objectReference: {fileID: 21300000, guid: 9b1a565ba8983d54f8fd0ea5c27365fc,
+        type: 3}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: intro_cards.Array.data[10]
+      value: 
+      objectReference: {fileID: 21300000, guid: 934e7558592d095469ce5c880211f1c6,
         type: 3}
     - target: {fileID: 2230936564318212691, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}

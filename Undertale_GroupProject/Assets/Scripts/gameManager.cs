@@ -409,7 +409,7 @@ public class gameManager : MonoBehaviour
                 //increase image index
                 image_index++; 
 
-                if (image_index < 10) {
+                if (image_index < 11) {
                     //set sprite to sprite of index value in array 
                     image_rend.sprite = intro_cards[image_index];
                     Debug.Log(image_index); 
@@ -865,11 +865,13 @@ public class gameManager : MonoBehaviour
         //check if white screen sequence has occurred; if so, stop music 
         if(whiteScreen_occurred == true) {
             date_start_music.SetActive(false);
+            date_fight_music.SetActive(false);
         }
 
         if(n >= combatSize) return;
 
         if(givingPresent){
+            date_fight_music.SetActive(true);
             foundPresent = false;  givingPresent = false;
             runCombat(currentSeq);
             // canPressEnter = false;
@@ -930,9 +932,12 @@ public class gameManager : MonoBehaviour
             case 20: //transition out of white screen (disable object)
                 whiteScreen.SetActive(false);
                 whiteScreen_occurred = false;
-                // canvas.SetActive(true);
+                Debug.Log("checking end of seq case 20");
+                canvas.SetActive(true);
                 index = 0;
                 currentSeq++;
+                runCombat(currentSeq);
+                
             break;
             case 21: //the end of the case
                 canvas.SetActive(false);
