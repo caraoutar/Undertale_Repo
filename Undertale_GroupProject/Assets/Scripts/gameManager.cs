@@ -29,6 +29,7 @@ public class gameManager : MonoBehaviour
 
     //INTRO CARD REFERENCES
     [Header("Intro Card references")]
+    [SerializeField] GameObject intro_bg; // the black bg for the intro
     [SerializeField] GameObject intro; 
     [SerializeField] Image intro_image;
     [SerializeField] bool runIntro = true;
@@ -40,7 +41,6 @@ public class gameManager : MonoBehaviour
     // PAPYRUS HEAD ANIMATION
     [Header("Papyrus Dialogue Head Animation")]
     [SerializeField] Animator dialoguePAP;
-    [SerializeField] Animator datingPAP; // when we need to animate papyrus talking during the dating scene!
 
     [Header("Scene 1 Animation")]
     [SerializeField] Animator carAnim;
@@ -51,6 +51,11 @@ public class gameManager : MonoBehaviour
     [SerializeField] Animator presentAnim;
 
     [SerializeField] Animator spaghettAnim;
+
+    // PAPYRUS ANIMATION DURING DATING... START! SCENE
+    [Header("animating Papyrus during dating START!")]
+    [SerializeField] Animator datepyrusAnim; // papyrus' head ...
+    [SerializeField] Animator datearmAnim; // papyrus' arms ...
 
         // DIALOGUE SFX
     [Header("Audio")]
@@ -101,6 +106,7 @@ public class gameManager : MonoBehaviour
 
     //---------------- UI -----------------------//
     [Header("Starting and Ending Scenes")]
+    [SerializeField] GameObject bg_end;
     [SerializeField] GameObject endCard;
 
     [Tooltip("reference to canvas; there is no need to add the other references")]
@@ -234,12 +240,10 @@ public class gameManager : MonoBehaviour
         presentAnim = presentAnim.GetComponent<Animator>();
         spaghettAnim = spaghettAnim.GetComponent<Animator>();
 
-        //starting dialogue
-        currentObj = (interactableObj)GameObject.Find("Interactables/MainRoom/papyrus").GetComponent(typeof(interactableObj));
-        dialogue = currentObj.myDialogue;
-        player.canMove = false;
-        canInteract = false;
-        StartCoroutine(displayDialogue());
+        datepyrusAnim = datepyrusAnim.GetComponent<Animator>();
+        datearmAnim = datearmAnim.GetComponent<Animator>();
+
+        
 
          //get reference to image component of intro_image object 
         image_rend = intro.GetComponent<Image>();
@@ -400,18 +404,21 @@ public class gameManager : MonoBehaviour
             //checkEndOfSeq(currentSeq);
         }
         
+        animatingDATE(); // void function(?) that holds all the animations for the dating START! scene!
     }
 
     //function to run game intro 
     void runIntroduction() {
+            sans_music.SetActive(false); // to stop the sans music from playing
 
             Debug.Log("run intro");
+
             //if player presses enter
             if (Input.GetKeyDown(KeyCode.Return)) {
                 //increase image index
                 image_index++; 
 
-                if (image_index < 11) {
+                if (image_index < 12) {
                     //set sprite to sprite of index value in array 
                     image_rend.sprite = intro_cards[image_index];
                     Debug.Log(image_index); 
@@ -420,6 +427,17 @@ public class gameManager : MonoBehaviour
                     //if we hit the highest index, stop intro and set run_intro to false 
                     runIntro = false; 
                     intro.SetActive(false);
+                    intro_bg.SetActive(false);
+                    intro_and_end_music.SetActive(false); // to stop the music once the intro cutscene is over
+                    sans_music.SetActive(true); // to start the sans music !
+
+                    //starting dialogue
+                // maria : moved the starting dialogue here so it starts once the intro scene is done!
+                    currentObj = (interactableObj)GameObject.Find("Interactables/MainRoom/papyrus").GetComponent(typeof(interactableObj));
+                    dialogue = currentObj.myDialogue;
+                    player.canMove = false;
+                    canInteract = false;
+                    StartCoroutine(displayDialogue());
                 }
 
                 
@@ -614,6 +632,9 @@ public class gameManager : MonoBehaviour
                 }
         }
         else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
+        
+            datepyrusAnim.GetComponent<Animator>().enabled = true; // to start the animation of papyrus' head once in combat!
+
             if(str.Contains("*")){
                 maxLen = defLen + lenDiff; //change the max length of the textbox
                 TXTsfx.clip = narrativeTXTsfx;
@@ -630,10 +651,27 @@ public class gameManager : MonoBehaviour
                 
             }
 
-            if (str.Contains("THIS IS MY SECRET...")){
+        // to handle specific animation of papyrus' parts during the minigame 
+            if (str.Contains("...MY HAT.")){
+
+                Debug.Log("sus...");
+                datepyrusAnim.SetBool("Sus", true);
+
+                datepyrusAnim.SetBool("Determined", false);
+
+            } else if (str.Contains("NYEH HEH HEH!!")){
+
+                datepyrusAnim.SetBool("Determined", true);
+
+                datepyrusAnim.SetBool("Sus", false);
+
+            } else if (str.Contains("THIS IS MY SECRET...")){
 
                 Debug.Log("manifesting... PRESENT...");
+                datepyrusAnim.SetBool("Blush", true);
                 hatAnim.SetBool("hatlift", true);
+
+                datepyrusAnim.SetBool("Determined", false);
 
             } else if (str.Contains("DO YOU KNOW WHAT THIS IS?")){
 
@@ -711,6 +749,7 @@ public class gameManager : MonoBehaviour
 
         TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
         dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
+        datepyrusAnim.GetComponent<Animator>().enabled = false; // stops playing papyrus' talking animation in combat scene !!
         }
     }
 
@@ -943,6 +982,7 @@ public class gameManager : MonoBehaviour
             break;
             case 21: //the end of the case
                 canvas.SetActive(false);
+                bg_end.SetActive(true); // added bg  for the end card !
                 endCard.SetActive(true);
                 intro_and_end_music.SetActive(true); 
             break;
@@ -1010,6 +1050,447 @@ public class gameManager : MonoBehaviour
                 }
                 papyrusTextBox.SetActive(true);
             } 
+        }
+    }
+
+//              ===============      ANIMATING PAPYRUS IN THE DATING...START! SCENE      ==================
+
+    void animatingDATE(){
+        if(combatCam.enabled){
+            if(currentSeq == 0){
+                Debug.Log("000000000");
+                if(dialogueText.text.Contains("WOULD")) {
+
+                    datepyrusAnim.SetBool("Blush", true);
+
+                } else if (dialogueText.text.Contains("LUCKILY")){
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Blush", false);
+
+                } else if (dialogueText.text.Contains("ALL")){
+
+                    datepyrusAnim.SetBool("Sus", true);
+                    datearmAnim.SetBool("reading",true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if (dialogueText.text.Contains("PRESS")){
+
+                    datepyrusAnim.SetBool("Default", true);
+                    datearmAnim.SetBool("default", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+                    datearmAnim.SetBool("reading", false);
+
+                }
+            } else if (currentSeq == 1){
+                Debug.Log("111111111111111111");
+                if(dialogueText.text.Contains("WOW!")) {
+
+                    datepyrusAnim.SetBool("Anime", true);
+                    datearmAnim.SetBool("shy", true);
+
+                } else if (dialogueText.text.Contains("I THINK")){
+
+                    datepyrusAnim.SetBool("Determined", true);
+                    datearmAnim.SetBool("default", true);
+
+                    datepyrusAnim.SetBool("Anime", false);
+                    datearmAnim.SetBool("shy", false);
+                    
+
+                } else if (dialogueText.text.Contains("LE")){
+
+                    datepyrusAnim.SetBool("Sus", true);
+                    datearmAnim.SetBool("reading",true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if (dialogueText.text.Contains("HUMAN!")){
+                    
+                    datepyrusAnim.SetBool("Determined", true);
+                    datearmAnim.SetBool("default", true);
+                    
+                    datearmAnim.SetBool("reading", false);
+                    datepyrusAnim.SetBool("Sus", false);
+                
+                }
+            }  else if (currentSeq == 2){
+                Debug.Log("2222222222222");
+                if(dialogueText.text.Contains("REA")) {
+
+                    datepyrusAnim.SetBool("Anime", true);
+                    datearmAnim.SetBool("shy", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if (dialogueText.text.Contains("AHEM")){
+
+                    datepyrusAnim.SetBool("Sus", true);
+                    datearmAnim.SetBool("default", true);
+
+                    datepyrusAnim.SetBool("Anime", false);
+                    datearmAnim.SetBool("shy", false);
+                    
+
+                } else if (dialogueText.text.Contains(",")){
+                    
+                    datepyrusAnim.SetBool("Determined", true);
+                    datepyrusAnim.SetBool("Sus", false);
+
+                }
+            }  else if (currentSeq == 3){
+                Debug.Log("3333333333333");
+                if(dialogueText.text.Contains("BUT")) {
+
+                    datepyrusAnim.SetBool("Blush", true);
+                    datepyrusAnim.SetBool("Determined", false);
+
+                }
+            }  else if (currentSeq == 4){
+                Debug.Log("444444444");
+                if(dialogueText.text.Contains("THREE")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+                    datearmAnim.SetBool("reading", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+                    datepyrusAnim.SetBool("Blush", false);
+
+                } else if (dialogueText.text.Contains("YOUR")){
+
+                    datepyrusAnim.SetBool("Default", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+
+                } else if (dialogueText.text.Contains("WAIT")){
+                    
+                    datepyrusAnim.SetBool("Sus", true);
+                    datepyrusAnim.SetBool("Default", false);
+
+                } else if (dialogueText.text.Contains("BEEN")){
+
+                    datepyrusAnim.SetBool("Sus", true);
+
+                    datearmAnim.SetBool("default", true);
+                    datearmAnim.SetBool("reading", false);
+
+                } else if (dialogueText.text.Contains("WANTED")){
+                    
+                    datepyrusAnim.SetBool("Blush", true);
+                    datearmAnim.SetBool("shy", true);
+                    
+                   datepyrusAnim.SetBool("Sus", false);
+                   datearmAnim.SetBool("reading", false);
+                    }
+                }  else if (currentSeq == 5){
+                Debug.Log("55555555");
+                    if(dialogueText.text.Contains("YOUR")) {
+
+                    datepyrusAnim.SetBool("AHHH", true);
+
+                    datepyrusAnim.SetBool("Blush", false);
+
+                }
+            }  else if (currentSeq == 6){
+                Debug.Log("666666");
+                if(dialogueText.text.Contains(",")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+                    datearmAnim.SetBool("default", true);
+
+                    datepyrusAnim.SetBool("Blush", false);
+                    datearmAnim.SetBool("shy", false);
+
+                } else if(dialogueText.text.Contains("NEVER")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+
+                }
+            }  else if (currentSeq == 7){
+                Debug.Log("777777777");
+                if(dialogueText.text.Contains("MAGNIFICENT")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+                    datearmAnim.SetBool("default", true);
+
+                    datepyrusAnim.SetBool("AHHH", false);
+                    datearmAnim.SetBool("shy", false);
+
+                } else if(dialogueText.text.Contains("BEHOLD!")) {
+
+                    datepyrusAnim.SetBool("Anime", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                }
+            }  else if (currentSeq == 8){
+                Debug.Log("8888888");
+                if(dialogueText.text.Contains("HUMAN!")) {
+
+                    datepyrusAnim.SetBool("AHHH", true);
+
+                    datepyrusAnim.SetBool("Anime", false);
+
+                }
+            }  else if (currentSeq == 9){
+                Debug.Log("9999999");
+                if(dialogueText.text.Contains("HUMAN...")) {
+
+                    datepyrusAnim.SetBool("AHHH", true);
+
+                    datepyrusAnim.SetBool("Anime", false);
+
+                }
+            }  else if (currentSeq == 10){
+                Debug.Log("101010101010");
+                if(dialogueText.text.Contains("HEH.")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("AHHH", false);
+
+                } else if(dialogueText.text.Contains("BUT")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if(dialogueText.text.Contains("YOUR")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+
+                }
+            }  else if (currentSeq == 11){
+                Debug.Log("ELEVENELEVENELEVENELEVEN");
+                if(dialogueText.text.Contains("SECRET...")) {
+
+                    datepyrusAnim.SetBool("Default", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if(dialogueText.text.Contains("PRESENT.")) {
+
+                    datepyrusAnim.SetBool("Blush", true);
+
+                }
+            }  else if (currentSeq == 12){
+                Debug.Log("1212121212121212");
+                if(dialogueText.text.Contains("HUMAN!")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Blush", false);
+
+                } else if(dialogueText.text.Contains("'")) {
+
+                    datepyrusAnim.SetBool("Anime", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                }
+            }  else if (currentSeq == 13){
+                Debug.Log("131313131313");
+                if(dialogueText.text.Contains("DO")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Anime", false);
+                    datepyrusAnim.SetBool("Blush", false);
+
+                }
+            }  else if (currentSeq == 14){
+                Debug.Log("141414141414");
+                if(dialogueText.text.Contains("THINK")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if(dialogueText.text.Contains("HEH!")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+
+                }
+            }  else if (currentSeq == 15){
+                Debug.Log("1515151515");
+                if(dialogueText.text.Contains("'")) {
+
+                    datepyrusAnim.SetBool("Anime", true);
+                    datearmAnim.SetBool("shy", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                }
+            }  else if (currentSeq == 16){
+                Debug.Log("1616161616");
+                if(dialogueText.text.Contains("PASTA")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+                    datearmAnim.SetBool("default", true);
+
+                    datepyrusAnim.SetBool("Anime", false);
+                    datearmAnim.SetBool("shy", false);
+
+                } else if(dialogueText.text.Contains("HUMAN!")) {
+
+                    datepyrusAnim.SetBool("AHHH", true);
+
+                    datepyrusAnim.SetBool("Anime", false);
+                    datepyrusAnim.SetBool("Determined", false);
+
+                }
+            }  else if (currentSeq == 17){
+                Debug.Log("1717717171717");
+                if(dialogueText.text.Contains("LOOK")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+
+                    datepyrusAnim.SetBool("AHHH", false);
+
+                } else if(dialogueText.text.Contains("COULD")) {
+
+                    datepyrusAnim.SetBool("Blush", true);
+                    datearmAnim.SetBool("shy", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if(dialogueText.text.Contains("...A")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+
+                    datepyrusAnim.SetBool("Blush", false);
+
+                } else if(dialogueText.text.Contains("THIS")) {
+
+                    datepyrusAnim.SetBool("AHHH", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+
+                }
+            }  else if (currentSeq == 18){
+                Debug.Log("1818181818");
+                if(dialogueText.text.Contains("WAIT")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+
+                    datepyrusAnim.SetBool("AHHH", false);
+
+                } else if(dialogueText.text.Contains("YOU")) {
+
+                    datepyrusAnim.SetBool("Blush", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+
+                } else if(dialogueText.text.Contains("HUMAN...")) {
+
+                    datepyrusAnim.SetBool("AHHH", true);
+
+                    datepyrusAnim.SetBool("Blush", false);
+
+                }
+            }  else if (currentSeq == 21){
+                Debug.Log("21212121212121");
+                if(dialogueText.text.Contains("I...")) {
+
+                    datepyrusAnim.SetBool("Blush", true);
+
+                    datepyrusAnim.SetBool("AHHH", false);
+
+                } else if(dialogueText.text.Contains("WELL...")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+                    datearmAnim.SetBool("default", true);
+
+                    datepyrusAnim.SetBool("Blush", false);
+                    datearmAnim.SetBool("shy", false);
+
+                } else if(dialogueText.text.Contains("SHOOT,")) {
+
+                    datepyrusAnim.SetBool("Awkward", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+
+                } else if(dialogueText.text.Contains("IT'S")) {
+
+                    datepyrusAnim.SetBool("Nani", true);
+
+                    datepyrusAnim.SetBool("Awkward", false);
+
+                } else if(dialogueText.text.Contains("MATCH")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Nani", false);
+
+                } else if(dialogueText.text.Contains("ALAS,")) {
+
+                    datepyrusAnim.SetBool("Awkward", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if(dialogueText.text.Contains("WAIT.")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+
+                    datepyrusAnim.SetBool("Awkward", false);
+
+                } else if(dialogueText.text.Contains("I,")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+
+                } else if(dialogueText.text.Contains("BECAUSE...")) {
+
+                    datepyrusAnim.SetBool("Anime", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+
+                } else if(dialogueText.text.Contains("FRIENDSHIP")) {
+
+                    datepyrusAnim.SetBool("Blush", true);
+
+                    datepyrusAnim.SetBool("Anime", false);
+
+                } else if(dialogueText.text.Contains("SO, DON'T BE SAD!")) {
+
+                    datepyrusAnim.SetBool("Determined", true);
+
+                    datepyrusAnim.SetBool("Blush", false);
+
+                } else if(dialogueText.text.Contains("AS GREAT AS")) {
+
+                    datepyrusAnim.SetBool("Sus", true);
+
+                    datepyrusAnim.SetBool("Determined", false);
+                    datepyrusAnim.SetBool("Blush", false);
+
+                } else if(dialogueText.text.Contains("STILL")) {
+
+                    datepyrusAnim.SetBool("Default", true);
+
+                    datepyrusAnim.SetBool("Sus", false);
+                    datepyrusAnim.SetBool("Blush", false);
+
+                } else if(dialogueText.text.Contains("THANK YOU")) {
+
+                    datepyrusAnim.SetBool("Anime", true);
+
+                    datepyrusAnim.SetBool("Default", false);
+                    datepyrusAnim.SetBool("Blush", false);
+
+                }
+            }
         }
     }
 #endregion
