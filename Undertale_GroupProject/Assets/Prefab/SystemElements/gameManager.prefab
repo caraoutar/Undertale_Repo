@@ -53,10 +53,21 @@ MonoBehaviour:
   playerSpawn: {fileID: 0}
   bedroomSpawn: {fileID: 0}
   mainSpawn: {fileID: 0}
+  intro_bg: {fileID: 0}
+  intro: {fileID: 0}
+  intro_image: {fileID: 0}
+  runIntro: 1
+  intro_cards: []
+  image_index: 0
+  image_rend: {fileID: 0}
   dialoguePAP: {fileID: 0}
-  datingPAP: {fileID: 0}
   carAnim: {fileID: 0}
   tvAnim: {fileID: 0}
+  hatAnim: {fileID: 0}
+  presentAnim: {fileID: 0}
+  spaghettAnim: {fileID: 0}
+  datepyrusAnim: {fileID: 0}
+  datearmAnim: {fileID: 0}
   TXTsfx: {fileID: 0}
   arrowMOVEsfx: {fileID: 0}
   SELECTsfx: {fileID: 0}
@@ -66,6 +77,7 @@ MonoBehaviour:
   date_start_music: {fileID: 0}
   date_tense_music: {fileID: 0}
   date_fight_music: {fileID: 0}
+  intro_and_end_music: {fileID: 0}
   letterPerSec: 25
   papyrusFont: {fileID: 12800000, guid: 61ef5a02ecc4845689e74d90d2481e83, type: 3}
   narrativeFont: {fileID: 12800000, guid: ceaf56857196d45be98d687cbc91efc2, type: 3}
@@ -79,7 +91,7 @@ MonoBehaviour:
   dialogue: []
   maxLen: 540
   defLen: 540
-  lenDiff: 120
+  lenDiff: 140
   choice:
   - YES
   - NO
@@ -87,6 +99,7 @@ MonoBehaviour:
   defaultChoice:
   - YES
   - NO
+  bg_end: {fileID: 0}
   endCard: {fileID: 0}
   canvas: {fileID: 1115623495133384136, guid: b7a75514952044616bab9a106b683946, type: 3}
   dialogueTextBox: {fileID: 0}

@@ -702,11 +702,11 @@ public class gameManager : MonoBehaviour
         string currLine = "";
 
         foreach(var letter in str.ToCharArray()){ //add a single character to the text at a time, thus creating a typing effect
-            Debug.Log(wordIndex);
+            // Debug.Log(wordIndex);
             if(isTyping && letter == ' ' && wordIndex < words.Length){ //if there is a new word do the following
                 string line = currLine + words[wordIndex]; //add the new word to the current line
                
-                Debug.Log(words[wordIndex]);
+                // Debug.Log(words[wordIndex]);
 
                 Font myFont = dialogueText.font; //we need the font to know the size of a string
                 myFont.RequestCharactersInTexture(line, dialogueText.fontSize, dialogueText.fontStyle); //find the font info
@@ -793,13 +793,14 @@ public class gameManager : MonoBehaviour
                     len += charInfo.advance; //go on to the next character
                 }
                 isSpace = true;
+                wordIndex++;
             }
             if(isTyping){
                 if (len > maxLen && isSpace){ //if the length of the line with the new word will be larger the textbox, move to a new line
                     // Debug.Log("len > maxLen");
                     shakyText.text += '\n';
                     isSpace = false;
-                    wordIndex++;
+                    // wordIndex++;
                     currLine = "";
                     len = 0;
                 }
@@ -1052,6 +1053,7 @@ public class gameManager : MonoBehaviour
             } 
         }
     }
+    #endregion
 
 //              ===============      ANIMATING PAPYRUS IN THE DATING...START! SCENE      ==================
 
@@ -1493,5 +1495,4 @@ public class gameManager : MonoBehaviour
             }
         }
     }
-#endregion
 }
