@@ -264,14 +264,14 @@ public class gameManager : MonoBehaviour
         }
 
         //change the heart image based on what the player wants to select (select with left/right arrow and enter)
-        if(typedChoices && Input.GetKeyDown(KeyCode.RightArrow)){
+        if(typedChoices && (Input.GetKeyDown(KeyCode.RightArrow)|| Input.GetKeyDown(KeyCode.D))){
             heart1.enabled = false;
             heart2.enabled = true;
 
             // DIALOGUE SFX
             arrowMOVEsfx.Play(); // plays the sound when the player selects with right arrow key
         }
-        else if(typedChoices && Input.GetKeyDown(KeyCode.LeftArrow)){
+        else if(typedChoices && (Input.GetKeyDown(KeyCode.LeftArrow)|| Input.GetKeyDown(KeyCode.A))){
             heart2.enabled = false;
             heart1.enabled = true;
 
@@ -761,7 +761,9 @@ public class gameManager : MonoBehaviour
         if(shakyText.gameObject.transform.childCount >0)
             shakyText.gameObject.transform.GetChild(0).gameObject.SetActive(false);
         
-        maxLen = defLen + (0.6f*lenDiff); //change the max length of the textboxs
+        maxLen = defLen + (lenDiff); //change the max length of the textboxs
+        // maxLen = -(whiteScreen.transform.GetChild(1).GetComponent<RectTransform>().rect.x-100);
+        // Debug.Log("Size is: " + -(whiteScreen.transform.GetChild(1).GetComponent<RectTransform>().rect.x-100));
         TXTsfx.clip = papyrusTXTsfx;
         
         TXTsfx.Play();
@@ -788,7 +790,7 @@ public class gameManager : MonoBehaviour
                 len = 0; //reset the length of the current line
                 foreach(char c in line){ //for each character
                     CharacterInfo charInfo = new CharacterInfo(); //find the font/text info
-                    myFont.GetCharacterInfo(c, out charInfo, dialogueText.fontSize); //get its width
+                    myFont.GetCharacterInfo(c, out charInfo, 100); //get its width
                     //Debug.Log(charInfo.advance);
                     len += charInfo.advance; //go on to the next character
                 }
