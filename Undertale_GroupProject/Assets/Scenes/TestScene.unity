@@ -1414,7 +1414,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 4adc06d02fee74c2eac2e2481055b15e, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -1890,7 +1890,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: c63c05569e84e2e499f4e3b7daaf4f74, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2017,7 +2017,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 239dc0e7f64d740f5b585772a959343c, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -2950,7 +2950,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e4c16838ffb7146d3a9f0a6b2e16a933, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -4058,7 +4058,7 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   player: {fileID: 0}
   myDialogue:
-  - '*(Move with the arrow keys. Inspect with [Z].) '
+  - '*(Move with the arrow keys. Inspect with [Z]. Press Enter to advance dialogue.) '
   - "I NEVER THOUGHT YOU\u2019D BE ABLE TO FIND IT, HUMAN."
   - I SUPPOSE NOW I HAVE NO CHOICE.
   - THIS IS MY SECRET...
@@ -5251,7 +5251,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d244237dddb854236ad8edb3267ebdca, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -6793,7 +6793,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 744b560b483f2414d9612c0df8c0e129, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.7
   m_Pitch: 1
   Loop: 1
   Mute: 0
