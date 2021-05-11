@@ -612,16 +612,19 @@ public class gameManager : MonoBehaviour
         if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
             resetDialogue();
             dialoguePAP.GetComponent<Animator>().enabled = true; // enables the animation to play at the start of typing
-
-            if (currentObj.name == "dirty_sock") {
-                dialogueText.font = sansFont; 
-            }
-            
             //change the font of the dialogue if there is an astericks
             if(str.Contains("*")) {
                 dialogueText.font = narrativeFont;
                 TXTsfx.clip = narrativeTXTsfx;
                 maxLen = defLen + lenDiff; //change the max length of the textbox
+            }
+            else if(str.Contains("- Sans")) {
+                dialogueText.font = sansFont; 
+                TXTsfx.clip = narrativeTXTsfx;
+            }
+            else if(str.Contains("- Papyrus")) {
+                dialogueText.font = papyrusFont;
+                TXTsfx.clip = papyrusTXTsfx;
             }
             else{
                 maxLen = defLen; //change the max length of the textbox

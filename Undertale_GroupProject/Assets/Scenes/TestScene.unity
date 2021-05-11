@@ -609,6 +609,32 @@ PrefabInstance:
       propertyPath: m_Offset.y
       value: 0.071760654
       objectReference: {fileID: 0}
+    - target: {fileID: 3654468708003932756, guid: 542e01b02802148dd97cf6f137c9f291,
+        type: 3}
+      propertyPath: myDialogue.Array.data[1]
+      value: Sans! What have I told you about cleaning up? - Papyrus
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654468708003932756, guid: 542e01b02802148dd97cf6f137c9f291,
+        type: 3}
+      propertyPath: myDialogue.Array.data[2]
+      value: Maybe I left it here for decoration? - Sans
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654468708003932756, guid: 542e01b02802148dd97cf6f137c9f291,
+        type: 3}
+      propertyPath: myDialogue.Array.data[3]
+      value: "What? You know your sock doesn\u2019t match our beautiful home decor!
+        - Papyrus"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654468708003932756, guid: 542e01b02802148dd97cf6f137c9f291,
+        type: 3}
+      propertyPath: myDialogue.Array.data[4]
+      value: "Of course it does. It\u2019s art. - Sans"
+      objectReference: {fileID: 0}
+    - target: {fileID: 3654468708003932756, guid: 542e01b02802148dd97cf6f137c9f291,
+        type: 3}
+      propertyPath: myDialogue.Array.data[5]
+      value: Fine! Forget it! - Papyrus
+      objectReference: {fileID: 0}
     - target: {fileID: 3842614336169422976, guid: 542e01b02802148dd97cf6f137c9f291,
         type: 3}
       propertyPath: m_RootOrder
@@ -8565,7 +8591,7 @@ PrefabInstance:
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: letterPerSec
-      value: 25
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
