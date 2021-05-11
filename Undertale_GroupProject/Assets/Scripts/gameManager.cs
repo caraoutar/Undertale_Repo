@@ -64,6 +64,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] AudioSource SELECTsfx; // sfx when player presses ENTER
     [SerializeField] AudioClip narrativeTXTsfx; //sfx for narrative typing
     [SerializeField] AudioClip papyrusTXTsfx; //sfx for papyrus typing
+    [SerializeField] AudioClip sansTXTsfx; //sfx for sans typing 
 
     //setting Game Objects for background music
     [Header("Background Music")]
@@ -620,7 +621,7 @@ public class gameManager : MonoBehaviour
             }
             else if(str.Contains("- Sans")) {
                 dialogueText.font = sansFont; 
-                TXTsfx.clip = narrativeTXTsfx;
+                TXTsfx.clip = sansTXTsfx;
             }
             else if(str.Contains("- Papyrus")) {
                 dialogueText.font = papyrusFont;
@@ -754,8 +755,9 @@ public class gameManager : MonoBehaviour
             if (!isTypingChoice) displayChoice();
         }
 
-
+        if (TXTsfx.isPlaying) {
         TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+        }
         dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
         datepyrusAnim.GetComponent<Animator>().enabled = false; // stops playing papyrus' talking animation in combat scene !!
         }
