@@ -32,11 +32,12 @@ public class gameManager : MonoBehaviour
     [SerializeField] GameObject intro_bg; // the black bg for the intro
     [SerializeField] GameObject intro; 
     [SerializeField] Image intro_image;
+    [SerializeField] GameObject menu; // holds all the menu objects ( papyrus, frisk , txtbox, etc - so they're easy to organize + adjust!)
+    [SerializeField] GameObject arrow; // small arrow sprite to indicate moving forward
     [SerializeField] bool runIntro = true;
     [SerializeField] Sprite[] intro_cards;
     [SerializeField] int image_index; 
     [SerializeField] Image image_rend; 
-
 
     // PAPYRUS HEAD ANIMATION
     [Header("Papyrus Dialogue Head Animation")]
@@ -430,16 +431,25 @@ public class gameManager : MonoBehaviour
                 //increase image index
                 image_index++; 
 
-                if (image_index < 12) {
+                if (image_index < 11) {
                     //set sprite to sprite of index value in array 
                     image_rend.sprite = intro_cards[image_index];
                     Debug.Log(image_index); 
+
+                    arrow.SetActive(true); // enable the arrow
+
+                } else if (image_index == 11){ // if the index is EXACTLY 11 ,
+
+                    menu.SetActive(true); // activate the menu , 
+                    arrow.SetActive(false); // disable the arrow , since its not needed anymore
+
                 }
                 else {
                     //if we hit the highest index, stop intro and set run_intro to false 
                     runIntro = false; 
                     intro.SetActive(false);
                     intro_bg.SetActive(false);
+                    menu.SetActive(false);
                     intro_and_end_music.SetActive(false); // to stop the music once the intro cutscene is over
                     sans_music.SetActive(true); // to start the sans music !
 
@@ -1116,6 +1126,8 @@ public class gameManager : MonoBehaviour
                     datepyrusAnim.SetBool("Anime", true);
                     datearmAnim.SetBool("shy", true);
 
+                    datepyrusAnim.SetBool("Default", false);
+
                 } else if (dialogueText.text.Contains("I THINK")){
 
                     datepyrusAnim.SetBool("Determined", true);
@@ -1207,6 +1219,7 @@ public class gameManager : MonoBehaviour
                     datearmAnim.SetBool("shy", true);
                     
                    datepyrusAnim.SetBool("Sus", false);
+                   datepyrusAnim.SetBool("Default", false);
                    datearmAnim.SetBool("reading", false);
                     }
                 }  else if (currentSeq == 5){
@@ -1216,6 +1229,7 @@ public class gameManager : MonoBehaviour
                     datepyrusAnim.SetBool("AHHH", true);
 
                     datepyrusAnim.SetBool("Blush", false);
+                    datepyrusAnim.SetBool("Default", false);
 
                 }
             }  else if (currentSeq == 6){
@@ -1302,6 +1316,7 @@ public class gameManager : MonoBehaviour
                 } else if(dialogueText.text.Contains("PRESENT.")) {
 
                     datepyrusAnim.SetBool("Blush", true);
+                    datepyrusAnim.SetBool("Default", false);
 
                 }
             }  else if (currentSeq == 12){
@@ -1467,6 +1482,8 @@ public class gameManager : MonoBehaviour
                     datepyrusAnim.SetBool("Sus", true);
 
                     datepyrusAnim.SetBool("Awkward", false);
+                    datepyrusAnim.SetBool("Determined", false);
+                    datepyrusAnim.SetBool("Default", false);
 
                 } else if(dialogueText.text.Contains("I,")) {
 
