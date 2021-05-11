@@ -80,6 +80,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] int letterPerSec; //how fast the typing is
     [SerializeField] Font papyrusFont;
     [SerializeField] Font narrativeFont;
+    [SerializeField] Font sansFont; //font for sans dialogue in post-it note object
 
     [Tooltip("These dialogue variables should not be adjusted")]
     [Header("Non-Adjustable Dialogue Variables")]
@@ -611,6 +612,10 @@ public class gameManager : MonoBehaviour
         if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
             resetDialogue();
             dialoguePAP.GetComponent<Animator>().enabled = true; // enables the animation to play at the start of typing
+
+            if (currentObj.name == "dirty_sock") {
+                dialogueText.font = sansFont; 
+            }
             
             //change the font of the dialogue if there is an astericks
             if(str.Contains("*")) {

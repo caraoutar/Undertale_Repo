@@ -8472,6 +8472,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: sansFont
+      value: 
+      objectReference: {fileID: 12800000, guid: c8fb8446f1f2a4eb78aef9702b390ca7,
+        type: 3}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: SELECTsfx
       value: 
       objectReference: {fileID: 967069009}
