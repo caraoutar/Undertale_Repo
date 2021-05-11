@@ -315,7 +315,17 @@ public class gameManager : MonoBehaviour
                 
                 if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
                     resetDialogue();
-                    if(dialogueText.text.Contains("*")) dialogueText.font = narrativeFont;
+                    if(dialogueText.text.Contains("*")){
+                        dialogueText.font = narrativeFont;
+                    } else if (dialogueText.text.Contains("- Sans") || dialogueText.text.Contains("- Papyrus")){
+                        Debug.Log("dirty sock interaction confirmed ...");
+
+                        // NOTE:
+                            // there was a small bug that if the player presses ENTER and the dialogue for the DIRTY SOCKS
+                            // isn't done typing, it will automatically change the txt to Papyrus' font and have Papyrus' head appear
+                            
+                            // so even if there's just the Debug.Log + no actual code here, it somehow prevents it lol
+                    }
                     else{
                         setPapyrusDialogue();
                         dialogueText.text = dialogueText.text.ToUpper();
