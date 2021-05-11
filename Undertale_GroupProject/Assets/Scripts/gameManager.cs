@@ -64,6 +64,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] AudioSource SELECTsfx; // sfx when player presses ENTER
     [SerializeField] AudioClip narrativeTXTsfx; //sfx for narrative typing
     [SerializeField] AudioClip papyrusTXTsfx; //sfx for papyrus typing
+    [SerializeField] AudioClip sansTXTsfx; //sfx for sans typing 
 
     //setting Game Objects for background music
     [Header("Background Music")]
@@ -80,6 +81,7 @@ public class gameManager : MonoBehaviour
     [SerializeField] int letterPerSec; //how fast the typing is
     [SerializeField] Font papyrusFont;
     [SerializeField] Font narrativeFont;
+    [SerializeField] Font sansFont; //font for sans dialogue in post-it note object
 
     [Tooltip("These dialogue variables should not be adjusted")]
     [Header("Non-Adjustable Dialogue Variables")]
@@ -611,12 +613,19 @@ public class gameManager : MonoBehaviour
         if(!combatCam.enabled){ //if the game isn't in the combat scene, then run this code
             resetDialogue();
             dialoguePAP.GetComponent<Animator>().enabled = true; // enables the animation to play at the start of typing
-            
             //change the font of the dialogue if there is an astericks
             if(str.Contains("*")) {
                 dialogueText.font = narrativeFont;
                 TXTsfx.clip = narrativeTXTsfx;
                 maxLen = defLen + lenDiff; //change the max length of the textbox
+            }
+            else if(str.Contains("- Sans")) {
+                dialogueText.font = sansFont; 
+                TXTsfx.clip = sansTXTsfx;
+            }
+            else if(str.Contains("- Papyrus")) {
+                dialogueText.font = papyrusFont;
+                TXTsfx.clip = papyrusTXTsfx;
             }
             else{
                 maxLen = defLen; //change the max length of the textbox
@@ -746,8 +755,9 @@ public class gameManager : MonoBehaviour
             if (!isTypingChoice) displayChoice();
         }
 
-
+        if (TXTsfx.isPlaying) {
         TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+        }
         dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
         datepyrusAnim.GetComponent<Animator>().enabled = false; // stops playing papyrus' talking animation in combat scene !!
         }
