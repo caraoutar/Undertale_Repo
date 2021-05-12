@@ -39,26 +39,46 @@ public class gameManager : MonoBehaviour
     [SerializeField] int image_index; 
     [SerializeField] Image image_rend; 
 
-    // PAPYRUS HEAD ANIMATION
-    [Header("Papyrus Dialogue Head Animation")]
-    [SerializeField] Animator dialoguePAP;
-
     [Header("Scene 1 Animation")]
     [SerializeField] Animator carAnim;
     [SerializeField] Animator tvAnim; 
 
+// ANIMATING PAPYRUS
+
+    // sprite in dialogue box
+    [Header("Papyrus Dialogue Head Animation")]
+    [SerializeField] Animator dialoguePAP;
+
+    // sprites for dating... START!
+    [Header("animating Papyrus during dating START!")]
+    [SerializeField] Animator datepyrusAnim; // papyrus' head ...
+    [SerializeField] Animator datearmAnim; // papyrus' arms ...
+
+// ANIMATING dating... START! OBJECTS
     [Header("dating START! Animation")]
     [SerializeField] Animator hatAnim;
     [SerializeField] Animator presentAnim;
 
     [SerializeField] Animator spaghettAnim;
 
-    // PAPYRUS ANIMATION DURING DATING... START! SCENE
-    [Header("animating Papyrus during dating START!")]
-    [SerializeField] Animator datepyrusAnim; // papyrus' head ...
-    [SerializeField] Animator datearmAnim; // papyrus' arms ...
+    [Header("DATE POWER references")]
 
-        // DIALOGUE SFX
+    [SerializeField] GameObject tensionBox;
+    [SerializeField] GameObject datepower_normal;
+    [SerializeField] GameObject datepower_tension;
+
+    // ANIMATION ...
+    [SerializeField] Animator tensionData; // the tension box
+        
+        // regular date power
+    [SerializeField] Animator dateBox;
+    [SerializeField] Animator dateData;
+
+        // datepower during tension ... !
+    [SerializeField] Animator dateBox_tension;
+    [SerializeField] Animator dateData_tension;
+
+    // DIALOGUE SFX
     [Header("Audio")]
     [SerializeField] AudioSource TXTsfx; // sfx for the typing
     [SerializeField] AudioSource arrowMOVEsfx; // sfx when using the left/right arrow keys during CHOICES
@@ -246,7 +266,12 @@ public class gameManager : MonoBehaviour
         datepyrusAnim = datepyrusAnim.GetComponent<Animator>();
         datearmAnim = datearmAnim.GetComponent<Animator>();
 
-        
+        tensionData = tensionData.GetComponent<Animator>();
+        dateBox = dateBox.GetComponent<Animator>();
+        dateData = dateData.GetComponent<Animator>();
+
+        dateBox_tension = dateBox_tension.GetComponent<Animator>();
+        dateData_tension = dateData_tension.GetComponent<Animator>();
 
          //get reference to image component of intro_image object 
         image_rend = intro.GetComponent<Image>();
@@ -1231,6 +1256,9 @@ public class gameManager : MonoBehaviour
                     datepyrusAnim.SetBool("Blush", false);
                     datepyrusAnim.SetBool("Default", false);
 
+                    // date power !
+                    datepower_normal.SetActive(true);
+                    dateData.SetBool("power_start", true);
                 }
             }  else if (currentSeq == 6){
                 Debug.Log("666666");
@@ -1245,8 +1273,11 @@ public class gameManager : MonoBehaviour
                 } else if(dialogueText.text.Contains("NEVER")) {
 
                     datepyrusAnim.SetBool("Determined", true);
-
                     datepyrusAnim.SetBool("Sus", false);
+
+                    // date power !
+                    datepower_normal.SetActive(true);
+                    dateData.SetBool("power_start", true);
 
                 }
             }  else if (currentSeq == 7){
@@ -1259,20 +1290,39 @@ public class gameManager : MonoBehaviour
                     datepyrusAnim.SetBool("AHHH", false);
                     datearmAnim.SetBool("shy", false);
 
+                    // date power !
+                    tensionBox.SetActive(true);
+
+                    tensionData.SetBool("appear", true);
+
+                } else if(dialogueText.text.Contains("SHALL")) {
+
+                    tensionData.SetBool("appear", false);
+
+                    tensionData.SetBool("permanent", true);
+
                 } else if(dialogueText.text.Contains("BEHOLD!")) {
 
                     datepyrusAnim.SetBool("Anime", true);
 
                     datepyrusAnim.SetBool("Determined", false);
 
+
                 }
             }  else if (currentSeq == 8){
                 Debug.Log("8888888");
                 if(dialogueText.text.Contains("HUMAN!")) {
-
+                    
                     datepyrusAnim.SetBool("AHHH", true);
 
                     datepyrusAnim.SetBool("Anime", false);
+
+                } else if (dialogueText.text.Contains("POWER")){
+
+                    // date power !
+                    dateData.SetBool("power_increase1", true);
+
+                    dateData.SetBool("power_start", false);
 
                 }
             }  else if (currentSeq == 9){
@@ -1283,6 +1333,12 @@ public class gameManager : MonoBehaviour
 
                     datepyrusAnim.SetBool("Anime", false);
 
+                } else if (dialogueText.text.Contains("POWER...")){
+                    
+                    // date power !
+                    dateData.SetBool("power_increase1", true);
+
+                    dateData.SetBool("power_start", false);
                 }
             }  else if (currentSeq == 10){
                 Debug.Log("101010101010");
@@ -1292,17 +1348,31 @@ public class gameManager : MonoBehaviour
 
                     datepyrusAnim.SetBool("AHHH", false);
 
+                    // date power !
+                    tensionData.SetBool("leave", true);
+
                 } else if(dialogueText.text.Contains("BUT")) {
 
                     datepyrusAnim.SetBool("Sus", true);
 
                     datepyrusAnim.SetBool("Determined", false);
 
-                } else if(dialogueText.text.Contains("YOUR")) {
+                } else if(dialogueText.text.Contains("INVALID!")) {
 
                     datepyrusAnim.SetBool("Determined", true);
 
                     datepyrusAnim.SetBool("Sus", false);
+                    datepyrusAnim.SetBool("Sus", false);
+
+                    // date power !
+                    dateData.SetBool("power_decrease", true);
+
+                    dateData.SetBool("power_increase1", false);
+
+                } else if(dialogueText.text.Contains("HAPPEN!")) {
+                    
+                    // date power !
+                    dateBox.SetBool("gone", true);
 
                 }
             }  else if (currentSeq == 11){
@@ -1316,6 +1386,7 @@ public class gameManager : MonoBehaviour
                 } else if(dialogueText.text.Contains("PRESENT.")) {
 
                     datepyrusAnim.SetBool("Blush", true);
+
                     datepyrusAnim.SetBool("Default", false);
 
                 }
@@ -1358,14 +1429,25 @@ public class gameManager : MonoBehaviour
 
                     datepyrusAnim.SetBool("Sus", false);
 
+                    // date power but ... tension!
+                    datepower_tension.SetActive(true);
+                    dateBox_tension.SetBool("defaulTension", true);
+
+                    dateBox_tension.SetBool("return", false);
+
                 }
             }  else if (currentSeq == 15){
                 Debug.Log("1515151515");
-                if(dialogueText.text.Contains("'")) {
+                if(dialogueText.text.Contains("MORE.")) {
 
                     datepyrusAnim.SetBool("Anime", true);
                     datearmAnim.SetBool("shy", true);
 
+                    // date power but ... tension!
+                    datepower_tension.SetActive(true);
+                    dateBox_tension.SetBool("defaulTension", true);
+
+                    dateBox_tension.SetBool("return", false);
                     datepyrusAnim.SetBool("Determined", false);
 
                 }
@@ -1378,6 +1460,13 @@ public class gameManager : MonoBehaviour
 
                     datepyrusAnim.SetBool("Anime", false);
                     datearmAnim.SetBool("shy", false);
+
+                    // date power but ... tension!
+                    dateBox_tension.SetBool("returnTension", true);
+                    dateData_tension.SetBool("powerTension_start", true);
+
+                    dateBox_tension.SetBool("return", false);
+                    dateData_tension.SetBool("power_decrease", false);
 
                 } else if(dialogueText.text.Contains("HUMAN!")) {
 
@@ -1409,11 +1498,18 @@ public class gameManager : MonoBehaviour
 
                     datepyrusAnim.SetBool("Blush", false);
 
-                } else if(dialogueText.text.Contains("THIS")) {
+                } else if(dialogueText.text.Contains("BE")) {
 
                     datepyrusAnim.SetBool("AHHH", true);
 
                     datepyrusAnim.SetBool("Sus", false);
+                    
+                    // date power but ... tension!
+
+                    dateData_tension.SetBool("powerTension_increase1", true);
+
+                    dateData_tension.SetBool("powerTension_start", false);
+                    dateData_tension.SetBool("power_decrease", false);
 
                 }
             }  else if (currentSeq == 18){
@@ -1436,8 +1532,38 @@ public class gameManager : MonoBehaviour
 
                     datepyrusAnim.SetBool("Blush", false);
 
+                } else if(dialogueText.text.Contains("BE")) {
+                   
+                    // date power but ... tension!
+
+                    dateData_tension.SetBool("powerTension_increase1", true);
+
+                    dateData_tension.SetBool("powerTension_start", false);
+                    dateData_tension.SetBool("power_decrease", false);
                 }
-            }  else if (currentSeq == 21){
+            } else if (currentSeq == 19){
+                Debug.Log("191919191919");
+                if (dialogueText.text.Contains("AH")){
+                    
+                    // date power but ... tension!
+                    dateData_tension.SetBool("powerTension_increase2", true);
+
+                    dateData_tension.SetBool("powerTension_increase1", false);
+                    dateData_tension.SetBool("powerTension_start", false);
+                } else if(dialogueText.text.Contains("NO")){   
+                    
+                    // date power but ... tension!
+                    dateData_tension.SetBool("powerTension_final", true);
+
+                    dateData_tension.SetBool("powerTension_increase2", false);
+                    dateData_tension.SetBool("powerTension_start", false);
+                }
+            } else if (currentSeq == 20){
+
+                datepower_tension.SetActive(false);
+
+            } else if (currentSeq == 21){
+
                 Debug.Log("21212121212121");
                 if(dialogueText.text.Contains("I...")) {
 
@@ -1465,7 +1591,7 @@ public class gameManager : MonoBehaviour
 
                     datepyrusAnim.SetBool("Awkward", false);
 
-                } else if(dialogueText.text.Contains("MATCH")) {
+                } else if(dialogueText.text.Contains("FRUITION")) {
 
                     datepyrusAnim.SetBool("Determined", true);
 
