@@ -4696,7 +4696,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -281, y: 181}
+  m_AnchoredPosition: {x: -792, y: 181}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!95 &1048816128
@@ -9768,6 +9768,11 @@ PrefabInstance:
       objectReference: {fileID: 1577166543}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: dateBox
+      value: 
+      objectReference: {fileID: 1194652963}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: endCard
       value: 
       objectReference: {fileID: 1934944063}
@@ -9786,6 +9791,11 @@ PrefabInstance:
       propertyPath: mainCam
       value: 
       objectReference: {fileID: 2060465136}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: dateData
+      value: 
+      objectReference: {fileID: 451967434}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: intro_bg
@@ -9859,6 +9869,11 @@ PrefabInstance:
       objectReference: {fileID: 1417739849}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: tensionBox
+      value: 
+      objectReference: {fileID: 467695121}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: datearmAnim
       value: 
       objectReference: {fileID: 697326066}
@@ -9883,6 +9898,11 @@ PrefabInstance:
       propertyPath: presentAnim
       value: 
       objectReference: {fileID: 973395907}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: tensionData
+      value: 
+      objectReference: {fileID: 467695123}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: arrowMOVEsfx
@@ -9935,6 +9955,11 @@ PrefabInstance:
       objectReference: {fileID: 1878093635}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: dateBox_tension
+      value: 
+      objectReference: {fileID: 1048816128}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: dateSpedUpMusic
       value: 
       objectReference: {fileID: 703751019}
@@ -9943,6 +9968,11 @@ PrefabInstance:
       propertyPath: narrativeTXTsfx
       value: 
       objectReference: {fileID: 8300000, guid: d8f6484708eb84426bb4dfb72a0fb7a8, type: 3}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: dateData_tension
+      value: 
+      objectReference: {fileID: 1554278687}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: date_fight_music
@@ -9960,6 +9990,11 @@ PrefabInstance:
       objectReference: {fileID: 577454114}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
+      propertyPath: datepower_normal
+      value: 
+      objectReference: {fileID: 1194652961}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
       propertyPath: combat.Array.size
       value: 22
       objectReference: {fileID: 0}
@@ -9968,6 +10003,11 @@ PrefabInstance:
       propertyPath: combatPapyrusDate
       value: 
       objectReference: {fileID: 1809628538}
+    - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
+        type: 3}
+      propertyPath: datepower_tension
+      value: 
+      objectReference: {fileID: 1048816126}
     - target: {fileID: 2230936564318212690, guid: 884309360798e46e1a566b67cff9a676,
         type: 3}
       propertyPath: intro_and_end_music
