@@ -1301,7 +1301,7 @@ public class gameManager : MonoBehaviour
 
                     date_start_music.SetActive(false);
                     date_fight_music.SetActive(true);
-                    
+
                     tensionBox.SetActive(true);
 
                     tensionData.SetBool("appear", true);
@@ -1387,9 +1387,9 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 11){
-                date_fight_music.SetActive(false);
+                date_tense_music.SetActive(false);
+                date_fight_music.SetActive(true);
                 Debug.Log("ELEVENELEVENELEVENELEVEN");
-                date_fight_music.SetActive(false);
                 if(dialogueText.text.Contains("SECRET...")) {
 
                     datepyrusAnim.SetBool("Default", true);
