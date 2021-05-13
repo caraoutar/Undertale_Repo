@@ -589,7 +589,7 @@ public class gameManager : MonoBehaviour
         isTyping = false;
         typedChoices = true;
 
-        //TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
     }
 
     //enable the choice gameobjects
@@ -1263,6 +1263,8 @@ public class gameManager : MonoBehaviour
                     // date power !
                     datepower_normal.SetActive(true);
                     dateData.SetBool("power_start", true);
+                    date_start_music.SetActive(false);
+                    date_fight_music.SetActive(true);
                 }
             }  else if (currentSeq == 6){
                 Debug.Log("666666");
@@ -1330,6 +1332,8 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 9){
+                date_fight_music.SetActive(false);
+                date_start_music.SetActive(true);
                 Debug.Log("9999999");
                 if(dialogueText.text.Contains("HUMAN...")) {
 
@@ -1381,6 +1385,7 @@ public class gameManager : MonoBehaviour
                 }
             }  else if (currentSeq == 11){
                 Debug.Log("ELEVENELEVENELEVENELEVEN");
+                date_fight_music.SetActive(false);
                 if(dialogueText.text.Contains("SECRET...")) {
 
                     datepyrusAnim.SetBool("Default", true);
@@ -1396,6 +1401,8 @@ public class gameManager : MonoBehaviour
                 }
             }  else if (currentSeq == 12){
                 Debug.Log("1212121212121212");
+                date_tense_music.SetActive(false);
+                date_start_music.SetActive(true);
                 if(dialogueText.text.Contains("HUMAN!")) {
 
                     datepyrusAnim.SetBool("Determined", true);
