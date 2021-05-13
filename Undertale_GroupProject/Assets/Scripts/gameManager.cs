@@ -281,6 +281,12 @@ public class gameManager : MonoBehaviour
     //updates the dialogue based on player input, and closes dialogue
     void Update(){
 
+        if (!isTyping) {
+            TXTsfx.loop = false;
+
+        } else {
+            TXTsfx.loop = true;
+        }
          if (runIntro == true) {
             intro_and_end_music.SetActive(true); 
             runIntroduction();
@@ -583,7 +589,7 @@ public class gameManager : MonoBehaviour
         isTyping = false;
         typedChoices = true;
 
-        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+        //TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
     }
 
     //enable the choice gameobjects
@@ -741,7 +747,7 @@ public class gameManager : MonoBehaviour
         }
 
         
-        TXTsfx.Play();
+        TXTsfx.Play(); 
         
 
         //the actual typing effect; do not add to these loops
@@ -800,9 +806,7 @@ public class gameManager : MonoBehaviour
             if (!isTypingChoice) displayChoice();
         }
 
-        if (TXTsfx.isPlaying) {
-        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
-        }
+      
         dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
         datepyrusAnim.GetComponent<Animator>().enabled = false; // stops playing papyrus' talking animation in combat scene !!
         }
@@ -874,7 +878,7 @@ public class gameManager : MonoBehaviour
         isTyping = false;
         canPressEnter = true;
 
-        TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
+        //TXTsfx.Stop(); // stops playing the typing SFX after typing is complete !!
         // dialoguePAP.GetComponent<Animator>().enabled = false; // stops playing the talking animation after typing is complete !!
        
     }
