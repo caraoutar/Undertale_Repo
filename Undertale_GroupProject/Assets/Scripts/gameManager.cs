@@ -1069,8 +1069,7 @@ public class gameManager : MonoBehaviour
     void runMiniGame(){
 
         //change music from date start to date tense
-        date_start_music.SetActive(false);
-        date_tense_music.SetActive(true);
+        //date_tense_music.SetActive(true);
         if (canMoveInspector){
             if(Input.GetKey(KeyCode.LeftArrow)){
                 inspector.transform.Translate(Vector3.left*Time.deltaTime *speed);
@@ -1299,14 +1298,14 @@ public class gameManager : MonoBehaviour
 
                     // date power !
 
-                    date_start_music.SetActive(false);
-                    date_fight_music.SetActive(true);
-
                     tensionBox.SetActive(true);
 
                     tensionData.SetBool("appear", true);
 
                 } else if(dialogueText.text.Contains("SHALL")) {
+
+                    date_start_music.SetActive(false);
+                    date_fight_music.SetActive(true);
 
                     tensionData.SetBool("appear", false);
 
@@ -1384,11 +1383,11 @@ public class gameManager : MonoBehaviour
                     
                     // date power !
                     dateBox.SetBool("gone", true);
+                    date_fight_music.SetActive(false);
+                    date_tense_music.SetActive(true);
 
                 }
             }  else if (currentSeq == 11){
-                date_tense_music.SetActive(false);
-                date_fight_music.SetActive(true);
                 Debug.Log("ELEVENELEVENELEVENELEVEN");
                 if(dialogueText.text.Contains("SECRET...")) {
 
