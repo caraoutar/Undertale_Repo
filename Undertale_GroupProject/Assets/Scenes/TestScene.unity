@@ -1168,7 +1168,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: d837d02ff9646423aa6511cd92ab54ac, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.343
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -1995,9 +1995,9 @@ MonoBehaviour:
   - I THOUGHT THAT MY DATE POWER WOULD MATCH YOURS!
   - 'BUT ALAS, I SEE THAT I AM NO MATCH. '
   - MY FEELINGS HAVEN'T CHANGED LIKE I THOUGHT THEY WOULD.
-  - INSTEAD, I'VE JUST PULLED YOU DEEPER INTO YOUR ABYSS OF LOVE FOR ME.
   - HOW COULD I HAVE DONE THIS TO SUCH A DEAR FRIEND...?
   - HOW COULD I HAVE FAILED THIS DATE...?
+  - ...
   - WAIT.
   - "NO... I\u2019M WRONG."
   - I, THE MAGNIFICENT PAPYRUS, AM INCAPABLE OF FAILURE!
@@ -2712,7 +2712,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 92e85cac687d94fdbbaa7c8a8d27b0c6, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.278
   m_Pitch: 2
   Loop: 1
   Mute: 0
@@ -5534,7 +5534,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 121373b38be1d82429f3b0fc59790127, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.9
+  m_Volume: 0.648
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -8910,7 +8910,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 2fe8ab57fdb3e4bd7af5bca4e2f8ab2f, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.239
   m_Pitch: 1
   Loop: 0
   Mute: 0

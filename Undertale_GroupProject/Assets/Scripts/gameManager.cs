@@ -696,7 +696,6 @@ public class gameManager : MonoBehaviour
         }
         else{ //if we're in combat then set the dialogue text to the approriate box depending on who is talking
         
-            datepyrusAnim.GetComponent<Animator>().enabled = true; // to start the animation of papyrus' head once in combat!
 
             if(str.Contains("*")){
                 maxLen = defLen + lenDiff; //change the max length of the textbox
@@ -711,6 +710,7 @@ public class gameManager : MonoBehaviour
                 if (!whiteScreen.activeSelf) dialogueText = papyrusText;
                 dialogueText.font = papyrusFont;
                 TXTsfx.clip = papyrusTXTsfx;
+                datepyrusAnim.GetComponent<Animator>().enabled = true; // to start the animation of papyrus' head once in combat!
                 
             }
 
