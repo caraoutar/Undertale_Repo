@@ -143,6 +143,8 @@ public class gameManager : MonoBehaviour
     [SerializeField] Image heart1;
     [SerializeField] Image heart2;
     [SerializeField] Image papyrusHead;
+    [SerializeField] GameObject heartChange; //transition heart
+    [SerializeField] Animator heartAnim;
 
     [Header("UI Variables")] //references to the dialogue objects/components
     public bool uiAtTop = false;
@@ -278,19 +280,32 @@ public class gameManager : MonoBehaviour
 
     }
 
-    //updates the dialogue based on player input, and closes dialogue
+    //various update cases
     void Update(){
-
+        //transition from room to combat scene
+        // if(heartChange.activeSelf && heartAnim.GetCurrentAnimatorStateInfo(0).IsName("EnterCombat")){
+        //     bg_end.SetActive(false);
+        //     heartChange.SetActive(false);
+        //     swapCamera(2);
+        //     StartCoroutine(displayDialogue());
+        //     canInteract = true;
+        // }
+                    
+        //updating typing sound
         if (!isTyping) {
             TXTsfx.loop = false;
 
         } else {
             TXTsfx.loop = true;
         }
+
+        //run the intro sequence
          if (runIntro == true) {
             intro_and_end_music.SetActive(true); 
             runIntroduction();
-    }
+        }
+        
+        //car animation
         if (dialogueText.text.Equals("THE BEST FEATURE, THOUGH...")) { //set the animation of the racecar
                     // Debug.Log("car anim");
                     carAnim.SetBool("StartRunning", true);
@@ -499,6 +514,18 @@ public class gameManager : MonoBehaviour
 
     }
 
+    //combat transition
+    IEnumerator waitCombat(float time){
+     yield return new WaitForSeconds(time);
+     // Now do some stuff...
+    heartAnim.SetBool("combat", true);
+    intro_bg.SetActive(false);
+    heartChange.SetActive(false);
+    swapCamera(2);
+    StartCoroutine(displayDialogue());
+    canInteract = true;
+    }
+
    
     //=======================================   CHOICE CHECK & TYPING METHODS   ==========================================
     #region choice
@@ -537,8 +564,15 @@ public class gameManager : MonoBehaviour
                     closeDialogue();
                     dialogue.Clear();
                     dialogue.Add("*Dating... start!");
-                    swapCamera(2);
-                    StartCoroutine(displayDialogue());
+                    
+                    // StartCoroutine(waitCombat(GetCurrentAnimatorClipInfo(0)[0].clip.length));
+                    intro_bg.SetActive(true);
+                    heartChange.SetActive(true);
+                    Debug.Log(((AnimatorClipInfo[])heartAnim.GetCurrentAnimatorClipInfo(0))[0].clip.length * 1.8f);
+                    StartCoroutine(waitCombat(3.42f));
+                    canInteract = false;
+                    // swapCamera(2);
+                    // StartCoroutine(displayDialogue());
                 break;
             }
         }
@@ -547,8 +581,8 @@ public class gameManager : MonoBehaviour
     void checkChoice2(){
         disableChoice();
         if(combatCam.enabled){ //combat scene
-        if (currentSeq==12) currentSeq++;
-            currentSeq+=2;
+        if (currentSeq==11) currentSeq++;
+        else currentSeq+=2;
             runCombat(currentSeq); //run the next sequence
         }
         else{
@@ -717,7 +751,7 @@ public class gameManager : MonoBehaviour
         // to handle specific animation of papyrus' parts during the minigame 
             if (str.Contains("...MY HAT.")){
 
-                Debug.Log("sus...");
+                // Debug.Log("sus...");
                 datepyrusAnim.SetBool("Sus", true);
 
                 datepyrusAnim.SetBool("Determined", false);
@@ -730,7 +764,7 @@ public class gameManager : MonoBehaviour
 
             } else if (str.Contains("THIS IS MY SECRET...")){
 
-                Debug.Log("manifesting... PRESENT...");
+                // Debug.Log("manifesting... PRESENT...");
                 datepyrusAnim.SetBool("Blush", true);
                 hatAnim.SetBool("hatlift", true);
 
@@ -738,12 +772,12 @@ public class gameManager : MonoBehaviour
 
             } else if (str.Contains("DO YOU KNOW WHAT THIS IS?")){
 
-                Debug.Log("unmanifests... PRESENT...");
+                // Debug.Log("unmanifests... PRESENT...");
                 presentAnim.SetBool("gone", true);
 
             } else if (str.Contains("take a bite")){
 
-                Debug.Log("unmanifests da spaghetti");
+                // Debug.Log("unmanifests da spaghetti");
                 spaghettAnim.SetBool("eaten", true);
 
             }
@@ -999,17 +1033,6 @@ public class gameManager : MonoBehaviour
     /*at the end of the sequence (last dialogue in the dialogue lisst), this method is called to check if any
     event should happen when the current sequence ends.*/
     void checkEndOfSeq(int n){
-        // Debug.Log("Checking end of seq");
-        //code for animation
-        //if(n == 5 || n == 6){ //animation (1/3)
-            
-        //} else if(n == 8 || n == 9){ //animation (2/3)
-
-        //} else if(n == 14 || n == 15){ //bring up date power
-
-        //} else if(n == 17 || n == 18){ //power overflows anim
-
-        //}
         canPressEnter = false;
         switch(n){
             case 0: //start timer in case player doesnt press c
@@ -1123,7 +1146,7 @@ public class gameManager : MonoBehaviour
     void animatingDATE(){
         if(combatCam.enabled){
             if(currentSeq == 0){
-                Debug.Log("000000000");
+                // Debug.Log("000000000");
                 if(dialogueText.text.Contains("WOULD")) {
 
                     datepyrusAnim.SetBool("Blush", true);
@@ -1151,7 +1174,7 @@ public class gameManager : MonoBehaviour
 
                 }
             } else if (currentSeq == 1){
-                Debug.Log("111111111111111111");
+                // Debug.Log("111111111111111111");
                 if(dialogueText.text.Contains("WOW!")) {
 
                     datepyrusAnim.SetBool("Anime", true);
@@ -1185,7 +1208,7 @@ public class gameManager : MonoBehaviour
                 
                 }
             }  else if (currentSeq == 2){
-                Debug.Log("2222222222222");
+                // Debug.Log("2222222222222");
                 if(dialogueText.text.Contains("REA")) {
 
                     datepyrusAnim.SetBool("Anime", true);
@@ -1209,7 +1232,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 3){
-                Debug.Log("3333333333333");
+                // Debug.Log("3333333333333");
                 if(dialogueText.text.Contains("BUT")) {
 
                     datepyrusAnim.SetBool("Blush", true);
@@ -1217,7 +1240,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 4){
-                Debug.Log("444444444");
+                // Debug.Log("444444444");
                 if(dialogueText.text.Contains("THREE")) {
 
                     datepyrusAnim.SetBool("Sus", true);
@@ -1254,7 +1277,7 @@ public class gameManager : MonoBehaviour
                    datearmAnim.SetBool("reading", false);
                     }
                 }  else if (currentSeq == 5){
-                Debug.Log("55555555");
+                // Debug.Log("55555555");
                     if(dialogueText.text.Contains("YOUR")) {
 
                     datepyrusAnim.SetBool("AHHH", true);
@@ -1267,7 +1290,7 @@ public class gameManager : MonoBehaviour
                     dateData.SetBool("power_start", true);
                 }
             }  else if (currentSeq == 6){
-                Debug.Log("666666");
+                // Debug.Log("666666");
                 if(dialogueText.text.Contains(",")) {
 
                     datepyrusAnim.SetBool("Sus", true);
@@ -1287,7 +1310,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 7){
-                Debug.Log("777777777");
+                // Debug.Log("777777777");
                 if(dialogueText.text.Contains("MAGNIFICENT")) {
 
                     datepyrusAnim.SetBool("Determined", true);
@@ -1320,7 +1343,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 8){
-                Debug.Log("8888888");
+                // Debug.Log("8888888");
                 if(dialogueText.text.Contains("HUMAN!")) {
                     
                     datepyrusAnim.SetBool("AHHH", true);
@@ -1336,7 +1359,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 9){
-                Debug.Log("9999999");
+                // Debug.Log("9999999");
                 if(dialogueText.text.Contains("HUMAN...")) {
 
                     datepyrusAnim.SetBool("AHHH", true);
@@ -1351,7 +1374,7 @@ public class gameManager : MonoBehaviour
                     dateData.SetBool("power_start", false);
                 }
             }  else if (currentSeq == 10){
-                Debug.Log("101010101010");
+                // Debug.Log("101010101010");
                 if(dialogueText.text.Contains("HEH.")) {
 
                     datepyrusAnim.SetBool("Determined", true);
@@ -1388,7 +1411,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 11){
-                Debug.Log("ELEVENELEVENELEVENELEVEN");
+                // Debug.Log("ELEVENELEVENELEVENELEVEN");
                 if(dialogueText.text.Contains("SECRET...")) {
 
                     datepyrusAnim.SetBool("Default", true);
@@ -1403,7 +1426,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 12){
-                Debug.Log("1212121212121212");
+                // Debug.Log("1212121212121212");
                 if(dialogueText.text.Contains("HUMAN!")) {
 
                     datepyrusAnim.SetBool("Determined", true);
@@ -1418,7 +1441,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 13){
-                Debug.Log("131313131313");
+                // Debug.Log("131313131313");
                 if(dialogueText.text.Contains("DO")) {
 
                     datepyrusAnim.SetBool("Determined", true);
@@ -1428,7 +1451,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 14){
-                Debug.Log("141414141414");
+                // Debug.Log("141414141414");
                 if(dialogueText.text.Contains("THINK")) {
 
                     datepyrusAnim.SetBool("Sus", true);
@@ -1449,7 +1472,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 15){
-                Debug.Log("1515151515");
+                // Debug.Log("1515151515");
                 if(dialogueText.text.Contains("MORE.")) {
 
                     datepyrusAnim.SetBool("Anime", true);
@@ -1464,7 +1487,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 16){
-                Debug.Log("1616161616");
+                // Debug.Log("1616161616");
                 if(dialogueText.text.Contains("PASTA")) {
 
                     datepyrusAnim.SetBool("Determined", true);
@@ -1489,7 +1512,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 17){
-                Debug.Log("1717717171717");
+                // Debug.Log("1717717171717");
                 if(dialogueText.text.Contains("LOOK")) {
 
                     datepyrusAnim.SetBool("Sus", true);
@@ -1525,7 +1548,7 @@ public class gameManager : MonoBehaviour
 
                 }
             }  else if (currentSeq == 18){
-                Debug.Log("1818181818");
+                // Debug.Log("1818181818");
                 if(dialogueText.text.Contains("WAIT")) {
 
                     datepyrusAnim.SetBool("Sus", true);
@@ -1554,7 +1577,7 @@ public class gameManager : MonoBehaviour
                     dateData_tension.SetBool("power_decrease", false);
                 }
             } else if (currentSeq == 19){
-                Debug.Log("191919191919");
+                // Debug.Log("191919191919");
                 if (dialogueText.text.Contains("AH")){
                     
                     // date power but ... tension!
@@ -1576,7 +1599,7 @@ public class gameManager : MonoBehaviour
 
             } else if (currentSeq == 21){
 
-                Debug.Log("21212121212121");
+                // Debug.Log("21212121212121");
                 if(dialogueText.text.Contains("I...")) {
 
                     datepyrusAnim.SetBool("Blush", true);

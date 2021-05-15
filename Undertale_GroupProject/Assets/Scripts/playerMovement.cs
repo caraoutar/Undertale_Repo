@@ -29,7 +29,7 @@ public class playerMovement : MonoBehaviour
    
     void Start()
     {
-        gameManager = (gameManager) GameObject.FindWithTag("GameController").GetComponent(typeof(gameManager));
+        gameManager = (gameManager)GameObject.FindWithTag("GameController").GetComponent(typeof(gameManager));
         canMove = true;
         myAnim = gameObject.GetComponent<Animator>();
         myRenderer = gameObject.GetComponent<SpriteRenderer>();
@@ -51,10 +51,10 @@ public class playerMovement : MonoBehaviour
         //checking to see what object player is interacting with
         if(Input.GetKeyDown(KeyCode.Return)){
             RaycastHit2D hit = Physics2D.Raycast(gameObject.transform.position, dir, maxDistance);
-            Debug.DrawRay(gameObject.transform.position, dir, Color.green);
+            // Debug.DrawRay(gameObject.transform.position, dir, Color.green);
             
             if(hit.collider != null){
-                Debug.Log(hit.collider.gameObject.name);
+                // Debug.Log(hit.collider.gameObject.name);
                 GameObject obj = hit.collider.gameObject;
                 interactableObj o = (interactableObj)obj.GetComponent(typeof(interactableObj));
                 
