@@ -426,7 +426,11 @@ public class gameManager : MonoBehaviour
 
         if(canRunMiniGame){ //run mini game
             // Debug.Log("Running mini game");
+            if(isTyping) canMoveInspector = false;
+            else canMoveInspector = true;
+
             runMiniGame();
+        
         }
 
         //timer code (counts down from timeRemaining);
@@ -470,7 +474,7 @@ public class gameManager : MonoBehaviour
     void runIntroduction() {
             sans_music.SetActive(false); // to stop the sans music from playing
 
-            Debug.Log("run intro");
+            // Debug.Log("run intro");
 
             //if player presses enter
             if (Input.GetKeyDown(KeyCode.Return)) {
@@ -480,7 +484,7 @@ public class gameManager : MonoBehaviour
                 if (image_index < 11) {
                     //set sprite to sprite of index value in array 
                     image_rend.sprite = intro_cards[image_index];
-                    Debug.Log(image_index); 
+                    // Debug.Log(image_index); 
 
                     arrow.SetActive(true); // enable the arrow
 
@@ -568,7 +572,10 @@ public class gameManager : MonoBehaviour
                     // StartCoroutine(waitCombat(GetCurrentAnimatorClipInfo(0)[0].clip.length));
                     intro_bg.SetActive(true);
                     heartChange.SetActive(true);
-                    Debug.Log(((AnimatorClipInfo[])heartAnim.GetCurrentAnimatorClipInfo(0))[0].clip.length * 1.8f);
+                    mainRoom.SetActive(false);
+                    bedroom.SetActive(false);
+                    p.SetActive(false);
+                    // Debug.Log(((AnimatorClipInfo[])heartAnim.GetCurrentAnimatorClipInfo(0))[0].clip.length * 1.8f);
                     StartCoroutine(waitCombat(3.42f));
                     canInteract = false;
                     // swapCamera(2);
@@ -581,8 +588,8 @@ public class gameManager : MonoBehaviour
     void checkChoice2(){
         disableChoice();
         if(combatCam.enabled){ //combat scene
-        if (currentSeq==11) currentSeq++;
-        else currentSeq+=2;
+            if (currentSeq==11) currentSeq++;
+            else currentSeq+=2;
             runCombat(currentSeq); //run the next sequence
         }
         else{
@@ -739,7 +746,10 @@ public class gameManager : MonoBehaviour
                 
             }
             else{ 
-                maxLen = (0.44f)*defLen; //change the max length of the textbox
+                maxLen = (0.45f)*defLen; //change the max length of the textbox
+                // Debug.Log(papyrusTextBox.transform.GetChild(0).GetComponent<RectTransform>().rect.x);
+                // Debug.Log(papyrusTextBox.transform.GetComponent<RectTransform>().rect.x);
+                // maxLen = -(papyrusTextBox.transform.GetChild(0).GetComponent<RectTransform>().rect.x);
                 if( currentSeq == 4 && str == "") datingHUD.SetActive(false);
                 if (!whiteScreen.activeSelf) dialogueText = papyrusText;
                 dialogueText.font = papyrusFont;
@@ -986,9 +996,9 @@ public class gameManager : MonoBehaviour
                 // foreach (GameObject o in objs){
                 //     o.SetActive(false);
                 // }
-                mainRoom.SetActive(false);
-                bedroom.SetActive(false);
-                p.SetActive(false);
+                // mainRoom.SetActive(false);
+                // bedroom.SetActive(false);
+                // p.SetActive(false);
             break;
         }
 
@@ -1046,8 +1056,9 @@ public class gameManager : MonoBehaviour
                 // Debug.Log("Checking end of seq10");
                 currentSeq++;
                 canRunMiniGame = true;
+                // dialogueText.text = "";
                 inspector.SetActive(true);
-                canMoveInspector = true;
+                // canMoveInspector = true;
             break;
             case 19: //transition to white screen ()just use a white sprite; next
                 // canvas.SetActive(false);
