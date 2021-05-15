@@ -746,7 +746,7 @@ public class gameManager : MonoBehaviour
                 
             }
             else{ 
-                maxLen = (0.45f)*defLen; //change the max length of the textbox
+                maxLen = (0.46f)*defLen; //change the max length of the textbox
                 // Debug.Log(papyrusTextBox.transform.GetChild(0).GetComponent<RectTransform>().rect.x);
                 // Debug.Log(papyrusTextBox.transform.GetComponent<RectTransform>().rect.x);
                 // maxLen = -(papyrusTextBox.transform.GetChild(0).GetComponent<RectTransform>().rect.x);
